@@ -134,6 +134,43 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-header">DATA KAS</li>
+                <li class="nav-item">
+                    <a href="{{ route('kasmasuk.index') }}"
+                        class="nav-link {{ Request::segment(2) == 'kasmasuk' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-money-bill"></i>
+                        <p>
+                            Kas Masuk
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('kaskeluar.index') }}"
+                        class="nav-link {{ Request::segment(2) == 'kaskeluar' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-money-bill"></i>
+                        <p>
+                            Kas Keluar
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('saldo.index') }}"
+                        class="nav-link {{ Request::segment(2) == 'saldo' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-money-bill"></i>
+                        <p>
+                            Saldo
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('kaskeluar.index') }}"
+                        class="nav-link {{ Request::segment(2) == 'laporan' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-money-bill"></i>
+                        <p>
+                            Laporan
+                        </p>
+                    </a>
+                </li>
                 @endrole
 
                 @role('petugas')

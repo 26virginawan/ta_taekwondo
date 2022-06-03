@@ -103,6 +103,12 @@ Route::prefix('admin')
                 'admin-list/{id}',
                 'AdminListController@destroy'
             )->name('admin-list.destroy');
+            Route::get('/kasmasuk', 'KasMasukController@index');
+            Route::get('/kaskeluar', 'KasKeluarController@index');
+            Route::get('/saldo', 'SaldoController@index');
+            Route::resource('saldo', 'SaldoController');
+            Route::resource('kasmasuk', 'KasMasukController');
+            Route::resource('kaskeluar', 'KaskeluarController');
             Route::resource('user', 'UserController');
             Route::resource('petugas', 'PetugasController');
             Route::resource('permissions', 'PermissionController');
