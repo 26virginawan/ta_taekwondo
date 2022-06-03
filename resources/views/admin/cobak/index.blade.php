@@ -17,7 +17,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <a href="javascript:void(0)" class="btn btn-primary btn-sm" data-toggle="modal"
+                <a href="{{ route('cobak.create')  }}" class="btn btn-primary btn-sm" data-toggle="modal"
                     data-target="#createModal">
                     <i class="fas fa-plus fa-fw"></i> Tambah Data
                 </a>
@@ -29,15 +29,19 @@
                         <tr>
                             <th>No</th>
                             <th>Name</th>
+                            <th>jenis</th>
                             <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
+                        @foreach($cobak as $data)
                         <tr>
-                            <td></td>
-                            <td></td>
+
+                            <td>{{$data->nama}}</td>
+                            <td>{{$data->jenis}}</td>
                             <td></td>
                         </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
@@ -48,91 +52,6 @@
     <!-- /.col -->
 </div>
 <!-- /.row -->
-
-<!-- Create Modal -->
-<div class="modal fade" id="createModal" tabindex="-1" role="dialog" aria-labelledby="createModalLabel"
-    aria-hidden="true">
-    <div class="modal-dialog modal-xl" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="createModalLabel">Tambah Data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <div class="modal-body">
-
-                <div class="table-responsive">
-                    <form id="store">
-                        <span id="result"></span>
-                        <table class="table table-bordered table-striped" id="user_table">
-                            <thead>
-                                <tr>
-                                    <th>No</th>
-                                    <th>name</th>
-                                    <th>Nama Kejuaraan</th>
-                                    <th>Tingkat</th>
-                                    <th>Kelas</th>
-                                    <th>Kategori</th>
-                                    <th>Perolehan</th>
-                                    <th>tgl_acara</th>
-                                    <th>lokasi</th>
-                                    <th width="150px">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                            </tbody>
-                            <tfoot>
-                                <tr>
-                                    <td colspan="1" align="right">&nbsp;</td>
-                                    <td>
-                                        <button type="submit" class="btn btn-primary"><i class="fas fa-save fa-fw"></i>
-                                            SIMPAN</button>
-                                    </td>
-                                </tr>
-                            </tfoot>
-                        </table>
-                    </form>
-                </div>
-
-            </div>
-
-        </div>
-    </div>
-</div>
-<!-- Create Modal -->
-
-<!-- Edit Modal -->
-<div class="modal fade" id="editModal" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="editModalLabel">Edit Data</h5>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                </button>
-            </div>
-            <form id="update">
-                <div class="modal-body">
-                    <div class="form-group">
-                        <label for="name_edit">Role Name</label>
-                        <input type="hidden" name="id" id="id_edit" readonly="" required="" class="form-control">
-                        <input type="" name="name" id="name_edit" required="" class="form-control">
-                    </div>
-                </div>
-                <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                    <button type="submit" class="btn btn-primary">
-                        <i class="fas fa-save fa-fw"></i> UPDATE
-                    </button>
-                </div>
-            </form>
-        </div>
-    </div>
-</div>
-<!-- Edit Modal -->
-
 @stop
 
 @push('js')
@@ -149,5 +68,5 @@
 <!-- Sweetalert 2 -->
 <script type="text/javascript"
     src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/sweetalert2/sweetalert2.min.js"></script>
-@include('admin.roles.ajax')
+
 @endpush

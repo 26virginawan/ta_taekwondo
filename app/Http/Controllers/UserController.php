@@ -1,12 +1,15 @@
 <?php
 
-namespace App\Http\Controllers\Admin;
+namespace App\Http\Controllers;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Atlet;
 use Illuminate\Support\Facades\Hash;
 use App\DataTables\UserDataTable;
+use Illuminate\Support\Str;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class UserController extends Controller
 {
@@ -47,17 +50,26 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        $data = new \App\Models\User();
-        $data->name = $request->name;
-        $data->username = $request->username;
-        $data->email = $request->email;
-        $data->password = bcrypt('rahasia');
-        $data->id_registrasi = 'REG-' . date('YmdHis');
-        $data->save();
+        $this->validate($request, [
+            'name' => 'required',
+            'username' => 'required',
+            'email' => 'required',
+        ]);
 
-        $user_register = \App\Models\User::create($request->all());
+        $user = User::create([
+            'name' => $request->name,
+            'username' => $request->username,
+            'email' => $request->email,
+            'password' => bcrypt('rahasia'),
+            'id_register' => 'REG-' . date('YmdHis'),
+        ]);
 
-        alert()->success('Berhasil.', 'Data telah disimpan!');
+        $user->assignRole('atlet');
+        $atlet = Atlet::create([
+            'id' => $user->id,
+            'user_id' => $user->id,
+            'name' => Str::lower($request->name),
+        ]);
 
         return redirect('/login');
     }

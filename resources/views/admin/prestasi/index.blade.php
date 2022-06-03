@@ -89,11 +89,11 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <label for="atlet_id">Nama:</label>
-                                <select required="" name="atlet_id" id="atlet_id" class="form-control select2bs4">
+                                <label for="name">Nama:</label>
+                                <select required="" name="name" id="name" class="form-control select2bs4">
                                     <option disabled="" selected="">- PILIH NAMA -</option>
                                     @foreach($atlet as $row)
-                                    <option value="{{ $row->id }}">{{ $row->name }}</option>
+                                    <option value="{{ $row->name }}">{{ $row->name }}</option>
                                     @endforeach
                                 </select>
                             </div>

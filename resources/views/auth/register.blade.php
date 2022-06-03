@@ -36,38 +36,33 @@
                     </button>
                 </div>
                 @enderror
-                <form action="{{ route('login') }}" method="post">
+                <form role="form" method="post" action="register/store" enctype="multipart/form-data">
                     @csrf
-                    <div class="input-group mb-3">
-                        <input type="" name="username" value="{{ @old('username') }}" required="" class="form-control"
-                            placeholder="Username">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-envelope"></span>
-                            </div>
+                    <div class="box-body">
+                        <div class="form-group">
+                            <label for="exampleInputEmail1">Nama Peserta</label>
+                            <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Nama Peserta"
+                                name="name">
                         </div>
-                    </div>
-                    <div class="input-group mb-3">
-                        <input type="password" name="password" required="" class="form-control" placeholder="Password">
-                        <div class="input-group-append">
-                            <div class="input-group-text">
-                                <span class="fas fa-lock"></span>
-                            </div>
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Username</label>
+                            <input type="text" name="username" class="form-control" id="exampleInputPassword1"
+                                placeholder="Username">
                         </div>
-                    </div>
-                    <div class="row">
-                        <!-- /.col -->
-                        <div class="col">
-                            <button type="submit" class="btn btn-primary btn-block">Login</button>
-                        </div>
-                    </div>
-                    <br>
-                    <div class="row">
-                        <div class="col">
-                            <p class="login-box-msg">Belum Mempunyai Akun? <a href="/register">Registrasi</a></p>
-                            <!-- /.col -->
 
+                        <div class="form-group">
+                            <label for="exampleInputPassword1">Email</label>
+                            <input type="email" name="email" class="form-control" id="exampleInputPassword1"
+                                placeholder="Email">
                         </div>
+
+
+
+                    </div>
+                    <!-- /.box-body -->
+
+                    <div class="box-footer">
+                        <button type="submit" class="btn btn-primary">Submit</button>
                     </div>
                 </form>
             </div>

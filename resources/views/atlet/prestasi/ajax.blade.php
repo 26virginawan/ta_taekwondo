@@ -11,8 +11,8 @@ $(function() {
                 name: 'id'
             },
             {
-                data: 'atlet.name',
-                name: 'atlet.name'
+                data: 'name',
+                name: 'name'
             },
             {
                 data: 'nama_kejuaraan',
@@ -107,7 +107,7 @@ function printErrorMsg(msg) {
 $("body").on("click", ".btn-edit", function() {
     var id = $(this).attr("id")
     $.ajax({
-        url: "/admin/prestasi/" + id + "/edit",
+        url: "/atlet/prestasiAtlet/" + id + "/edit",
         method: "GET",
         statusCode: {
             500: function(response) {
@@ -116,7 +116,7 @@ $("body").on("click", ".btn-edit", function() {
         },
         success: function(response) {
             $("#id_edit").val(response.data.id)
-            $("#atlet_id_edit").val(response.data.atlet_id)
+            $("#name_edit").val(response.data.name)
             $("#nama_kejuaraan_edit").val(response.data.nama_kejuaraan)
             $("#tingkat_edit").val(response.data.tingkat)
             $("#kelas_edit").val(response.data.kelas)
@@ -143,7 +143,7 @@ $("#update").on("submit", function(e) {
     e.preventDefault()
     var id = $("#id_edit").val()
     $.ajax({
-        url: "/admin/prestasi/" + id,
+        url: "/atlet/prestasiAtlet/" + id,
         method: "PATCH",
         data: $(this).serialize(),
         statusCode: {
@@ -191,8 +191,13 @@ $("body").on("click", ".btn-delete", function() {
     }).then((result) => {
         if (result.isConfirmed) {
             $.ajax({
-                url: "/admin/prestasi/" + id,
+                url: "/atlet/prestasiAtlet/" + id,
                 method: "DELETE",
+                statusCode: {
+                    500: function(response) {
+                        console.log(response)
+                    },
+                },
                 success: function(response) {
                     $('#dataTable2').DataTable().ajax.reload()
                     Swal.fire(

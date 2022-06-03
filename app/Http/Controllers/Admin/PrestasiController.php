@@ -66,6 +66,7 @@ class PrestasiController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'name' => 'required',
             'nama_kejuaraan' => 'required',
             'tingkat' => 'required',
             'kelas' => 'required',
@@ -77,7 +78,7 @@ class PrestasiController extends Controller
 
         if ($validator->passes()) {
             Prestasi::create([
-                'atlet_id' => $request->atlet_id,
+                'name' => $request->name,
                 'nama_kejuaraan' => $request->nama_kejuaraan,
                 'tingkat' => $request->tingkat,
                 'kelas' => $request->kelas,
@@ -115,6 +116,7 @@ class PrestasiController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
+            'name' => 'required',
             'nama_kejuaraan' => 'required',
             'tingkat' => 'required',
             'kelas' => 'required',
@@ -126,7 +128,7 @@ class PrestasiController extends Controller
 
         if ($validator->passes()) {
             Prestasi::findOrFail($id)->update([
-                'nama_kejuaraan' => $request->nama_kejuaraan,
+                'name' => $request->name,
                 'tingkat' => $request->tingkat,
                 'kelas' => $request->kelas,
                 'kategori' => $request->kategori,

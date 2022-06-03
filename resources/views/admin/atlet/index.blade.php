@@ -27,6 +27,9 @@
                     <i class="fas fa-plus fa-fw"></i> Tambah Data
                 </a>
                 @endcan
+
+                <a href="atlet/cetak" class="btn btn-danger btn-sm"><i class="fa fa-pdf fa-fw"></i>
+                    Cetak PDF</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -34,6 +37,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Foto</th>
                             <th>Nama Atlet</th>
                             <th>NISN</th>
                             <th>Tanggal Registrasi</th>
@@ -45,6 +49,7 @@
                     </thead>
                     <tbody>
                         <tr>
+                            <td></td>
                             <td></td>
                             <td></td>
                             <td></td>
@@ -71,12 +76,12 @@
     <div class="modal-dialog modal-xl" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="createModalLabel">Tambah Data</h5>
+                <h5 class="modal-title" enctype="multipart/form-data" id="createModalLabel">Tambah Data</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
-            <form id="store">
+            <form id="store" enctype="multipart/form-data">
                 <div class="modal-body">
                     <div class="alert alert-danger print-error-msg" style="display: none;">
                         <ul></ul>
@@ -87,6 +92,15 @@
                                 <label for="nisn">NISN:</label>
                                 <input required="" type="text" name="nisn" id="nisn" class="form-control">
                             </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label for="gambar" class="col-md-4 control-label">Foto</label>
+
+                                <input type="file" name="gambar" class="form-control">
+
+                            </div>
+                            <div class="img-holder"> </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">

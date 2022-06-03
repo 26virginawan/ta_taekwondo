@@ -20,8 +20,8 @@ class Atlet extends Model
     protected $fillable = [
         'user_id',
         'kode_atlet',
-        'foto',
         'nisn',
+        'gambar',
         'name',
         'tgl_registrasi',
         'tempat_lahir',

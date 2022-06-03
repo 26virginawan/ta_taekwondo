@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
-use App\DataTables\PrestasiDataTable;
+use App\DataTables\PrestasiAtletDataTable;
 
 class PrestasiAtletController extends Controller
 {
@@ -43,20 +43,21 @@ class PrestasiAtletController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, PrestasiDataTable $datatable)
+    public function index(Request $request, PrestasiAtletDataTable $datatable)
     {
         if ($request->ajax()) {
             return $datatable->data();
         }
 
-        $prestasi = Prestasi::all();
+        // $dataprofil = Prestasi::get();
         $spp = Spp::all();
-        $atlet = Atlet::all();
+        $atlet = Atlet::where(
+            'name',
 
-        return view(
-            'atlet.prestasi.index',
-            compact('prestasi', 'spp', 'atlet')
-        );
+            Auth::user()->name
+        )->get();
+
+        return view('atlet.prestasi.index', compact('spp', 'atlet'));
     }
 
     /**
@@ -68,6 +69,7 @@ class PrestasiAtletController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'name' => 'required',
             'nama_kejuaraan' => 'required',
             'tingkat' => 'required',
             'kelas' => 'required',
@@ -79,7 +81,7 @@ class PrestasiAtletController extends Controller
 
         if ($validator->passes()) {
             Prestasi::create([
-                'atlet_id' => $request->atlet_id,
+                'name' => $request->name,
                 'nama_kejuaraan' => $request->nama_kejuaraan,
                 'tingkat' => $request->tingkat,
                 'kelas' => $request->kelas,
@@ -117,6 +119,7 @@ class PrestasiAtletController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
+            'name' => 'required',
             'nama_kejuaraan' => 'required',
             'tingkat' => 'required',
             'kelas' => 'required',
@@ -128,6 +131,7 @@ class PrestasiAtletController extends Controller
 
         if ($validator->passes()) {
             Prestasi::findOrFail($id)->update([
+                'name' => $request->name,
                 'nama_kejuaraan' => $request->nama_kejuaraan,
                 'tingkat' => $request->tingkat,
                 'kelas' => $request->kelas,

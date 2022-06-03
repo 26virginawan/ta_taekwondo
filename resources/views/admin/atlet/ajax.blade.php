@@ -12,6 +12,10 @@ $(function() {
             },
 
             {
+                data: 'gambar',
+                name: 'gambar'
+            },
+            {
                 data: 'name',
                 name: 'name'
             },
@@ -108,6 +112,33 @@ $("#store").on("submit", function(e) {
         }
     });
 })
+$('input[type="file"][name="gambar"]').val('');
+//Image preview
+$('input[type="file"][name="gambar"]').on('change', function() {
+    var img_path = $(this)[0].value;
+    var img_holder = $('.img-holder');
+    var extension = img_path.substring(img_path.lastIndexOf('.') + 1).toLowerCase();
+
+    if (extension == 'jpeg' || extension == 'jpg' || extension == 'png') {
+        if (typeof(FileReader) != 'undefined') {
+            img_holder.empty();
+            var reader = new FileReader();
+            reader.onload = function(e) {
+                $('<img/>', {
+                    'src': e.target.result,
+                    'class': 'img-fluid',
+                    'style': 'max-width:100px;margin-bottom:10px;'
+                }).appendTo(img_holder);
+            }
+            img_holder.show();
+            reader.readAsDataURL($(this)[0].files[0]);
+        } else {
+            $(img_holder).html('This browser does not support FileReader');
+        }
+    } else {
+        $(img_holder).empty();
+    }
+});
 
 // create-error-validation
 function printErrorMsg(msg) {

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 31, 2022 at 02:11 PM
+-- Generation Time: Jun 03, 2022 at 02:59 AM
 -- Server version: 10.4.11-MariaDB
 -- PHP Version: 7.4.29
 
@@ -32,6 +32,7 @@ CREATE TABLE `atlet` (
   `id` bigint(20) UNSIGNED NOT NULL,
   `kode_atlet` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nisn` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `gambar` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tgl_registrasi` date DEFAULT NULL,
   `tempat_lahir` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -51,10 +52,14 @@ CREATE TABLE `atlet` (
 -- Dumping data for table `atlet`
 --
 
-INSERT INTO `atlet` (`id`, `kode_atlet`, `nisn`, `name`, `tgl_registrasi`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `bb`, `tb`, `no_telepon`, `tingkat_sabuk`, `kelas`, `user_id`, `created_at`, `updated_at`) VALUES
-(3, 'ATLTEWEWW', '001122', 'listanto', '2022-05-29', 'Malang', '2022-05-01', 'Perempuan', '50', '170', '0812456878', 'Hitam', 'poomsae', 15, NULL, '2022-05-31 10:25:51'),
-(4, 'ATLT3RKPU', '09123456', 'dhani', '2022-05-31', 'Malang', '2022-05-01', 'Laki-laki', '55', '165', '0981821821', 'Hitam', 'poomsae', 16, '2022-05-31 09:58:07', '2022-05-31 09:58:07'),
-(5, 'ATLTYWQCL', '00112211', 'Vista Tenassa', '2022-05-31', 'Malang', '2022-05-01', 'Laki-laki', '60', '170', '0981821821', 'Hitam', 'kyorugi', 17, '2022-05-31 10:22:28', '2022-05-31 10:22:28');
+INSERT INTO `atlet` (`id`, `kode_atlet`, `nisn`, `gambar`, `name`, `tgl_registrasi`, `tempat_lahir`, `tgl_lahir`, `jenis_kelamin`, `bb`, `tb`, `no_telepon`, `tingkat_sabuk`, `kelas`, `user_id`, `created_at`, `updated_at`) VALUES
+(3, 'ATLTEWEWW', '001122', NULL, 'listanto', '2022-05-29', 'Malang', '2022-05-01', 'Perempuan', '50', '170', '0812456878', 'Hitam', 'poomsae', 15, NULL, '2022-05-31 10:25:51'),
+(4, 'ATLT3RKPU', '09123456', NULL, 'dhani', '2022-05-31', 'Malang', '2022-05-01', 'Laki-laki', '55', '165', '0981821821', 'Hitam', 'poomsae', 16, '2022-05-31 09:58:07', '2022-05-31 09:58:07'),
+(5, 'ATLTYWQCL', '00112211', NULL, 'Vista Tenassa', '2022-05-31', 'Malang', '2022-05-01', 'Laki-laki', '60', '170', '0981821821', 'Hitam', 'kyorugi', 17, '2022-05-31 10:22:28', '2022-05-31 10:22:28'),
+(6, 'ATLTJSC51', '11223311', NULL, 'dendi santoso', '2022-05-31', 'Malang', '2022-05-01', 'Laki-laki', '55', '170', '0981821821', 'Hitam', 'kyorugi', 18, '2022-05-31 14:31:59', '2022-05-31 14:31:59'),
+(7, 'ATLTIPZDG', '8877', NULL, 'Caril', '2022-02-10', 'gresik', '2000-10-10', 'Laki-laki', '55', '170', '92747394', 'Hitam', 'poomsae', 19, '2022-05-31 14:36:17', '2022-05-31 14:36:17'),
+(8, 'ATLTHGHOB', '111111', NULL, 'Surya', '2022-10-20', 'Malang', '2001-05-10', 'Laki-laki', '50', '180', '05213221444', 'Putih', 'reguler', 20, '2022-05-31 14:45:10', '2022-06-02 07:43:59'),
+(9, NULL, '3322', NULL, 'anjay', '2022-06-02', 'Malang', '2022-06-02', 'Perempuan', '55', '165', '0981821821', 'Hitam', 'poomsae', 37, '2022-06-02 16:05:57', '2022-06-02 16:27:10');
 
 -- --------------------------------------------------------
 
@@ -180,7 +185,15 @@ INSERT INTO `model_has_roles` (`role_id`, `model_type`, `model_id`) VALUES
 (3, 'App\\Models\\User', 12),
 (3, 'App\\Models\\User', 15),
 (3, 'App\\Models\\User', 16),
-(3, 'App\\Models\\User', 17);
+(3, 'App\\Models\\User', 17),
+(3, 'App\\Models\\User', 18),
+(3, 'App\\Models\\User', 19),
+(3, 'App\\Models\\User', 20),
+(3, 'App\\Models\\User', 27),
+(3, 'App\\Models\\User', 33),
+(3, 'App\\Models\\User', 34),
+(3, 'App\\Models\\User', 36),
+(3, 'App\\Models\\User', 37);
 
 -- --------------------------------------------------------
 
@@ -220,7 +233,8 @@ CREATE TABLE `pembayaran` (
 
 INSERT INTO `pembayaran` (`id`, `kode_pembayaran`, `atlet_id`, `nisn`, `kelas`, `tanggal_bayar`, `bulan_bayar`, `tahun_bayar`, `jumlah_bayar`, `created_at`, `updated_at`) VALUES
 (1, 'SPPRG6ZQR', 3, '001122', 'poomsae', '2022-05-29 14:11:17', 'April', '2022', 175000, '2022-05-29 07:11:17', '2022-05-29 07:11:17'),
-(2, 'SPPRKKZRF', 3, '001122', 'poomsae', '2022-05-31 19:42:38', 'Januari', '2022', 175000, '2022-05-31 12:42:38', '2022-05-31 12:42:38');
+(2, 'SPPRKKZRF', 3, '001122', 'poomsae', '2022-05-31 19:42:38', 'Januari', '2022', 175000, '2022-05-31 12:42:38', '2022-05-31 12:42:38'),
+(3, 'SPPRJ2F2N', 8, '111111', 'reguler', '2022-06-02 16:46:33', 'Maret', '2022', 175000, '2022-06-02 09:46:33', '2022-06-02 09:46:33');
 
 -- --------------------------------------------------------
 
@@ -298,10 +312,7 @@ CREATE TABLE `petugas` (
 --
 
 INSERT INTO `petugas` (`id`, `user_id`, `kode_petugas`, `nama_petugas`, `jenis_kelamin`, `created_at`, `updated_at`) VALUES
-(1, 1, 'PTG8M1CF', 'Administrator', 'Laki-laki', '2021-07-20 02:19:18', '2021-07-20 02:19:18'),
-(2, 2, 'PTG0M2BX', 'Elaina San', 'Perempuan', '2021-07-20 02:19:19', '2021-07-20 02:19:19'),
-(4, 6, 'PTGRLBY5N', 'Vivy', NULL, '2021-07-20 03:25:42', '2021-07-20 03:25:42'),
-(5, 14, 'PTGRXTJX1', 'petugas', 'Perempuan', '2022-05-24 14:11:20', '2022-05-24 14:11:20');
+(1, 1, 'PTG8M1CF', 'Administrator', 'Laki-laki', '2021-07-20 02:19:18', '2021-07-20 02:19:18');
 
 -- --------------------------------------------------------
 
@@ -311,6 +322,7 @@ INSERT INTO `petugas` (`id`, `user_id`, `kode_petugas`, `nama_petugas`, `jenis_k
 
 CREATE TABLE `prestasi` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `nama_kejuaraan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tingkat` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `kelas` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
@@ -318,7 +330,6 @@ CREATE TABLE `prestasi` (
   `perolehan` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `tgl_acara` date DEFAULT NULL,
   `lokasi` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
-  `atlet_id` bigint(20) UNSIGNED NOT NULL,
   `created_at` timestamp NULL DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
@@ -327,8 +338,18 @@ CREATE TABLE `prestasi` (
 -- Dumping data for table `prestasi`
 --
 
-INSERT INTO `prestasi` (`id`, `nama_kejuaraan`, `tingkat`, `kelas`, `kategori`, `perolehan`, `tgl_acara`, `lokasi`, `atlet_id`, `created_at`, `updated_at`) VALUES
-(2, 'Taekwondo', 'internasional', 'junior', 'prestasi', 'perak', '2022-05-24', 'Surabaya', 3, '2022-05-31 13:50:37', '2022-05-31 13:50:37');
+INSERT INTO `prestasi` (`id`, `name`, `nama_kejuaraan`, `tingkat`, `kelas`, `kategori`, `perolehan`, `tgl_acara`, `lokasi`, `created_at`, `updated_at`) VALUES
+(3, 'surya', 'Taekwondo', 'nasional', 'cadet', 'prestasi', 'perak', '2022-05-31', 'Surabaya', '2022-05-31 15:13:16', '2022-05-31 15:13:16'),
+(4, NULL, 'Taekwondo', 'internasional', 'junior', 'pemula', 'emas', '2022-05-31', 'Surabaya', '2022-05-31 15:15:41', '2022-05-31 15:15:41'),
+(12, NULL, 'Taekwondo', 'nasional', 'cadet', 'prestasi', 'perak', '2022-06-01', 'Surabaya', '2022-06-01 13:42:53', '2022-06-01 13:42:53'),
+(13, NULL, 'Taekwondo', 'nasional', 'senior', 'prestasi', 'perak', '2022-06-01', 'Semarang', '2022-06-01 13:46:42', '2022-06-01 13:46:42'),
+(14, '8', 'Taekwondo', 'nasional', 'cadet', 'pemula', 'perak', '2022-06-01', 'Surabaya', '2022-06-01 14:26:11', '2022-06-01 14:26:11'),
+(15, '8', 'Taketake', 'nasional', 'cadet', 'pemula', 'perak', '2022-06-01', 'Bandung', '2022-06-01 14:28:11', '2022-06-01 14:28:11'),
+(16, '8', 'Taketake', 'internasional', 'senior', 'pemula', 'emas', '2022-06-01', 'Jakarta', '2022-06-01 14:28:40', '2022-06-01 14:28:40'),
+(17, '6', 'Taekwondo', 'nasional', 'cadet', 'pemula', 'perak', '2022-06-01', 'Surabaya', '2022-06-01 14:35:00', '2022-06-01 14:35:00'),
+(18, '4', 'Taketake', 'nasional', 'cadet', 'prestasi', 'perak', '2022-06-07', 'Surabaya', '2022-06-01 14:38:38', '2022-06-01 14:38:38'),
+(19, 'dhani', 'Taketake', 'provinsi', 'cadet', 'pemula', 'perak', '2022-06-01', 'Bandung', '2022-06-01 14:39:47', '2022-06-01 14:39:47'),
+(20, 'Surya', 'Taekwondo', 'kabupaten', 'cadet', 'pemula', 'perak', '2022-06-01', 'Surabaya', '2022-06-01 14:46:44', '2022-06-01 14:46:44');
 
 -- --------------------------------------------------------
 
@@ -401,10 +422,14 @@ INSERT INTO `role_has_permissions` (`permission_id`, `role_id`) VALUES
 (26, 2),
 (28, 1),
 (29, 1),
+(29, 3),
 (30, 1),
 (30, 2),
+(30, 3),
 (31, 1),
+(31, 3),
 (32, 1),
+(32, 3),
 (33, 3),
 (34, 3),
 (35, 3),
@@ -441,7 +466,9 @@ INSERT INTO `spp` (`id`, `tahun`, `nominal`, `created_at`, `updated_at`) VALUES
 
 CREATE TABLE `users` (
   `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `username` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
+  `id_register` varchar(255) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email` varchar(191) COLLATE utf8mb4_unicode_ci DEFAULT NULL,
   `email_verified_at` timestamp NULL DEFAULT NULL,
   `password` varchar(191) COLLATE utf8mb4_unicode_ci NOT NULL,
@@ -456,18 +483,18 @@ CREATE TABLE `users` (
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `username`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'admin123', 'admin@example.com', NULL, '$2y$10$zDfvJK8w8Ap4yhcAtvDA7.N4.fCwJp42vAKnl.RP7TyIcp9pq7Sie', NULL, NULL, NULL, '2021-07-20 02:19:18', '2021-07-20 02:19:18'),
-(2, 'elaina123', 'elaina@example.com', NULL, '$2y$10$gNsvVKkEZQxRAO0Efd9Cnefp1SLJsNQMABZEb1T3/5lxqeNmRaAy6', NULL, NULL, NULL, '2021-07-20 02:19:18', '2021-07-20 02:19:18'),
-(3, 'diva123', 'diva@example.com', NULL, '$2y$10$iARJBXmG.m7PrH/nf3OExOaHoAew7J3QLu6L3SmiSldzv.aCiLT72', NULL, NULL, NULL, '2021-07-20 02:19:19', '2021-07-20 02:19:19'),
-(6, 'vivy123', NULL, NULL, '$2y$10$ZJNzietvqm5YzB3pq2l8TOLVWHJiY8dGL61zOrp8QauWov4LHfYau', NULL, NULL, NULL, '2021-07-20 03:25:42', '2021-07-20 03:25:42'),
-(9, 'norman', NULL, NULL, '$2y$10$MGyxBpLFqHl4cL.8416GxOau7tIezHYmHlEtXqijSf7d//PU3fGFW', NULL, NULL, NULL, '2021-07-20 04:05:21', '2021-07-20 04:05:21'),
-(10, 'barik123', NULL, NULL, '$2y$10$Az5WoMVzML6Ub3.Ii0TWjebiET5oQQijFu5UvWdLW17RK4hmVI7aS', NULL, NULL, NULL, '2021-07-20 04:05:48', '2021-07-20 04:05:48'),
-(11, 'oi123', NULL, NULL, '$2y$10$okDK5U4ot8sqNxD8bTGMvu3brDnsYsbFBOFru7jcjG85JVqaiKlR6', NULL, NULL, NULL, '2021-07-20 04:06:11', '2021-07-20 04:06:11'),
-(14, 'petugas', NULL, NULL, '$2y$10$y6G4eJfvtG9lH3aqC6i2fOHjaxs0RWYObaV8Z0KvTWS0ZZON/WwV6', NULL, NULL, NULL, '2022-05-24 14:11:20', '2022-05-24 14:11:20'),
-(15, 'ciwi', NULL, NULL, '$2y$10$QyngWqS0z32KNYx8xWtcAuOFjqLhQBQpgqW/H.bdXO1NzdLU1ouqy', NULL, NULL, NULL, '2022-05-25 07:40:28', '2022-05-25 07:40:28'),
-(16, 'amin', NULL, NULL, '$2y$10$ptFMfcgSqwW4IfP39GYW8.dabheppcrJluQPpj2BEPhljN2PMuOOe', NULL, NULL, NULL, '2022-05-31 09:58:07', '2022-05-31 09:58:07'),
-(17, 'vista', NULL, NULL, '$2y$10$32l0Ay7UVOPl/9MmIjIMOuh5Co.73Ev6I/5xG8GIFo.Z4Qu9BDude', NULL, NULL, NULL, '2022-05-31 10:22:28', '2022-05-31 10:22:28');
+INSERT INTO `users` (`id`, `name`, `username`, `id_register`, `email`, `email_verified_at`, `password`, `two_factor_secret`, `two_factor_recovery_codes`, `remember_token`, `created_at`, `updated_at`) VALUES
+(1, NULL, 'admin123', NULL, 'admin@example.com', NULL, '$2y$10$zDfvJK8w8Ap4yhcAtvDA7.N4.fCwJp42vAKnl.RP7TyIcp9pq7Sie', NULL, NULL, NULL, '2021-07-20 02:19:18', '2021-07-20 02:19:18'),
+(15, NULL, 'ciwi', NULL, NULL, NULL, '$2y$10$QyngWqS0z32KNYx8xWtcAuOFjqLhQBQpgqW/H.bdXO1NzdLU1ouqy', NULL, NULL, NULL, '2022-05-25 07:40:28', '2022-05-25 07:40:28'),
+(16, NULL, 'amin', NULL, NULL, NULL, '$2y$10$ptFMfcgSqwW4IfP39GYW8.dabheppcrJluQPpj2BEPhljN2PMuOOe', NULL, NULL, NULL, '2022-05-31 09:58:07', '2022-05-31 09:58:07'),
+(17, NULL, 'vista', NULL, NULL, NULL, '$2y$10$32l0Ay7UVOPl/9MmIjIMOuh5Co.73Ev6I/5xG8GIFo.Z4Qu9BDude', NULL, NULL, NULL, '2022-05-31 10:22:28', '2022-05-31 10:22:28'),
+(18, NULL, 'dendi', NULL, NULL, NULL, '$2y$10$1YNqD0nAUzQYdRAeeYsRyup5gB7OI92eUXn2TrjLTGLwQ3Dtl7SKC', NULL, NULL, NULL, '2022-05-31 14:31:59', '2022-05-31 14:31:59'),
+(19, 'caril', 'caril', NULL, NULL, NULL, '$2y$10$TOkan4lGvnLqI2l9n9wncun7H6AmZH0HZoNUU281VH3q0Id61hT3a', NULL, NULL, NULL, '2022-05-31 14:36:17', '2022-05-31 14:36:17'),
+(20, 'surya', 'surya', NULL, NULL, NULL, '$2y$10$Q/lkYyWjH057g.miQ3lrAuZ5tr8qfvWy9Md.a4LWPeszDBjbhG9h.', NULL, NULL, NULL, '2022-05-31 14:45:10', '2022-05-31 14:45:10'),
+(27, 'listanto', 'masrud', NULL, NULL, NULL, '$2y$10$azVHiaWfMwCv5FyaXmkLYuEM/LzVStRDVVpVKJoFTyj6lKkpb2mVy', NULL, NULL, NULL, '2022-06-01 04:34:03', '2022-06-01 04:34:03'),
+(32, 'anji', 'anji', 'REG-20220602224013', 'anji@gmail.com', NULL, '$2y$10$K6.oYe2xRZAr9qBRUbssDuMBx7T4oGGWfznXqC.vx5V.eQikJe4I6', NULL, NULL, NULL, '2022-06-02 15:40:13', '2022-06-02 15:40:13'),
+(33, 'dia', 'dia', 'REG-20220602225037', 'dia@gmail.com', NULL, '$2y$10$iXMcatjIQYCv0lhE6pTPp.HiijCbG5.lHpCHQ3wZ7JU7C4lSbScAm', NULL, NULL, NULL, '2022-06-02 15:50:38', '2022-06-02 15:50:38'),
+(37, 'anjay', 'anjay', 'REG-20220602230557', 'anjay@gmail.com', NULL, '$2y$10$uJRQhmDRYnc32nrgxFuzEOWbwJEkgSKtuUe5jqz9qMb4lecAH7CS2', NULL, NULL, NULL, '2022-06-02 16:05:57', '2022-06-02 16:05:57');
 
 --
 -- Indexes for dumped tables
@@ -550,8 +577,7 @@ ALTER TABLE `petugas`
 -- Indexes for table `prestasi`
 --
 ALTER TABLE `prestasi`
-  ADD PRIMARY KEY (`id`),
-  ADD KEY `prestasi_atlet_id_foreign` (`atlet_id`);
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `roles`
@@ -588,7 +614,7 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT for table `atlet`
 --
 ALTER TABLE `atlet`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `cobak`
@@ -618,7 +644,7 @@ ALTER TABLE `migrations`
 -- AUTO_INCREMENT for table `pembayaran`
 --
 ALTER TABLE `pembayaran`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `permissions`
@@ -636,7 +662,7 @@ ALTER TABLE `petugas`
 -- AUTO_INCREMENT for table `prestasi`
 --
 ALTER TABLE `prestasi`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `roles`
@@ -654,7 +680,7 @@ ALTER TABLE `spp`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- Constraints for dumped tables
@@ -689,12 +715,6 @@ ALTER TABLE `pembayaran`
 --
 ALTER TABLE `petugas`
   ADD CONSTRAINT `petugas_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `prestasi`
---
-ALTER TABLE `prestasi`
-  ADD CONSTRAINT `prestasi_atlet_id_foreign` FOREIGN KEY (`atlet_id`) REFERENCES `atlet` (`id`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `role_has_permissions`

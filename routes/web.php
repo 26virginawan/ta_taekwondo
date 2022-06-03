@@ -14,6 +14,10 @@ use Illuminate\Support\Facades\Auth;
 |
 */
 
+Route::resource('user', 'UserController');
+Route::get('register', 'UserController@create');
+Route::post('register/store', 'UserController@store');
+
 Route::get('/', function () {
     return view('auth.login');
 })->middleware(['guest']);
@@ -75,6 +79,7 @@ Route::prefix('admin')
     ->middleware(['auth'])
     ->group(function () {
         Route::middleware(['role:admin'])->group(function () {
+            Route::get('atlet/cetak', 'AtletController@pdf');
             Route::get('dashboard', 'DashboardController@index')->name(
                 'dashboard.index'
             );
@@ -159,6 +164,7 @@ Route::prefix('admin')
 Route::prefix('atlet')
     ->middleware(['auth', 'role:atlet'])
     ->group(function () {
+        Route::resource('dataAtlet', 'DataAtletController');
         Route::resource('prestasiAtlet', 'PrestasiAtletController');
         Route::get('pembayaran-spp', 'AtletController@pembayaranSpp')->name(
             'atlet.pembayaran-spp'

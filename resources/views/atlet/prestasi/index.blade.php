@@ -43,20 +43,41 @@
                             <th>Perolehan</th>
                             <th>tgl_acara</th>
                             <th>lokasi</th>
-                            <th>Aksi</th>
+                            <th width="300px">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
+
+
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+                            <td>
+
+                            </td>
+
                         </tr>
                     </tbody>
                 </table>
@@ -89,13 +110,10 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <label for="atlet_id">Nama:</label>
-                                <select required="" name="atlet_id" id="atlet_id" class="form-control select2bs4">
-                                    <option disabled="" selected="">- PILIH NAMA -</option>
-                                    @foreach($atlet as $row)
-                                    <option value="{{ $row->id }}">{{ $row->name }}</option>
-                                    @endforeach
-                                </select>
+                                <label for="name">Nama:</label>
+                                @foreach($atlet as $row)
+                                <input type="text" class="form-control" name="name" value="{{$row->name}}" readonly>
+                                @endforeach
                             </div>
                         </div>
                         <div class="col-lg-3">
@@ -197,9 +215,8 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <label for="atlet_id_edit">Kelas:</label>
-                                <input type="hidden" name="id_edit" id="id_edit" class="form-control" readonly="">
-                                <select required="" name="atlet_id" id="atlet_id_edit" class="form-control">
+                                <label for="name">Nama:</label>
+                                <select required="" name="name" id="name_edit" class="form-control select2bs4">
                                     @foreach($atlet as $row)
                                     <option value="{{ $row->id }}">{{ $row->name }}</option>
                                     @endforeach

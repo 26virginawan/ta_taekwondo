@@ -15,6 +15,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\DataTables\AtletDataTable;
+use PDF;
 
 class AtletController extends Controller
 {
@@ -60,6 +61,7 @@ class AtletController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nisn' => 'required|unique:atlet',
+
             'name' => 'required',
             'username' => 'required|unique:users',
             'tgl_registrasi' => 'required',
@@ -76,27 +78,34 @@ class AtletController extends Controller
         if ($validator->passes()) {
             DB::transaction(function () use ($request) {
                 $user = User::create([
+                    'name' => Str::lower($request->name),
                     'username' => Str::lower($request->username),
                     'password' => Hash::make('rahasia'),
                 ]);
 
                 $user->assignRole('atlet');
-
-                Atlet::create([
-                    'user_id' => $user->id,
-                    'kode_atlet' => 'ATLT' . Str::upper(Str::random(5)),
-                    'name' => $request->name,
-                    'nisn' => $request->nisn,
-                    'tgl_registrasi' => $request->tgl_registrasi,
-                    'tempat_lahir' => $request->tempat_lahir,
-                    'tgl_lahir' => $request->tgl_lahir,
-                    'jenis_kelamin' => $request->jenis_kelamin,
-                    'bb' => $request->bb,
-                    'tb' => $request->tb,
-                    'no_telepon' => $request->no_telepon,
-                    'tingkat_sabuk' => $request->tingkat_sabuk,
-                    'kelas' => $request->kelas,
-                ]);
+                $path = 'files/';
+                $file = $request->file('gambar');
+                $file_name = time();
+                $upload = $file->storeAs($path, $file_name, 'public');
+                if ($upload) {
+                    Atlet::create([
+                        'user_id' => $user->id,
+                        'kode_atlet' => 'ATLT' . Str::upper(Str::random(5)),
+                        'gambar' => $filename,
+                        'name' => $request->name,
+                        'nisn' => $request->nisn,
+                        'tgl_registrasi' => $request->tgl_registrasi,
+                        'tempat_lahir' => $request->tempat_lahir,
+                        'tgl_lahir' => $request->tgl_lahir,
+                        'jenis_kelamin' => $request->jenis_kelamin,
+                        'bb' => $request->bb,
+                        'tb' => $request->tb,
+                        'no_telepon' => $request->no_telepon,
+                        'tingkat_sabuk' => $request->tingkat_sabuk,
+                        'kelas' => $request->kelas,
+                    ]);
+                }
             });
 
             return response()->json(['message' => 'Data berhasil disimpan!']);
@@ -177,4 +186,78 @@ class AtletController extends Controller
         $atlet->delete();
         return response()->json(['message' => 'Data berhasil dihapus!']);
     }
+
+    public function pdf()
+    {
+        $atlet = Atlet::all();
+        $pdf = PDF::loadView('admin.atlet.atlet_pdf', compact('atlet'));
+        return $pdf
+            ->setPaper('a4', 'potrait')
+            ->download('data_atlet' . '_' . date('Y-m-d_H-i-s') . '.pdf');
+    }
+
+    public function register(Request $request)
+    {
+        $validator = Validator::make($request->all(), [
+            'nisn' => 'required|unique:atlet',
+            'name' => 'required',
+            'username' => 'required|unique:users',
+            'tgl_registrasi' => 'required',
+            'tempat_lahir' => 'required',
+            'tgl_lahir' => 'required',
+            'jenis_kelamin' => 'required',
+            'bb' => 'required',
+            'tb' => 'required',
+            'no_telepon' => 'required',
+            'tingkat_sabuk' => 'required',
+            'kelas' => 'required',
+        ]);
+
+        if ($validator->passes()) {
+            DB::transaction(function () use ($request) {
+                $user = User::create([
+                    'name' => Str::lower($request->name),
+                    'username' => Str::lower($request->username),
+                    'password' => Hash::make('rahasia'),
+                ]);
+
+                $user->assignRole('atlet');
+                $path = 'files/';
+                $file = $request->file('gambar');
+                $file_name = time();
+                $upload = $file->storeAs($path, $file_name, 'public');
+                if ($upload) {
+                    Atlet::create([
+                        'user_id' => $user->id,
+                        'kode_atlet' => 'ATLT' . Str::upper(Str::random(5)),
+                        'gambar' => $filename,
+                        'name' => $request->name,
+                        'nisn' => $request->nisn,
+                        'tgl_registrasi' => $request->tgl_registrasi,
+                        'tempat_lahir' => $request->tempat_lahir,
+                        'tgl_lahir' => $request->tgl_lahir,
+                        'jenis_kelamin' => $request->jenis_kelamin,
+                        'bb' => $request->bb,
+                        'tb' => $request->tb,
+                        'no_telepon' => $request->no_telepon,
+                        'tingkat_sabuk' => $request->tingkat_sabuk,
+                        'kelas' => $request->kelas,
+                    ]);
+                }
+            });
+
+            \Session::flash('sukses', 'Data berhasil diupdate');
+
+            return redirect('/');
+        }
+
+        return response()->json(['error' => $validator->errors()->all()]);
+    }
+
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
 }

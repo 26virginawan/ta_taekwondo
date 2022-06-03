@@ -4,12 +4,13 @@ namespace App\DataTables;
 
 use App\Models\Prestasi;
 use DataTables;
+use Illuminate\Support\Facades\Auth;
 
-class PrestasiDataTable
+class PrestasiAtletDataTable
 {
     public function data()
     {
-        $data = Prestasi::latest();
+        $data = Prestasi::where('name', Auth::user()->name)->get();
         return DataTables::of($data)
             ->addIndexColumn()
             ->addColumn('action', function ($row) {

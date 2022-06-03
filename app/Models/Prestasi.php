@@ -16,7 +16,7 @@ class Prestasi extends Model
     protected $table = 'prestasi';
     protected $fillable = [
         'id',
-        'atlet_id',
+        'name',
         'nama_kejuaraan',
         'tingkat',
         'kelas',

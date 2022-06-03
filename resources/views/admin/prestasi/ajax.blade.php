@@ -11,8 +11,8 @@ $(function() {
                 name: 'id'
             },
             {
-                data: 'atlet.name',
-                name: 'atlet.name'
+                data: 'name',
+                name: 'name'
             },
             {
                 data: 'nama_kejuaraan',
@@ -116,7 +116,7 @@ $("body").on("click", ".btn-edit", function() {
         },
         success: function(response) {
             $("#id_edit").val(response.data.id)
-            $("#atlet_id_edit").val(response.data.atlet_id)
+            $("#name_edit").val(response.data.name)
             $("#nama_kejuaraan_edit").val(response.data.nama_kejuaraan)
             $("#tingkat_edit").val(response.data.tingkat)
             $("#kelas_edit").val(response.data.kelas)

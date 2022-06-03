@@ -9,6 +9,7 @@ use App\Models\Atlet;
 class Cobak extends Model
 {
     use HasFactory;
+    protected $table = 'cobak';
 
     protected $fillable = ['nama', 'jenis'];
 

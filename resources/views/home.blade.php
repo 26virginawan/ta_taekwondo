@@ -11,7 +11,13 @@
             @endrole
 
             @role('atlet')
-            <h1 class="display-4">Hello, {{ Universe::atlet()->name }}!</h1>
+
+            <h1 class="display-4">Hello, {{ Auth::user()->username }}!</h1>
+
+            <p>Mohon Lengkapi Data Diri Anda, <a href="{{ route('dataAtlet.update', $dt->id.'/edit') }}">Klik
+                    Disini</a>
+            </p>
+
             @endrole
             <p class="lead">Selamat datang di WEB SPPR.</p>
             <hr class="my-4">

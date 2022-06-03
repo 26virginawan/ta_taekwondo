@@ -17,6 +17,7 @@
 
     p {
         color: #1b4148;
+        font-size: 12pt;
     }
 
 

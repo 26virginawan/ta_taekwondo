@@ -4,23 +4,20 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use Spatie\Permission\Models\Role;
+use App\Models\Cobak;
 use App\DataTables\RoleDataTable;
 
-class RoleController extends Controller
+class CobakController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, RoleDataTable $datatable)
+    public function index()
     {
-        if ($request->ajax()) {
-            return $datatable->data();
-        }
-
-        return view('admin.prestasi.index');
+        $cobak = Cobak::get();
+        return view('admin.cobak.index', compact('cobak'));
     }
 
     /**
@@ -30,7 +27,7 @@ class RoleController extends Controller
      */
     public function create()
     {
-        return view('admin.prestasi.create');
+        return view('admin.cobak.create');
     }
 
     /**
@@ -43,17 +40,10 @@ class RoleController extends Controller
     {
         DataPrestasi::create([
             'name' => $request->get('name'),
-            'nama_kejuaraan' => $request->get('nama_kejuaraan'),
-            'tingkat' => $request->get('tingkat'),
-            'kelas' => $request->get('kelas'),
-            'kategori' => $request->get('kategori'),
-            'perolehan' => $request->get('perolehan'),
-            'tgl_acara' => $request->get('tgl_acara'),
-            'lokasi' => $request->get('lokasi'),
+            'jenis' => $request->get('jenis'),
         ]);
 
         return response()->json(['message' => 'Data berhasil disimpan!']);
-        return redirect('/dataprestasi');
     }
 
     /**

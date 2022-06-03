@@ -73,7 +73,7 @@
                 <li class="nav-header">MANAJEMEN DATA</li>
                 <li class="nav-item">
                     <a href="{{ route('atlet.index') }}"
-                        class="nav-link {{ Request::segment(2) == 'Atlet' ? 'active' : '' }}">
+                        class="nav-link {{ Request::segment(2) == 'atlet' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Atlet
@@ -98,16 +98,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('kelas.index') }}"
-                        class="nav-link {{ Request::segment(2) == 'kelas' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-school"></i>
-                        <p>
-                            Kelas
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="{{ route('admin-list.index') }}"
                         class="nav-link {{ Request::segment(2) == 'admin-list' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-tie"></i>
@@ -133,7 +124,7 @@
                             Petugas
                         </p>
                     </a>
-                </li>
+                </li> -->
                 <li class="nav-item">
                     <a href="{{ route('spp.index') }}"
                         class="nav-link {{ Request::segment(2) == 'spp' ? 'active' : '' }}">
@@ -201,7 +192,7 @@
                         class="nav-link {{ Request::segment(2) == 'bayar' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-money-check"></i>
                         <p>
-                            Pembayaran
+                            Pembayaran SPP
                         </p>
                     </a>
                 </li>
@@ -210,7 +201,7 @@
                         class="nav-link {{ Request::segment(2) == 'status-pembayaran' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-money-bill"></i>
                         <p>
-                            Status Pembayaran
+                            Status Pembayaran SPP
                         </p>
                     </a>
                 </li>
@@ -219,7 +210,7 @@
                         class="nav-link {{ Request::segment(2) == 'history-pembayaran' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-history"></i>
                         <p>
-                            History Pembayaran
+                            History Pembayaran SPP
                         </p>
                     </a>
                 </li>
@@ -228,13 +219,14 @@
                         class="nav-link {{ Request::segment(2) == 'laporan' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-file"></i>
                         <p>
-                            Laporan Pembayaran
+                            Laporan SPP
                         </p>
                     </a>
                 </li>
                 @endrole
 
                 @role('atlet')
+
                 <li class="nav-header">DATA</li>
                 <li class="nav-item">
                     <a href="{{ route('prestasiAtlet.index') }}"
@@ -242,6 +234,15 @@
                         <i class="nav-icon fas fa-users"></i>
                         <p>
                             Prestasi
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ route('dataAtlet.index') }}"
+                        class="nav-link {{ Request::segment(2) == 'data' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Data
                         </p>
                     </a>
                 </li>
