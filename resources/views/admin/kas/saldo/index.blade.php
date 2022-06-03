@@ -43,7 +43,7 @@
                             <p class="text-muted mt-3 mb-0">
                             <h2 class="font-weight-medium  mb-0">
                                 Rp.
-                                {{ number_format($jumlahkeluar - $jumlahkeluar,2,',','.') }}
+                                {{ number_format($saldo,2,',','.') }}
                             </h2>
                             </p>
                         </div>
@@ -72,7 +72,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($kas_keluar as $data)
+                            @foreach($kaskeluar && $kas_masuk as $data)
                             <tr>
                                 <td class="py-1">
                                     {{$data->tanggal}}
@@ -83,41 +83,7 @@
                                 <td>Rp.
                                     {{ number_format($data->jumlah,2,',','.') }}</td>
                                 </td>
-                                <!-- <td>
-                                    <td>
-                                    <a class="btn btn-warning btn-sm" href="{{route('kaskeluar.edit', $data->id)}}">
-                                        Edit
-                                    </a>
-                                    <a class="btn btn-danger btn-sm text-white"
-                                        href="{{route('kaskeluar.edit', $data->id)}}">
-                                        delete
-                                    </a>
-                                </td> -->
-
-                                <td>
-                                    <div class="btn-group dropdown">
-                                        <button type="button" class="btn btn-success dropdown-toggle btn-sm"
-                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                            Action
-                                        </button>
-                                        <div class="dropdown-menu" x-placement="bottom-start"
-                                            style="position: absolute; will-change: transform; top: 0px; left: 0px; transform: translate3d(0px, 30px, 0px);">
-                                            
-                                            <a class="dropdown-item" href="{{route('kaskeluar.edit', $data->id)}}"> Edit
-                                            </a>
-                                            <form action="{{ route('kaskeluar.destroy', $data->id) }}" class="pull-left"
-                                                method="post">
-                                                {{ csrf_field() }}
-                                                {{ method_field('delete') }}
-                                                <button class="dropdown-item"
-                                                    onclick="return confirm('Anda yakin ingin menghapus data ini?')">
-                                                    Delete
-                                                </button>
-                                            </form>
-
-                                        </div>
-                                    </div>
-                                </td>
+                                
                                 @endforeach
                         </tbody>
                     </table>
