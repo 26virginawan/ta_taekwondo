@@ -39,6 +39,28 @@ class AtletController extends Controller
 
         return view('atlet.prestasi');
     }
+
+    public function printId(Atlet $atlet)
+    {
+        $atlet = Atlet::where('user_id', Auth::user()->id)->first();
+        $pdf = PDF::loadView('id-card-pdf', ['atlet' => [$atlet]]);
+        $pdf->setPaper('A4', '');
+        return $pdf->stream(
+            $atlet->name .
+                '-' .
+                str_pad($atlet->id + 1, 4, '0', STR_PAD_LEFT) .
+                '.pdf'
+        );
+    }
+
+    public function cetak_nama($id)
+    {
+        $data = Atlet::where('id', Auth::user()->id)->get();
+
+        $pdf = PDF::loadView('kartu_nama.cetak_kartu', $data, compact('data'));
+        return $pdf->stream();
+    }
+
     public function previewPrestasi($id)
     {
         $data['atlet'] = Atlet::where('user_id', Auth::user()->id)->first();

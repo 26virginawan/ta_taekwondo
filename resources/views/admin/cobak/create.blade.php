@@ -18,6 +18,20 @@
             <div class="card-body">
                 <form method="POST" action="{{ route('cobak.store')  }}" enctype="multipart/form-data">>
                     @csrf
+
+                    <div class="form-group">
+                        <label class="block text-sm font-bold text-gray-700">
+                            Photo
+                        </label>
+                        <div class="mt-2 flex items-center">
+
+                            <input class="border border-gray-400 p-2 w-full" type="file" name="image" id="image"
+                                accept=".jpg, .png, .jpeg" placeholder="Enter your name" required>
+                        </div>
+
+                    </div>
+                    <div class="img-holder"> </div>
+
                     <div class="form-group">
                         <label for="nama">Nama Kelas:</label>
                         <input required type="" name="nama" id="nama" class="form-control">

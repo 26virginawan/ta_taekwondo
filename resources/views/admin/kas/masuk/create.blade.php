@@ -50,7 +50,7 @@
                             <button type="reset" class="btn btn-danger">
                                 Reset
                             </button>
-                            <a href="/kasmasuk" class="btn btn-light pull-right">Back</a>
+                            <a href="/admin/kasmasuk" class="btn btn-light pull-right">Back</a>
                         </div>
                     </div>
                 </div>

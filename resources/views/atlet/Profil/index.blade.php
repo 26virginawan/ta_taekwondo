@@ -115,6 +115,9 @@
                         <a href="{{ route('dataAtlet.edit', $dt->id) }}" class="btn btn-primary btn-rounded btn-fw"><i
                                 class="fa fa-edit"></i>
                             Ubah Data</a>
+                        <a href="{{route('printid', $dt->id)}}" target="_blank"
+                            class="btn btn-warning btn-rounded btn-fw">
+                            Cetak</a>
                     </div>
                 </div>
             </div>

@@ -12,8 +12,8 @@ $(function() {
             },
 
             {
-                data: 'gambar',
-                name: 'gambar'
+                data: 'image',
+                name: 'image'
             },
             {
                 data: 'name',

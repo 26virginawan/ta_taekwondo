@@ -57,11 +57,16 @@ class AtletController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function create()
+    {
+        return view('admin.atlet.create');
+    }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
             'nisn' => 'required|unique:atlet',
-
+            // 'image' => ['required', 'image'],
             'name' => 'required',
             'username' => 'required|unique:users',
             'tgl_registrasi' => 'required',
@@ -84,31 +89,35 @@ class AtletController extends Controller
                 ]);
 
                 $user->assignRole('atlet');
-                $path = 'files/';
-                $file = $request->file('gambar');
-                $file_name = time();
-                $upload = $file->storeAs($path, $file_name, 'public');
-                if ($upload) {
-                    Atlet::create([
-                        'user_id' => $user->id,
-                        'kode_atlet' => 'ATLT' . Str::upper(Str::random(5)),
-                        'gambar' => $filename,
-                        'name' => $request->name,
-                        'nisn' => $request->nisn,
-                        'tgl_registrasi' => $request->tgl_registrasi,
-                        'tempat_lahir' => $request->tempat_lahir,
-                        'tgl_lahir' => $request->tgl_lahir,
-                        'jenis_kelamin' => $request->jenis_kelamin,
-                        'bb' => $request->bb,
-                        'tb' => $request->tb,
-                        'no_telepon' => $request->no_telepon,
-                        'tingkat_sabuk' => $request->tingkat_sabuk,
-                        'kelas' => $request->kelas,
-                    ]);
+                if ($request->hasfile('image')) {
+                    $imageatlet =
+                        uniqid(11) .
+                        '.' .
+                        $request->file('image')->getClientOriginalExtension();
+                    $request
+                        ->file('image')
+                        ->move(public_path('atlet\images'), $imageatlet);
                 }
+
+                Atlet::create([
+                    'user_id' => $user->id,
+                    'kode_atlet' => 'ATLT' . Str::upper(Str::random(5)),
+                    'image' => $imageatlet,
+                    'name' => $request->name,
+                    'nisn' => $request->nisn,
+                    'tgl_registrasi' => $request->tgl_registrasi,
+                    'tempat_lahir' => $request->tempat_lahir,
+                    'tgl_lahir' => $request->tgl_lahir,
+                    'jenis_kelamin' => $request->jenis_kelamin,
+                    'bb' => $request->bb,
+                    'tb' => $request->tb,
+                    'no_telepon' => $request->no_telepon,
+                    'tingkat_sabuk' => $request->tingkat_sabuk,
+                    'kelas' => $request->kelas,
+                ]);
             });
 
-            return response()->json(['message' => 'Data berhasil disimpan!']);
+            return redirect()->route('atlet.index');
         }
 
         return response()->json(['error' => $validator->errors()->all()]);
@@ -123,7 +132,7 @@ class AtletController extends Controller
     public function edit($id)
     {
         $atlet = Atlet::findOrFail($id);
-        return response()->json(['data' => $atlet]);
+        return view('admin.atlet.edit', compact('atlet'));
     }
 
     /**
@@ -137,6 +146,7 @@ class AtletController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
+
             'tgl_registrasi' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required',
@@ -149,26 +159,50 @@ class AtletController extends Controller
         ]);
 
         if ($validator->passes()) {
-            Atlet::findOrFail($id)->update($request->all());
+            // Atlet::findOrFail($id)->update($request->all());
+            // if ($request->hasfile('image')) {
+            //     $imageatlet =
+            //         uniqid(11) .
+            //         '.' .
+            //         $request->file('image')->getClientOriginalExtension();
+            //     $request
+            //         ->file('image')
+            //         ->move(public_path('atlet\images'), $imageatlet);
+            // }
+            $input = $request->all();
+            if ($request->hasfile('image')) {
+                $imageatlet =
+                    uniqid(11) .
+                    '.' .
+                    $request->file('image')->getClientOriginalExtension();
+                $request
+                    ->file('image')
+                    ->move(public_path('atlet\images'), $imageatlet);
+                $input['image'] = "$imageatlet";
+            } else {
+                unset($input['image']);
+            }
+            Atlet::findOrFail($id)->update($input);
 
-            return response()->json(['message' => 'Data berhasil diupdate!']);
+            // Atlet::findOrFail($id)->update([
+            //     'nisn' => $request->nisn,
+            //     // 'image' => $imageatlet ?: $request->image,
+            //     'name' => $request->name,
+            //     'tgl_registrasi' => $request->tgl_registrasi,
+            //     'tempat_lahir' => $request->tempat_lahir,
+            //     'tgl_lahir' => $request->tgl_lahir,
+            //     'jenis_kelamin' => $request->jenis_kelamin,
+            //     'bb' => $request->bb,
+            //     'tb' => $request->tb,
+            //     'no_hp' => $request->no_hp,
+            //     'tingkat_sabuk' => $request->tingkat_sabuk,
+            //     'kelas' => $request->kelas,
+            // ]);
+
+            return redirect()
+                ->route('atlet.index')
+                ->with('Sukses', 'Data Berhasil Diedit');
         }
-        // if ($validator->passes()) {
-        //     Atlet::findOrFail($id)->update([
-        //         'name' => $request->name,
-        //         'tgl_registrasi' => $request->tgl_registrasi,
-        //         'tempat_lahir' => $request->tempat_lahir,
-        //         'tgl_lahir' => $request->tgl_lahir,
-        //         'jenis_kelamin' => $request->jenis_kelamin,
-        //         'bb' => $request->bb,
-        //         'tb' => $request->tb,
-        //         'no_telepon' => $request->no_telepon,
-        //         'tingkat_sabuk' => $request->tingkat_sabuk,
-        //         'kelas' => $request->kelas,
-        //     ]);
-
-        //     return response()->json(['message' => 'Data berhasil diupdate!']);
-        // }
 
         return response()->json(['error' => $validator->errors()->all()]);
     }
@@ -194,6 +228,16 @@ class AtletController extends Controller
         return $pdf
             ->setPaper('a4', 'potrait')
             ->download('data_atlet' . '_' . date('Y-m-d_H-i-s') . '.pdf');
+    }
+
+    public function cetak_nama($id)
+    {
+        $data = Atlet::where('id', $id)->first();
+
+        $pdf = PDF::loadView('admin.kartu_nama.cetak_kartu', $data);
+        return $pdf
+            ->setPaper('a4', 'potrait')
+            ->download('kartu_atlet' . '_' . date('Y-m-d_H-i-s') . '.pdf');
     }
 
     public function register(Request $request)

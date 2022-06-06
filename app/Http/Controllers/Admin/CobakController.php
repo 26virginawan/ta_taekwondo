@@ -38,12 +38,29 @@ class CobakController extends Controller
      */
     public function store(Request $request)
     {
-        DataPrestasi::create([
-            'name' => $request->get('name'),
-            'jenis' => $request->get('jenis'),
+        $validator = Validator::make($request->all(), [
+            'image' => ['required', 'image'],
+            'name' => 'required',
+            'jenis' => 'jenis',
         ]);
+        if ($request->hasfile('image')) {
+            $atletImage =
+                uniqid(11) .
+                '.' .
+                $request->file('image')->getClientOriginalExtension();
+            $request
+                ->file('image')
+                ->move(public_path('atlet\images'), $atletImage);
+        }
+        if ($validator->passes()) {
+            Cobak::create([
+                'image' => $atletImage,
+                'name' => $request->get('name'),
+                'jenis' => $request->get('jenis'),
+            ]);
 
-        return response()->json(['message' => 'Data berhasil disimpan!']);
+            return response()->json(['message' => 'Data berhasil disimpan!']);
+        }
     }
 
     /**

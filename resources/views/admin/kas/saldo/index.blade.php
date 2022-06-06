@@ -1,4 +1,3 @@
-
 @extends('layouts.backend.app')
 @section('title', 'Saldo')
 @push('css')
@@ -19,7 +18,7 @@
 @section('content')
 <div class="row">
 
-    
+
     <div class="col-lg-12">
         @if (Session::has('message'))
         <div class="alert alert-{{ Session::get('message_type') }}" id="waktu2" style="margin-top:10px;">
@@ -72,7 +71,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            @foreach($kaskeluar && $kas_masuk as $data)
+                            @foreach($data_saldo as $data)
                             <tr>
                                 <td class="py-1">
                                     {{$data->tanggal}}
@@ -83,7 +82,7 @@
                                 <td>Rp.
                                     {{ number_format($data->jumlah,2,',','.') }}</td>
                                 </td>
-                                
+
                                 @endforeach
                         </tbody>
                     </table>

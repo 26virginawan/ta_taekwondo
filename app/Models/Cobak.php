@@ -11,7 +11,7 @@ class Cobak extends Model
     use HasFactory;
     protected $table = 'cobak';
 
-    protected $fillable = ['nama', 'jenis'];
+    protected $fillable = ['image', 'nama', 'jenis'];
 
     public function siswa()
     {

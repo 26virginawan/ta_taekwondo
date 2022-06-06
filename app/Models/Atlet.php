@@ -21,7 +21,7 @@ class Atlet extends Model
         'user_id',
         'kode_atlet',
         'nisn',
-        'gambar',
+        'image',
         'name',
         'tgl_registrasi',
         'tempat_lahir',

@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 
 use App\Models\Atlet;
 use App\Models\User;
+use Illuminate\Support\Facades\Auth;
 
 use PDF;
 
@@ -16,7 +17,7 @@ class DataAtletcontroller extends Controller
     {
         $title = 'Update Data';
         $dt = Atlet::where('user_id', \Auth::user()->id)->first();
-        $cek = Atlet::where('user_id', \Auth::user()->id)->count();
+        $cek = Atlet::where('nisn', \Auth::user()->id)->count();
 
         return view('atlet.profil.index', compact('title', 'dt', 'cek'));
     }
@@ -35,7 +36,6 @@ class DataAtletcontroller extends Controller
             'no_telepon' => 'required',
             'tingkat_sabuk' => 'required',
             'kelas' => 'required',
-            
         ]);
 
         $data['user_id'] = $id;
@@ -61,7 +61,8 @@ class DataAtletcontroller extends Controller
         // }
 
         $dt = Atlet::findOrFail($id);
-        return view('atlet.profil.edit', compact('dt'));
+        $cek = Atlet::where('user_id', \Auth::user()->id)->count();
+        return view('atlet.profil.edit', compact('dt', 'cek'));
     }
 
     public function update(Request $request, $id)
