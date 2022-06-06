@@ -171,6 +171,16 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-header">UJIAN</li>
+                <li class="nav-item">
+                    <a href="{{ route('datakegiatan.index') }}"
+                        class="nav-link {{ Request::segment(2) == 'datakegiatan' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-money-bill"></i>
+                        <p>
+                            Data Ujian
+                        </p>
+                    </a>
+                </li>
                 @endrole
 
                 @role('petugas')

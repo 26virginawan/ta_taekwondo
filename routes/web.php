@@ -106,6 +106,12 @@ Route::prefix('admin')
             Route::get('/kasmasuk', 'KasMasukController@index');
             Route::get('/kaskeluar', 'KasKeluarController@index');
             Route::get('/saldo', 'SaldoController@index');
+            Route::post('/datakegiatan','datakegiatanController@datakegiatan');
+            Route::post('/admin/inputkegiatan','inputkegiatanController@inputkegiatan');
+            Route::get('/ubahstatus/{id}','datakegiatanController@updatestatus');
+            Route::get('/detail/{id}','datakegiatanController@detail');
+            Route::get('/deletedata/{id}','datakegiatanController@deleteData');
+            Route::resource('datakegiatan', 'datakegiatanController');
             Route::resource('saldo', 'SaldoController');
             Route::resource('kasmasuk', 'KasMasukController');
             Route::resource('kaskeluar', 'KaskeluarController');
