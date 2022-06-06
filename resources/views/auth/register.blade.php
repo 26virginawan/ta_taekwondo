@@ -22,7 +22,7 @@
 <body class="hold-transition login-page">
     <div class="login-box" style="margin-bottom: 20vh;">
         <div class="login-logo">
-            <a href=""><b>SPPR</b></a>
+            <a href=""><b>Taekwondo Bumiaji</b></a>
         </div>
         <!-- /.login-logo -->
         <div class="card">
