@@ -20,11 +20,28 @@
 <form action="{{ route('dataAtlet.update', $dt->id) }}" method="post" enctype="multipart/form-data">
     {{ csrf_field() }}
     {{ method_field('put') }}
-    <p>tes</p>
     <div class="row">
         <div class="col-12">
             <div class="card">
                 <div class="card-body">
+                    <div class="row">
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label class="block text-sm font-bold text-gray-700">
+                                    Photo
+                                </label>
+
+                                <div class="mt-2 flex items-center">
+                                    <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100 mr-2">
+                                        <img src="{{asset('atlet/images/' . $dt->image)}}" alt="" style="width:150px;">
+                                    </span>
+                                    <input class="border border-gray-400 p-2 w-full" type="file" name="image" id="image"
+                                        accept=".jpg, .png, .jpeg">
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="form-group">

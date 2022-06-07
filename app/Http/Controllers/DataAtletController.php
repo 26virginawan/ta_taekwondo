@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-
+use Illuminate\Support\Facades\Validator;
 use App\Models\Atlet;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -67,7 +67,7 @@ class DataAtletcontroller extends Controller
 
     public function update(Request $request, $id)
     {
-        $this->validate($request, [
+        $validator = Validator::make($request->all(), [
             'name' => 'required',
             'tgl_registrasi' => 'required',
             'tempat_lahir' => 'required',
@@ -80,11 +80,26 @@ class DataAtletcontroller extends Controller
             'kelas' => 'required',
         ]);
 
-        Atlet::findOrFail($id)->update($request->all());
+        if ($validator->passes()) {
+            $input = $request->all();
+            if ($request->hasfile('image')) {
+                $imageatlet =
+                    uniqid(11) .
+                    '.' .
+                    $request->file('image')->getClientOriginalExtension();
+                $request
+                    ->file('image')
+                    ->move(public_path('atlet\images'), $imageatlet);
+                $input['image'] = "$imageatlet";
+            } else {
+                unset($input['image']);
+            }
+            Atlet::findOrFail($id)->update($input);
 
-        \Session::flash('sukses', 'Data berhasil diupdate');
-
-        return redirect('atlet/dataAtlet');
+            return redirect()
+                ->route('dataAtlet.index')
+                ->with('Sukses', 'Data Berhasil Diedit');
+        }
     }
 
     public function cetak()

@@ -2,16 +2,17 @@
     <!-- Brand Logo -->
     <a href="" class="brand-link">
         <img src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/dist/img/laravel.png" alt="AdminLTE Logo"
-            class="brand-image" >
+            class="brand-image">
         <span class="brand-text font-weight-light">Taekwondo Bumiaji</span>
     </a>
 
     <!-- Sidebar -->
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
-        <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
             <div class="my-auto ml-3">
-                <i class="nav-icon fas fa-user-circle fa-2x text-light"></i>
+
+               
             </div>
             <div class="info">
                 <a href="javascript:void(0)" class="d-block">
@@ -19,7 +20,7 @@
                         {{ Auth::user()->username }}</p>
                 </a>
             </div>
-        </div>
+        </div> -->
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
@@ -286,10 +287,10 @@
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('dataAtlet.index') }}"
-                        class="nav-link {{ Request::segment(2) == 'data' ? 'active' : '' }}">
+                        class="nav-link {{ Request::segment(2) == 'dataAtlet' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
                         <p>
-                            Data
+                            Biodata
                         </p>
                     </a>
                 </li>

@@ -20,12 +20,12 @@
                     Disini</a>
             </p> -->
 
-            <h2>{{ $pesan }}</h2>
 
 
-            @if($cek > 0) <a href="{{ route('dataAtlet.update', $atlet->id.'/edit') }}">Klik
+
+            <!-- @if($cek > 0) <a href="{{ route('dataAtlet.update', $atlet->id.'/edit') }}">Klik
                 Disini</a>
-            @endif
+            @endif -->
 
 
             @endrole

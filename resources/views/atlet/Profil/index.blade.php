@@ -26,6 +26,23 @@
                 <div class="row">
                     <div class="col-lg-3">
                         <div class="form-group">
+                            <label class="block text-sm font-bold text-gray-700">
+                                Photo
+                            </label>
+                            <div class="mt-2 flex items-center">
+                                <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100 mr-2">
+                                    <img src="{{asset('atlet/images/' . $dt->image)}}" alt="" style="width:150px;">
+                                </span>
+                                <!-- <input class="border border-gray-400 p-2 w-full" type="file" name="image" id="image"
+                                    accept=".jpg, .png, .jpeg" readonly> -->
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-3">
+                        <div class="form-group">
                             <label for="name">Nama Atlet:</label>
                             <input required="" type="text" name="name" id="name" class="form-control"
                                 value="{{$dt->name}}" readonly>
@@ -115,9 +132,13 @@
                         <a href="{{ route('dataAtlet.edit', $dt->id) }}" class="btn btn-primary btn-rounded btn-fw"><i
                                 class="fa fa-edit"></i>
                             Ubah Data</a>
+
+                    </div>
+
+                    <div class="col-lg-2">
                         <a href="{{route('printid', $dt->id)}}" target="_blank"
                             class="btn btn-warning btn-rounded btn-fw">
-                            Cetak</a>
+                            Cetak Kartu</a>
                     </div>
                 </div>
             </div>
