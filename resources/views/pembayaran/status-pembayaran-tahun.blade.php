@@ -34,12 +34,12 @@
                 <div class="list-group">
                     @foreach($spp as $row)
                     @if($row->tahun == date('Y'))
-                    <a href="{{ route('pembayaran.status-pembayaran.show-status', [$atlet->nisn,$row->tahun]) }}"
+                    <a href="{{ route('pembayaran.status-pembayaran.show-status', [$atlet->id,$row->tahun]) }}"
                         class="list-group-item list-group-item-action active">
                         {{ $row->tahun }}
                     </a>
                     @else
-                    <a href="{{ route('pembayaran.status-pembayaran.show-status', [$atlet->nisn,$row->tahun]) }}"
+                    <a href="{{ route('pembayaran.status-pembayaran.show-status', [$atlet->id,$row->tahun]) }}"
                         class="list-group-item list-group-item-action">
                         {{ $row->tahun }}
                     </a>

@@ -16,35 +16,35 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Validator;
 use App\Helpers\Bulan;
 use PDF;
-use DataTables;
 
 class PembayaranController extends Controller
 {
     public function index(Request $request)
     {
-        if ($request->ajax()) {
-            $data = Atlet::get();
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $btn =
-                        '<div class="row"><a href="' .
-                        route('pembayaran.bayar', $row->nisn) .
-                        '"class="btn btn-primary btn-sm ml-2">
-                    <i class="fas fa-money-check"></i> BAYAR
-                    </a>';
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
+        // if ($request->ajax()) {
+        //     $data = Atlet::get();
+        //     return DataTables::of($data)
+        //         ->addIndexColumn()
+        //         ->addColumn('action', function ($row) {
+        //             $btn =
+        //                 '<div class="row"><a href="' .
+        //                 route('pembayaran.bayar', $row->nisn) .
+        //                 '"class="btn btn-primary btn-sm ml-2">
+        //             <i class="fas fa-money-check"></i> BAYAR
+        //             </a>';
+        //             return $btn;
+        //         })
+        //         ->rawColumns(['action'])
+        //         ->make(true);
+        // }
+        $atlet = Atlet::get();
 
-        return view('pembayaran.index');
+        return view('pembayaran.index', compact('atlet'));
     }
 
-    public function bayar($nisn)
+    public function bayar($id)
     {
-        $atlet = Atlet::where('nisn', $nisn)->first();
+        $atlet = Atlet::where('id', $id)->first();
 
         $spp = Spp::all();
 
@@ -119,23 +119,9 @@ class PembayaranController extends Controller
 
     public function statusPembayaran(Request $request)
     {
-        if ($request->ajax()) {
-            $data = Atlet::get();
+        $atlet = Atlet::get();
 
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $btn =
-                        '<div class="row"><a href="' .
-                        route('pembayaran.status-pembayaran.show', $row->nisn) .
-                        '"class="btn btn-primary btn-sm">DETAIL</a>';
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
-
-        return view('pembayaran.status-pembayaran');
+        return view('pembayaran.status-pembayaran', compact('atlet'));
     }
 
     public function statusPembayaranShow(Atlet $atlet)
@@ -147,9 +133,9 @@ class PembayaranController extends Controller
         );
     }
 
-    public function statusPembayaranShowStatus($nisn, $tahun)
+    public function statusPembayaranShowStatus($id, $tahun)
     {
-        $atlet = Atlet::where('nisn', $nisn)->first();
+        $atlet = Atlet::where('id', $id)->first();
 
         $spp = Spp::where('tahun', $tahun)->first();
 

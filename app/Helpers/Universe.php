@@ -77,9 +77,9 @@ class Universe
     // cek status pembayaran (diakses oleh siswa)
     public static function statusPembayaranBulan($bulan, $spp_tahun)
     {
-        $siswa = Atlet::where('user_id', Auth::user()->id)->first();
+        $atlet = Atlet::where('user_id', Auth::user()->id)->first();
 
-        $pembayaran = Pembayaran::where('siswa_id', $siswa->id)
+        $pembayaran = Pembayaran::where('atlet_id', $atlet->id)
             ->where('tahun_bayar', $spp_tahun)
             ->oldest()
             ->pluck('bulan_bayar')
@@ -96,9 +96,9 @@ class Universe
     }
 
     // cek status pembayaran (diakses oleh petugas)
-    public static function statusPembayaran($siswa_id, $tahun, $bulan)
+    public static function statusPembayaran($atlet_id, $tahun, $bulan)
     {
-        $pembayaran = Pembayaran::where('siswa_id', $siswa_id)
+        $pembayaran = Pembayaran::where('atlet_id', $atlet_id)
             ->where('tahun_bayar', $tahun)
             ->oldest()
             ->pluck('bulan_bayar')

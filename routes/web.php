@@ -47,12 +47,12 @@ Route::prefix('pembayaran')
         )->name('pembayaran.status-pembayaran');
 
         Route::get(
-            'status-pembayaran/{siswa:nisn}',
+            'status-pembayaran/{atlet:id}',
             'PembayaranController@statusPembayaranShow'
         )->name('pembayaran.status-pembayaran.show');
 
         Route::get(
-            'status-pembayaran/{nisn}/{tahun}',
+            'status-pembayaran/{id}/{tahun}',
             'PembayaranController@statusPembayaranShowStatus'
         )->name('pembayaran.status-pembayaran.show-status');
 
@@ -73,6 +73,8 @@ Route::prefix('pembayaran')
             'pembayaran.print-pdf'
         );
     });
+
+Route::get('printid/{atlet}', 'PrintController@printId')->name('printid');
 
 Route::prefix('admin')
     ->namespace('Admin')
@@ -106,11 +108,17 @@ Route::prefix('admin')
             Route::get('/kasmasuk', 'KasMasukController@index');
             Route::get('/kaskeluar', 'KasKeluarController@index');
             Route::get('/saldo', 'SaldoController@index');
-            Route::post('/datakegiatan','datakegiatanController@datakegiatan');
-            Route::post('/admin/inputkegiatan','inputkegiatanController@inputkegiatan');
-            Route::get('/ubahstatus/{id}','datakegiatanController@updatestatus');
-            Route::get('/detail/{id}','datakegiatanController@detail');
-            Route::get('/deletedata/{id}','datakegiatanController@deleteData');
+            Route::post('/datakegiatan', 'datakegiatanController@datakegiatan');
+            Route::post(
+                '/admin/inputkegiatan',
+                'inputkegiatanController@inputkegiatan'
+            );
+            Route::get(
+                '/ubahstatus/{id}',
+                'datakegiatanController@updatestatus'
+            );
+            Route::get('/detail/{id}', 'datakegiatanController@detail');
+            Route::get('/deletedata/{id}', 'datakegiatanController@deleteData');
             Route::resource('datakegiatan', 'datakegiatanController');
             Route::resource('saldo', 'SaldoController');
             Route::resource('kasmasuk', 'KasMasukController');

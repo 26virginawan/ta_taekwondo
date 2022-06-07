@@ -14,7 +14,7 @@
     <div class="col-12">
         <div class="card">
             <div class="card-header">
-                <a href="{{ route('pembayaran.status-pembayaran.show',$atlet->nisn) }}" class="btn btn-danger btn-sm">
+                <a href="{{ route('pembayaran.status-pembayaran.show',$atlet->id) }}" class="btn btn-danger btn-sm">
                     <i class="fas fa-fw fa-arrow-left"></i> KEMBALI
                 </a>
             </div>
@@ -91,14 +91,14 @@
                         <tr>
                             <td>{{ $value['nama_bulan'] }}</td>
                             <td>
-                                @if(Universe::statusPembayaran($siswa->id, $spp->tahun, $value['nama_bulan']) ==
+                                @if(Universe::statusPembayaran($atlet->id, $spp->tahun, $value['nama_bulan']) ==
                                 'DIBAYAR')
                                 <a href="javascript:(0)" class="btn btn-success btn-sm"><i class=""></i>
-                                    {{ Universe::statusPembayaran($siswa->id, $spp->tahun, $value['nama_bulan']) }}
+                                    {{ Universe::statusPembayaran($atlet->id, $spp->tahun, $value['nama_bulan']) }}
                                 </a>
                                 @else
                                 <a href="javascript:(0)" class="btn btn-danger btn-sm"><i class=""></i>
-                                    {{ Universe::statusPembayaran($siswa->id, $spp->tahun, $value['nama_bulan']) }}
+                                    {{ Universe::statusPembayaran($atlet->id, $spp->tahun, $value['nama_bulan']) }}
                                 </a>
                                 @endif
                             </td>
@@ -109,7 +109,7 @@
                 @else
                 <div class="alert alert-danger" role="alert">
                     <h4 class="alert-heading">Data Status Pembayaran Tidak Tersedia!</h4>
-                    <p>Status Pembayaran Spp {{ $siswa->nama_siswa }} di Tahun {{ $spp->tahun }} tidak tersedia.</p>
+                    <p>Status Pembayaran Spp {{ $atlet->name }} di Tahun {{ $spp->tahun }} tidak tersedia.</p>
                 </div>
                 @endif
             </div>
