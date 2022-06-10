@@ -36,6 +36,7 @@
     }
 
     .right-div {
+        font-size: 10pt;
         margin-left: 20px;
         position: absolute;
         float: left;
@@ -59,7 +60,7 @@
         position: absolute;
         padding: 0 12px;
         height: 120px;
-        margin-top: 20px;
+        margin-top: 5px;
     }
 
     .capitalize {
@@ -97,6 +98,7 @@
                 <center style=" padding-top : 5px;">
                     <span>KARTU TANDA ATLET TAEKWONDO</span>
                 </center>
+                <hr>
                 <div class="left-div" style="font-size:15px;">
                     <div class="info">
                         <img style="width: 80px; height: 80px;" src="{{public_path('atlet/images/' . $dt->image)}}"

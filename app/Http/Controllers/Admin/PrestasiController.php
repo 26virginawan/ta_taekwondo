@@ -116,7 +116,7 @@ class PrestasiController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            
             'nama_kejuaraan' => 'required',
             'tingkat' => 'required',
             'kelas' => 'required',

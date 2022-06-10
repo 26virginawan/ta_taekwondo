@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>SPP | Login</title>
+    <title>TAEKWONDO | Login</title>
 
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet"
@@ -64,7 +64,7 @@
                     <br>
                     <div class="row">
                         <div class="col">
-                            <p class="login-box-msg">Belum Mempunyai Akun? <a href="/register">Registrasi</a></p>
+                            <p class="login-box-msg">Belum Mempunyai Akun? <a href="register">Registrasi</a></p>
                             <!-- /.col -->
 
                         </div>

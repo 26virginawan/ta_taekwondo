@@ -38,7 +38,7 @@
                             <th>No</th>
                             <th>Foto</th>
                             <th>Nama Atlet</th>
-                            <th>NISN</th>
+                            <th>NIA</th>
                             <th>Tanggal Registrasi</th>
                             <th>No Telepon</th>
                             <th>Tingkat Sabuk</th>
@@ -69,9 +69,15 @@
 
                                     <a href="{{route('printid', $dt->id)}}" target="_blank"
                                         class="btn btn-warning btn-sm ml-2">Cetak</a>
-
-                                    <a href="{{route('atlet.destroy', $dt->id)}}"
-                                        class="btn btn-danger btn-sm ml-2">Delete</a>
+                                    <form action="{{ route('atlet.destroy', $dt->id) }}" class="pull-left"
+                                        method="post">
+                                        {{ csrf_field() }}
+                                        {{ method_field('delete') }}
+                                        <button class="btn btn-danger btn-sm ml-2"
+                                            onclick="return confirm('Anda yakin ingin menghapus data ini?')">
+                                            Delete
+                                        </button>
+                                    </form>
                                 </div>
                             </td>
                         </tr>

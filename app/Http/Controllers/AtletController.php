@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Pembayaran;
 use App\Models\Atlet;
+use App\Models\Ujian;
 use App\Models\Spp;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
@@ -13,6 +14,20 @@ use PDF;
 
 class AtletController extends Controller
 {
+    public function index()
+    {
+        $ujian = Ujian::all();
+
+
+        return view('atlet.ujian.index', compact('ujian'));
+    }
+
+    /**
+     * Store a newly created resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
+     */
     public function prestasi(Request $request)
     {
         if ($request->ajax()) {

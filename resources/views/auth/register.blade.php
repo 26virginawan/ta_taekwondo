@@ -29,7 +29,7 @@
             <div class="card-body login-card-body">
                 <h3 class="login-box-msg">Silahkan Registrasi</h3>
                 <h5>Pemberitahuan!</h5>
-                <p>Password default SISTEM INI adalah : <b>bumiaji</b></p>
+                <p>Password default SISTEM INI adalah : <b style="color:red;">bumiaji</b></p>
                 @error('username')
                 <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     {{ $message }}

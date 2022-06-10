@@ -105,6 +105,7 @@ Route::prefix('admin')
                 'admin-list/{id}',
                 'AdminListController@destroy'
             )->name('admin-list.destroy');
+            Route::get('ubahstatus/{id}','UjianController@updatestatus');
             Route::get('/kasmasuk', 'KasMasukController@index');
             Route::get('/kaskeluar', 'KasKeluarController@index');
             Route::get('/saldo', 'SaldoController@index');
@@ -113,14 +114,12 @@ Route::prefix('admin')
                 '/admin/inputkegiatan',
                 'inputkegiatanController@inputkegiatan'
             );
-            Route::get(
-                '/ubahstatus/{id}',
-                'datakegiatanController@updatestatus'
-            );
+            
             Route::get('/detail/{id}', 'datakegiatanController@detail');
             Route::get('/deletedata/{id}', 'datakegiatanController@deleteData');
             Route::resource('datakegiatan', 'datakegiatanController');
             Route::resource('saldo', 'SaldoController');
+            Route::resource('ujian', 'UjianController');
             Route::resource('kasmasuk', 'KasMasukController');
             Route::resource('kaskeluar', 'KaskeluarController');
             Route::resource('user', 'UserController');
@@ -180,10 +179,13 @@ Route::prefix('admin')
             )->name('delete-all-siswa');
         });
     });
-
+  
+    Route::get('/atlet/daftarujian', 'DaftarUjianController@daftar');
+    Route::get('/atlet/daftarujian/tambah', 'DaftarUjianController@store');
 Route::prefix('atlet')
     ->middleware(['auth', 'role:atlet'])
     ->group(function () {
+        Route::resource('daftarujian', 'DaftarUjianController');
         Route::resource('dataAtlet', 'DataAtletController');
         Route::resource('prestasiAtlet', 'PrestasiAtletController');
         Route::get('pembayaran-spp', 'AtletController@pembayaranSpp')->name(

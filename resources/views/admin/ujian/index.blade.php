@@ -1,5 +1,5 @@
 @extends('layouts.backend.app')
-@section('title', 'Kas Masuk')
+@section('title', 'Daftar Ujian')
 @push('css')
 <!-- DataTables -->
 <link rel="stylesheet"
@@ -14,80 +14,51 @@
 <link rel="stylesheet"
     href="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 @endpush
-@section('content_title', 'Kas Masuk')
+@section('content_title', 'Daftar Ujian')
 @section('content')
+<x-alert></x-alert>
 <div class="row">
-
-    <div class="col-lg-2">
-        <a href="{{ route('kaskeluar.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>
-            Tambah Kas Keluar</a>
-    </div>
-    <div class="col-lg-12">
-        @if (Session::has('message'))
-        <div class="alert alert-{{ Session::get('message_type') }}" id="waktu2" style="margin-top:10px;">
-            {{ Session::get('message') }}</div>
-        @endif
-    </div>
-</div>
-<div class="row" style="margin-top: 20px;">
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card card-statistics">
-            <div class="card-body text-center ">
-
-                <div class="col-xl-20 col-lg-20 col-md-50 col-sm-20 grid-margin bg-white rounded">
-
-                    <div class="clearfix">
-                        <div class=" text-center">
-                            <h5 class="mb-0 text-center ">Jumlah Kas Masuk</h5>
-                        </div>
-                    </div>
-                    <p class="text-muted mt-3 mb-0">
-                    <h2 class="font-weight-medium  mb-0">
-                        Rp.
-                        {{ number_format($jumlahmasuk,2,',','.') }}
-                    </h2>
-                    </p>
-                </div>
-            </div>
-        </div>
+    <div class="col-12">
         <div class="card">
+            <div class="card-header">
+
+                <a href="{{ route('ujian.create')  }}" class="btn btn-primary btn-sm">
+                    <i class="fas fa-plus fa-fw"></i> Tambah Data
+                </a>
+
+                <!-- <a href="atlet/cetak" class="btn btn-danger btn-sm"><i class="fa fa-pdf fa-fw"></i>
+                    Cetak PDF</a> -->
+            </div>
+            <!-- /.card-header -->
             <div class="card-body">
-                <table class="table table-striped table-border" id="table">
+                <table id="table" class="table table-bordered table-striped">
                     <thead>
                         <tr>
-                            <th>
-                                Tanggal
-                            </th>
-                            <th>
-                                Keterangan
-                            </th>
-                            <th>
-                                Jumlah
-                            </th>
-                            <th>
-                                Opsi
-                            </th>
+                            <th>No</th>
+                            <th>Nama Ujian</th>
+                            <th>Tanggal Ujian</th>
+                            <th>Tanggal Ditutup</th>
+                            <th>Kuota</th>
+                            <th>Status</th>
+                            <th width="200px">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($kas_masuk as $data)
+                        @foreach($ujian as $dt)
                         <tr>
-                            <td class="py-1">
-                                {{$data->tanggal}}
-                            </td>
-                            <td>
-                                {{$data->keterangan}}
-                            </td>
-                            <td>Rp.
-                                {{ number_format($data->jumlah,2,',','.') }}</td>
-                            </td>
-
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{$dt->name}}</td>
+                            <td>{{\Carbon\Carbon::parse($dt->tgl_ujian)->format('d-m-Y') }}</td>
+                            <td>{{\Carbon\Carbon::parse($dt->tgl_ditutup)->format('d-m-Y')}}</td>
+                            <td>{{$dt -> sisa}} dari {{$dt -> kuota}}</td>
+                            <td>{{$dt->status}}</td>
                             <td>
                                 <div class="row">
-                                    <a href="{{route('kasmasuk.edit', $data->id)}}"
-                                        class="btn btn-primary btn-sm ml-2">Edit</a>
-
-                                    <form action="{{ route('kasmasuk.destroy', $data->id) }}" class="pull-left"
+                                    <a href="ubahstatus/{{ $dt->id }}" class="btn btn-primary btn-sm ml-2">Ganti
+                                        Status</a>
+                                    <a href="{{route('ujian.edit', $dt->id)}}"
+                                        class="btn btn-warning btn-sm ml-2">Edit</a>
+                                    <form action="{{ route('ujian.destroy', $dt->id) }}" class="pull-left"
                                         method="post">
                                         {{ csrf_field() }}
                                         {{ method_field('delete') }}
@@ -98,14 +69,23 @@
                                     </form>
                                 </div>
                             </td>
-                            @endforeach
+                        </tr>
+                        @endforeach
                     </tbody>
                 </table>
             </div>
+            <!-- /.card-body -->
         </div>
+        <!-- /.card -->
     </div>
+    <!-- /.col -->
 </div>
-@endsection
+<!-- /.row -->
+
+<!-- Edit Modal -->
+
+@stop
+
 @push('js')
 <!-- DataTables  & Plugins -->
 <script src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/datatables/jquery.dataTables.min.js"></script>

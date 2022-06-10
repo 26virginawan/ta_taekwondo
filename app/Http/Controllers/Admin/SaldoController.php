@@ -32,22 +32,33 @@ class SaldoController extends Controller
         //     Alert::info('Oopss..', 'Anda dilarang masuk ke area ini.');
         //     return redirect()->to('/');
         // }
-        $kas_masuk = KasMasuk::get();
         $kas_keluar = KasKeluar::get();
-        $data_saldo = KasMasuk::with(['KasKeluar'])->get();
-        $jumlahmasuk = 0;
+
         $jumlahkeluar = 0;
-        $saldo = $jumlahmasuk - $jumlahkeluar;
+        foreach ($kas_keluar as $item => $value) {
+            // simpan nilai harga ke variabel $harga_total
+            $jumlahkeluar += $value['jumlah'];
+        }
+
+        $keluar = KasKeluar::where('jumlah')->get();
+
+        $kas_masuk = KasMasuk::get();
+        $jumlahmasuk = 0;
         foreach ($kas_masuk as $item => $value) {
             // simpan nilai harga ke variabel $harga_total
-            $saldo += $value['jumlah'];
+            $jumlahmasuk += $value['jumlah'];
         }
+        $masuk = KasMasuk::where('jumlah')->get();
+
+        $data_saldo = KasMasuk::with(['KasKeluar'])->get();
+        $saldo = $jumlahmasuk - $jumlahkeluar;
 
         return view(
             'admin.kas.saldo.index',
             compact(
                 'saldo',
                 'jumlahmasuk',
+                'jumlahkeluar',
                 'kas_masuk',
                 'kas_keluar',
                 'data_saldo'

@@ -106,6 +106,7 @@
     </script>
     <!-- AdminLTE App -->
     <script src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/dist/js/adminlte.js"></script>
+    @include('sweetalert::alert')
     <script>
     $.ajaxSetup({
 

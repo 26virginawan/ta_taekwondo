@@ -152,28 +152,31 @@ class PembayaranController extends Controller
 
     public function historyPembayaran(Request $request)
     {
-        if ($request->ajax()) {
-            $data = Pembayaran::with([
-                'atlet' => function ($query) {},
-            ])
-                ->latest()
-                ->get();
+        $data = Pembayaran::with(['atlet'])
+            ->latest()
+            ->get();
+        // if ($request->ajax()) {
+        //     $data = Pembayaran::with([
+        //         'atlet'
+        //     ])
+        //         ->latest()
+        //         ->get();
 
-            return DataTables::of($data)
-                ->addIndexColumn()
-                ->addColumn('action', function ($row) {
-                    $btn =
-                        '<div class="row"><a href="' .
-                        route('pembayaran.history-pembayaran.print', $row->id) .
-                        '"class="btn btn-danger btn-sm ml-2" target="_blank">
-                    <i class="fas fa-print fa-fw"></i></a>';
-                    return $btn;
-                })
-                ->rawColumns(['action'])
-                ->make(true);
-        }
+        //     return DataTables::of($data)
+        //         ->addIndexColumn()
+        //         ->addColumn('action', function ($row) {
+        //             $btn =
+        //                 '<div class="row"><a href="' .
+        //                 route('pembayaran.history-pembayaran.print', $row->id) .
+        //                 '"class="btn btn-danger btn-sm ml-2" target="_blank">
+        //             <i class="fas fa-print fa-fw"></i></a>';
+        //             return $btn;
+        //         })
+        //         ->rawColumns(['action'])
+        //         ->make(true);
+        // }
 
-        return view('pembayaran.history-pembayaran');
+        return view('pembayaran.history-pembayaran',compact('data'));
     }
 
     public function printHistoryPembayaran($id)

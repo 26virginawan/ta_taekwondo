@@ -11,6 +11,16 @@ class DashboardController extends Controller
 {
     public function index()
     {
+        $reguler = DB::table('atlet')
+            ->where('kelas', 'reguler')
+            ->count();
+        $poomsae = DB::table('atlet')
+            ->where('kelas', 'poomsae')
+            ->count();
+        $kyorugi = DB::table('atlet')
+            ->where('kelas', 'kyorugi')
+            ->count();
+
         return view('admin.dashboard', [
             'total_kyorugi' => DB::table('atlet')
                 ->where('kelas', 'kyorugi')
@@ -25,6 +35,9 @@ class DashboardController extends Controller
                 ->where('role_id', 1)
                 ->count(),
             'total_petugas' => DB::table('petugas')->count(),
+            'reguler' => $reguler,
+            'poomsae' => $poomsae,
+            'kyorugi' => $kyorugi,
         ]);
     }
 }

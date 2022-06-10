@@ -60,7 +60,62 @@
     </div>
     <!-- ./col -->
 </div>
-<!-- /.row -->
 
-
+<!-- <div class="container mt-5">
+    <div class="row">
+        <div class="col-md-10 offset-md-1">
+            <div class="card">
+                <div class="card-header">Siswa</div>
+                <div class="card-body">
+                    <canvas id="canvas" height="200" width="500"></canvas>
+                </div>
+            </div>
+        </div>
+    </div>
+</div> -->
 @endsection
+
+@push('js')
+<script type="text/javascript" src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/chart.js/Chart.min.js">
+</script>
+<!-- <script>
+var ctx = document.getElementById("canvas").getContext('2d');
+var myChart = new Chart(ctx, {
+    type: 'bar',
+    data: {
+        labels: ["Atlet Reguler", "Atlet Poomsae", "Atlet Kyorugi"],
+        datasets: [{
+            label: '',
+            data: [{!!$reguler!!},
+                {
+                    !!$poomsae!!
+                },
+                {
+                    !!$kyorugi!!
+                },
+            ],
+            backgroundColor: [
+                'rgba(52, 131, 249, 0.6)',
+                'rgba(255, 84, 61, 0.6)',
+                'rgba(5, 248, 61, 0.5)',
+            ],
+            borderColor: [
+                'rgba(5, 122, 255, 0.7)',
+                'rgba(255, 0, 0, 0.7)',
+                'rgba(5, 248, 61, 0.7)',
+            ],
+            borderWidth: 1
+        }]
+    },
+    options: {
+        scales: {
+            yAxes: [{
+                ticks: {
+                    beginAtZero: true
+                }
+            }]
+        }
+    }
+});
+</script> -->
+@endpush

@@ -69,6 +69,7 @@ class UserController extends Controller
         $atlet = Atlet::create([
             'id' => $user->id,
             'user_id' => $user->id,
+            'kode_atlet' => 'ATLT' . Str::upper(Str::random(5)),
             'name' => Str::lower($request->name),
         ]);
 

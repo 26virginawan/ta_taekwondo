@@ -91,6 +91,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
+                    <a href="{{ route('ujian.index') }}"
+                        class="nav-link {{ Request::segment(2) == 'ujian' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-money-bill"></i>
+                        <p>
+                            Data Ujian
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('pembayaran-spp.index') }}"
                         class="nav-link {{ Request::segment(2) == 'pembayaran-spp' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-list"></i>
@@ -159,29 +168,20 @@
                         class="nav-link {{ Request::segment(2) == 'saldo' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-money-bill"></i>
                         <p>
-                            Saldo
+                            Data Kas
                         </p>
                     </a>
                 </li>
                 <li class="nav-item">
                     <a href="{{ route('kaskeluar.index') }}"
-                        class="nav-link {{ Request::segment(2) == 'laporan' ? 'active' : '' }}">
+                        class="nav-link {{ Request::segment(2) == 'kas' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-money-bill"></i>
                         <p>
                             Laporan KAS
                         </p>
                     </a>
                 </li>
-                <li class="nav-header">UJIAN</li>
-                <li class="nav-item">
-                    <a href="{{ route('datakegiatan.index') }}"
-                        class="nav-link {{ Request::segment(2) == 'datakegiatan' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-money-bill"></i>
-                        <p>
-                            Data Ujian
-                        </p>
-                    </a>
-                </li>
+
                 @endrole
 
                 @role('petugas')
@@ -277,6 +277,15 @@
 
                 <li class="nav-header">DATA</li>
                 <li class="nav-item">
+                    <a href="{{ route('dataAtlet.index') }}"
+                        class="nav-link {{ Request::segment(2) == 'dataAtlet' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-users"></i>
+                        <p>
+                            Biodata
+                        </p>
+                    </a>
+                </li>
+                <li class="nav-item">
                     <a href="{{ route('prestasiAtlet.index') }}"
                         class="nav-link {{ Request::segment(2) == 'prestasi' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-users"></i>
@@ -286,14 +295,15 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a href="{{ route('dataAtlet.index') }}"
-                        class="nav-link {{ Request::segment(2) == 'dataAtlet' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-users"></i>
+                    <a href="{{ route('daftarujian.index') }}"
+                        class="nav-link {{ Request::segment(2) == 'daftarujian' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-money-bill"></i>
                         <p>
-                            Biodata
+                            Daftar Ujian
                         </p>
                     </a>
                 </li>
+
                 <li class="nav-header">PEMBAYARAN</li>
                 <li class="nav-item">
                     <a href="{{ route('atlet.pembayaran-spp') }}"
@@ -324,7 +334,7 @@
                 </li>
                 @endrole
 
-                @role('admin')
+                <!-- @role('admin')
                 <li class="nav-header">ROLES - PERMISSIONS</li>
                 <li class="nav-item">
                     <a href="{{ route('roles.index') }}"
@@ -371,7 +381,7 @@
                         </p>
                     </a>
                 </li>
-                @endrole
+                @endrole -->
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

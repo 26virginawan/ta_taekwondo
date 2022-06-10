@@ -12,9 +12,9 @@
     </center>
     <br>
     <div style="float: left;">
-        <b style="font-family: sans-serif;">Nama Siswa : {{ $pembayaran->siswa->name }}</h3><br>
-            <b style="font-family: sans-serif;">Kelas : {{ $pembayaran->siswa->kelas }}</b><br>
-            <b style="font-family: sans-serif;">Nisn : {{ $pembayaran->siswa->nisn }}</b><br>
+        <b style="font-family: sans-serif;">Nama Atlet : {{ $pembayaran->atlet->name }}</h3><br>
+            <b style="font-family: sans-serif;">Kelas : {{ $pembayaran->atlet->kelas }}</b><br>
+            <b style="font-family: sans-serif;">kode atlet : {{ $pembayaran->atlet->kode_atlet }}</b><br>
     </div>
 
     <br><br><br><br><br>

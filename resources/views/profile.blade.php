@@ -122,12 +122,14 @@
     </div>
 </div>
 
+@role('atlet')
 <div class="col-lg-7">
     <div class="callout callout-danger">
         <h5>Pemberitahuan!</h5>
         <p>Password default / Password bawaan dari SISTEM INI adalah : <b>bumiaji</b></p>
     </div>
 </div>
+@endrole
 
 </div>
 @endsection

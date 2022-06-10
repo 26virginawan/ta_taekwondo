@@ -197,7 +197,18 @@
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <label for="atlet_id_edit">Kelas:</label>
+                                <label for="name">Nama:</label>
+                                <select required="" name="name" id="name_edit" class="form-control select2bs4">
+                                    <option disabled="" selected="">- PILIH NAMA -</option>
+                                    @foreach($atlet as $row)
+                                    <option value="{{ $row->name }}">{{ $row->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label for="atlet_id_edit">Atlet:</label>
                                 <input type="hidden" name="id_edit" id="id_edit" class="form-control" readonly="">
                                 <select required="" name="atlet_id" id="atlet_id_edit" class="form-control">
                                     @foreach($atlet as $row)
