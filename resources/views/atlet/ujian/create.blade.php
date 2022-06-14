@@ -36,24 +36,30 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <label for="sabuk">Sabuk</label>
+                                <label for="tingkat_sabuk">Tanggal daftar:</label>
+                                <input required="" type="date" name="tgl_daftar" id="tgl_daftar" class="form-control">
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
+                                <label for="tingkat_sabuk">Tingkat Sabuk:</label>
                                 <input required="" type="text" name="sabuk" id="sabuk" class="form-control">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="ujian">Daftar Ujian</label>
-                                <select class="form-control" id="ujian" name="ujian_id" required>
+                                <select class="form-control" id="ujian_id" name="ujian_id" required>
                                     <option selected disabled value="">Pilih Ujian </option>
-                                    @foreach ($data as $ujian)
+                                    @foreach ($var_kegiatan as $ujian)
 
                                     @if ($ujian ->status == "tutup");
                                     @php
-                                    echo '<option value="'.$ujian->name.'" disabled>'.$ujian ->name.'</option>';
+                                    echo '<option value="'.$ujian->id.'" disabled>'.$ujian ->name.'</option>';
                                     @endphp
                                     @else
                                     @php
-                                    echo '<option value="'.$ujian->name.'">'.$ujian ->name.'</option>';
+                                    echo '<option value="'.$ujian->id.'">'.$ujian ->name.'</option>';
                                     @endphp
                                     @endif
                                     @endforeach
@@ -81,15 +87,3 @@
 </div>
 <!-- /.row -->
 @stop
-@push('js')
-<!-- Select2 -->
-<script src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/select2/js/select2.full.min.js"></script>
-//Initialize Select2 Elements
-$('.select2').select2()
-
-//Initialize Select2 Elements
-$('.select2bs4').select2({
-theme: 'bootstrap4'
-})
-</script>
-@endpush

@@ -7,9 +7,11 @@ use App\Models\KasMasuk;
 use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 use Auth;
+use PDF;
 use DB;
-use Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KasMasukController extends Controller
@@ -38,7 +40,10 @@ class KasMasukController extends Controller
             $jumlahmasuk += $value['jumlah'];
         }
 
-        return view('admin.kas.masuk.index', compact('kas_masuk', 'jumlahmasuk'));
+        return view(
+            'admin.kas.masuk.index',
+            compact('kas_masuk', 'jumlahmasuk')
+        );
     }
 
     /**
@@ -145,5 +150,72 @@ class KasMasukController extends Controller
         KasMasuk::find($id)->delete();
         // alert()->success('Berhasil.', 'Data telah dihapus!');
         return redirect('/admin/kasmasuk');
+    }
+
+    public function laporan()
+    {
+        return view('admin.kas.masuk.laporan');
+    }
+
+    public function printPdf(Request $request)
+    {
+        $tanggal = $request->validate([
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required',
+        ]);
+
+        $data['kasmasuk'] = KasMasuk::whereBetween('tanggal', $tanggal)->get();
+        $jumlahmasuk = kasMasuk::get();
+        foreach ($data as $item => $value) {
+            // simpan nilai harga ke variabel $harga_total
+            $jumlahmasuk += $value['jumlah'];
+        }
+
+        if ($data['kasmasuk']->count() > 0) {
+            $pdf = PDF::loadView(
+                'admin.kas.masuk.laporanpdf',
+                $data,
+                $jumlahmasuk
+            );
+            return $pdf->stream(
+                'Kas-Masuk-' .
+                    Carbon::parse($request->tanggal_mulai)->format('d-m-Y') .
+                    '-' .
+                    Carbon::parse($request->tanggal_selesai)->format('d-m-Y') .
+                    Str::random(9) .
+                    '.pdf'
+            );
+        } else {
+            return back()->with(
+                'error',
+                'Data pembayaran spp tanggal ' .
+                    Carbon::parse($request->tanggal_mulai)->format('d-m-Y') .
+                    ' sampai dengan ' .
+                    Carbon::parse($request->tanggal_selesai)->format('d-m-Y') .
+                    ' Tidak Tersedia'
+            );
+        }
+    }
+    public function filter(Request $request)
+    {
+        $tanggal = $request->validate([
+            'tanggal1' => 'required',
+            'tanggal2' => 'required',
+        ]);
+
+        $data['kasmasuk'] = KasMasuk::whereBetween('tanggal', $tanggal)->get();
+
+        if ($data['kasmasuk']->count() > 0) {
+            return view('admin.kas.masuk.index', $data);
+        } else {
+            return back()->with(
+                'error',
+                'Data pembayaran spp tanggal ' .
+                    Carbon::parse($request->tanggal_mulai)->format('d-m-Y') .
+                    ' sampai dengan ' .
+                    Carbon::parse($request->tanggal_selesai)->format('d-m-Y') .
+                    ' Tidak Tersedia'
+            );
+        }
     }
 }

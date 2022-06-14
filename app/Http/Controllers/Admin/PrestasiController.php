@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\DataTables\PrestasiDataTable;
+use RealRashid\SweetAlert\Facades\Alert;
 
 class PrestasiController extends Controller
 {
@@ -41,12 +42,8 @@ class PrestasiController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, PrestasiDataTable $datatable)
+    public function index(Request $request)
     {
-        if ($request->ajax()) {
-            return $datatable->data();
-        }
-
         $prestasi = Prestasi::all();
         $spp = Spp::all();
         $atlet = Atlet::all();
@@ -63,6 +60,12 @@ class PrestasiController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+
+    public function create()
+    {
+        $name = Atlet::all();
+        return view('admin.prestasi.create', compact('name'));
+    }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
@@ -88,7 +91,8 @@ class PrestasiController extends Controller
                 'lokasi' => $request->lokasi,
             ]);
 
-            return response()->json(['message' => 'Data berhasil disimpan!']);
+            Alert::success('Sukses', 'Data Berhasil Ditambahkan');
+            return redirect()->route('prestasi.index');
         }
 
         return response()->json(['error' => $validator->errors()->all()]);
@@ -102,8 +106,10 @@ class PrestasiController extends Controller
      */
     public function edit($id)
     {
+        $name = Atlet::all();
         $prestasi = Prestasi::findOrFail($id);
-        return response()->json(['data' => $prestasi]);
+
+        return view('admin.prestasi.edit', compact('name', 'prestasi'));
     }
 
     /**
@@ -116,7 +122,6 @@ class PrestasiController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            
             'nama_kejuaraan' => 'required',
             'tingkat' => 'required',
             'kelas' => 'required',
@@ -128,7 +133,6 @@ class PrestasiController extends Controller
 
         if ($validator->passes()) {
             Prestasi::findOrFail($id)->update([
-                'name' => $request->name,
                 'tingkat' => $request->tingkat,
                 'kelas' => $request->kelas,
                 'kategori' => $request->kategori,
@@ -138,7 +142,8 @@ class PrestasiController extends Controller
                 'atlet_id' => $request->atlet_id,
             ]);
 
-            return response()->json(['message' => 'Data berhasil diupdate!']);
+            Alert::success('Sukses', 'Data Berhasil Diupdate');
+            return redirect()->route('prestasi.index');
         }
 
         return response()->json(['error' => $validator->errors()->all()]);

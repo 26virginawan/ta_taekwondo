@@ -149,7 +149,11 @@ class AtletController extends Controller
             ->first();
 
         $pdf = PDF::loadView('atlet.history-pembayaran-preview', $data);
-        return $pdf->stream();
+        return $pdf
+        ->setPaper('a5', 'potrait')
+        ->stream(
+            
+        );
     }
 
     public function laporanPembayaran()
@@ -171,7 +175,7 @@ class AtletController extends Controller
 
         if ($data['pembayaran']->count() > 0) {
             $pdf = PDF::loadView('atlet.laporan-preview', $data);
-            return $pdf->download(
+            return $pdf->stream(
                 'pembayaran-spp-' .
                     $atlet->name .
                     '-' .

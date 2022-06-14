@@ -12,23 +12,15 @@ class DaftarUjian extends Model
 {
     use HasFactory;
 
-    protected $table = 'ujian';
+    protected $table = 'daftarujian';
 
-    protected $fillable = [
-        'id',
-        'name',
-        'tgl_daftar',
-        'sabuk',
-        'ujian_id',
-        'atlet_id',
-    ];
+    protected $fillable = ['id', 'name', 'tgl_daftar', 'sabuk', 'ujian_id'];
 
     public function user()
     {
         return $this->belongsTo(User::class);
     }
 
-    
     public function atlet()
     {
         return $this->belongsTo(Atlet::class);

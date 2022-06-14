@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Validator;
 use App\DataTables\AtletDataTable;
 use RealRashid\SweetAlert\Facades\Alert;
 use PDF;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class AtletController extends Controller
 {
@@ -67,7 +68,7 @@ class AtletController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'nisn' => 'required|unique:atlet',
-            // 'image' => ['required', 'image'],
+            'image' => 'required|image|mimes:jpeg,png,jpg,',
             'name' => 'required',
             'username' => 'required|unique:users',
             'tgl_registrasi' => 'required',
@@ -91,13 +92,14 @@ class AtletController extends Controller
 
                 $user->assignRole('atlet');
                 if ($request->hasfile('image')) {
+                    $image = $request->file('image');
                     $imageatlet =
-                        uniqid(11) .
-                        '.' .
-                        $request->file('image')->getClientOriginalExtension();
-                    $request
-                        ->file('image')
-                        ->move(public_path('atlet\images'), $imageatlet);
+                        uniqid(11) . '.' . $image->getClientOriginalExtension();
+                    $image_resize = Image::make($image->getRealPath());
+                    $image_resize->resize(300, 350);
+                    $image_resize->save(
+                        public_path('atlet\images/' . $imageatlet)
+                    );
                 }
 
                 Atlet::create([
@@ -120,8 +122,8 @@ class AtletController extends Controller
             Alert::success('Sukses', 'Data Berhasil Ditambahkan');
             return redirect()->route('atlet.index');
         }
-
-        return response()->json(['error' => $validator->errors()->all()]);
+        Alert::error('Gagal', 'Ukuran Maksimal Foto 2048 kb');
+        return redirect()->back();
     }
 
     /**
@@ -147,7 +149,7 @@ class AtletController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-
+            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'tgl_registrasi' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required',
@@ -166,9 +168,11 @@ class AtletController extends Controller
                     uniqid(11) .
                     '.' .
                     $request->file('image')->getClientOriginalExtension();
-                $request
-                    ->file('image')
-                    ->move(public_path('atlet\images'), $imageatlet);
+                $image_resize = Image::make(
+                    $request->file('image')->getRealPath()
+                );
+                $image_resize->resize(300, 380);
+                $image_resize->save(public_path('atlet\images/' . $imageatlet));
                 $input['image'] = "$imageatlet";
             } else {
                 unset($input['image']);
@@ -179,7 +183,7 @@ class AtletController extends Controller
             return redirect()->route('atlet.index');
         }
 
-        return response()->json(['error' => $validator->errors()->all()]);
+        return redirect()->back();
     }
 
     /**

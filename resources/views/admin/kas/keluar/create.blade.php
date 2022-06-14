@@ -25,7 +25,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-body">
-                            
+
                             <div class="form-group">
                                 <label for="nama" class="col-md-70 control-label">Tanggal</label>
                                 <div class="col-md-60">
@@ -44,13 +44,13 @@
                                     <input type="text" class="form-control" name="jumlah">
                                 </div>
                             </div>
-                            <button type="submit" class="btn btn-primary" id="submit">
-                                Submit
-                            </button>
-                            <button type="reset" class="btn btn-danger">
-                                Reset
-                            </button>
-                            <a href="/kaskeluar" class="btn btn-light pull-right">Back</a>
+                            <div class="float-right">
+
+                                <a href="/admin/kaskeluar" class="btn btn-light pull-right">Back</a>
+                                <button type="submit" class="btn btn-primary" id="submit">
+                                    Submit
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </div>

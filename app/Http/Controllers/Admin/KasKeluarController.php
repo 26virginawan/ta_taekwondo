@@ -7,9 +7,11 @@ use App\Models\KasKeluar;
 use Carbon\Carbon;
 use Session;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Str;
+use Illuminate\Support\Arr;
 use Auth;
+use PDF;
 use DB;
-use Excel;
 use RealRashid\SweetAlert\Facades\Alert;
 
 class KasKeluarController extends Controller
@@ -38,7 +40,10 @@ class KasKeluarController extends Controller
             $jumlahkeluar += $value['jumlah'];
         }
 
-        return view('admin.kas.keluar.index', compact('kas_keluar', 'jumlahkeluar'));
+        return view(
+            'admin.kas.keluar.index',
+            compact('kas_keluar', 'jumlahkeluar')
+        );
     }
 
     /**
@@ -71,9 +76,8 @@ class KasKeluarController extends Controller
             'keterangan' => $request->get('keterangan'),
             'jumlah' => $request->get('jumlah'),
         ]);
-        
+
         return redirect('/admin/kaskeluar');
-        
     }
 
     /**
@@ -145,7 +149,41 @@ class KasKeluarController extends Controller
             return redirect()->to('/dataprestasi');
         }
         KasKeluar::find($id)->delete();
-        
+
         return redirect('/admin/kaskeluar');
+    }
+
+    public function printPdf(Request $request)
+    {
+        $tanggal = $request->validate([
+            'tanggal_mulai' => 'required',
+            'tanggal_selesai' => 'required',
+        ]);
+
+        $data['kaskeluar'] = KasKeluar::whereBetween(
+            'tanggal',
+            $tanggal
+        )->get();
+
+        if ($data['kaskeluar']->count() > 0) {
+            $pdf = PDF::loadView('admin.kas.keluar.laporanpdf', $data);
+            return $pdf->stream(
+                'Kas-Keluar-' .
+                    Carbon::parse($request->tanggal_mulai)->format('d-m-Y') .
+                    '-' .
+                    Carbon::parse($request->tanggal_selesai)->format('d-m-Y') .
+                    Str::random(9) .
+                    '.pdf'
+            );
+        } else {
+            return back()->with(
+                'error',
+                'Data Kas Keluar  tanggal ' .
+                    Carbon::parse($request->tanggal_mulai)->format('d-m-Y') .
+                    ' sampai dengan ' .
+                    Carbon::parse($request->tanggal_selesai)->format('d-m-Y') .
+                    ' Tidak Tersedia'
+            );
+        }
     }
 }

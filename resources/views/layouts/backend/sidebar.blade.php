@@ -310,20 +310,11 @@
                         class="nav-link {{ Request::segment(2) == 'pembayaran-spp' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-money-bill"></i>
                         <p>
-                            Pembayaran
-                        </p>
-                    </a>
-                </li>
-                <li class="nav-item">
-                    <a href="{{ route('atlet.history-pembayaran') }}"
-                        class="nav-link {{ Request::is('atlet/history-pembayaran') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-history"></i>
-                        <p>
                             History Pembayaran
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="{{ route('atlet.laporan-pembayaran') }}"
                         class="nav-link {{ Request::is('atlet/laporan-pembayaran') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-file"></i>
@@ -331,7 +322,7 @@
                             Laporan
                         </p>
                     </a>
-                </li>
+                </li> -->
                 @endrole
 
                 <!-- @role('admin')

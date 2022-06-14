@@ -17,39 +17,91 @@
 @section('content_title', 'Kas Keluar')
 @section('content')
 <div class="row">
-
-    <div class="col-lg-2">
-        <a href="{{ route('kaskeluar.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>
-            Tambah Kas Keluar</a>
-    </div>
     <div class="col-lg-12">
-        @if (Session::has('message'))
-        <div class="alert alert-{{ Session::get('message_type') }}" id="waktu2" style="margin-top:10px;">
-            {{ Session::get('message') }}</div>
-        @endif
-    </div>
-</div>
-<div class="row" style="margin-top: 20px;">
-    <div class="col-lg-12 grid-margin stretch-card">
-        <div class="card card-statistics">
-            <div class="card-body text-center ">
-
-                <div class="col-xl-20 col-lg-20 col-md-50 col-sm-20 grid-margin bg-white rounded">
-
-                    <div class="clearfix">
-                        <div class=" text-center">
-                            <h5 class="mb-0 text-center ">Jumlah Kas Keluar</h5>
-                        </div>
+        <div class="card">
+            <div class="card-header">Jumlah Kas Keluar</div>
+            <div class="card-body text-center">
+                <div class="clearfix">
+                    <div class=" text-center">
+                        <h5 class="mb-0 text-center ">Jumlah Kas Keluar</h5>
                     </div>
-                    <p class="text-muted mt-3 mb-0">
-                    <h2 class="font-weight-medium  mb-0">
-                        Rp.
-                        {{ number_format($jumlahkeluar,2,',','.') }}
-                    </h2>
-                    </p>
                 </div>
+                <p class="text-muted mt-3 mb-0">
+                <h2 class="font-weight-medium  mb-0">
+                    Rp.
+                    {{ number_format($jumlahkeluar,2,',','.') }}
+                </h2>
+                </p>
             </div>
         </div>
+    </div>
+</div>
+<div class="row">
+
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header" style="font-weight: bold;">Laporan Kas Keluar</div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('kaskeluar.print-pdf') }}">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-5">
+                            <input type="date" name="tanggal1" required="" class="form-control" id="tanggal1">
+                        </div>
+                        <div class="col-md-5">
+                            <input type="date" name="tanggal2" required="" class="form-control" id="tanggal2">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                PRINT
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-6">
+        <div class="card">
+
+            <div class="card-header" style="font-weight: bold;">Filter Data Kas Keluar</div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('kaskeluar.print-pdf') }}">
+                    @csrf
+                    <div class="row">
+                        <div class="col-md-5">
+                            <input type="date" name="tanggal_mulai" required="" class="form-control" id="tanggal_mulai">
+                        </div>
+                        <div class="col-md-5">
+                            <input type="date" name="tanggal_selesai" required="" class="form-control"
+                                id="tanggal_selesai">
+                        </div>
+                        <div class="col-md-2">
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                PRINT
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row" style="margin-top: 20px;">
+    <div class="col-lg-12 grid-margin stretch-card">
+
+        <div class="col-lg-2">
+            <a href="{{ route('kaskeluar.create') }}" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i>
+                Tambah Kas Keluar</a>
+        </div>
+        <div class="col-lg-12">
+            @if (Session::has('message'))
+            <div class="alert alert-{{ Session::get('message_type') }}" id="waktu2" style="margin-top:10px;">
+                {{ Session::get('message') }}</div>
+            @endif
+        </div>
+        <br>
         <div class="card">
             <div class="card-body">
                 <div class="card-tittle">
@@ -126,7 +178,22 @@
 <!-- Select2 -->
 <script src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/select2/js/select2.full.min.js"></script>
 <script>
+$(document).on("click", "#preview", function() {
+    var tanggal_mulai = $("#tanggal_mulai").val()
+    var tanggal_selesai = $("#tanggal_selesai").val()
 
+    $.ajax({
+        url: "/admin/kaskeluar/laporan/preview-pdf",
+        method: "GET",
+        data: {
+            tanggal_mulai: tanggal_mulai,
+            tanggal_selesai: tanggal_selesai,
+        },
+        success: function() {
+            window.open('/admin/kaskeluar/laporan/preview-pdf')
+        }
+    })
+})
 </script>
 <script type="text/javascript">
 $(document).ready(function() {

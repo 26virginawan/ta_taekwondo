@@ -39,7 +39,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($ujian as $dt)
+                        @foreach($kegiatan as $dt)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{$dt->name}}</td>
@@ -48,7 +48,7 @@
                             <td>{{$dt->status}}</td>
                             <td>
                                 <div class="row">
-                                    <a href="{{route('daftarujian.create')}}"
+                                    <a href="{{ route('daftarujian.create') }}"
                                         class="btn btn-primary btn-sm ml-2">Daftar</a>
                                 </div>
                             </td>
