@@ -16,9 +16,14 @@
 @endpush
 @section('content_title', 'Data Kas')
 @section('content')
+
 <div class="row">
-
-
+    <div class="col-lg-2">
+        <a href="{{route('saldo.cetak')}}" class="btn btn-primary btn-md"><i class="fa fa-plus"></i>
+            PRINT PDF</a>
+    </div>
+</div>
+<div class="row">
     <div class="col-lg-12">
         @if (Session::has('message'))
         <div class="alert alert-{{ Session::get('message_type') }}" id="waktu2" style="margin-top:10px;">
@@ -85,5 +90,5 @@
         </div>
     </div>
 </div>
-</div>
+
 @endsection

@@ -34,10 +34,12 @@
                                     Photo
                                 </label>
                                 <div class="img-holder"> </div>
+
                                 <div class="mt-2 flex items-center">
 
                                     <input class="border border-gray-400 p-2 w-full" type="file" name="image" id="image"
                                         accept=".jpg, .png, .jpeg" placeholder="Enter your name" required>
+
                                 </div>
 
                             </div>

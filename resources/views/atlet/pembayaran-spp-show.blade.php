@@ -34,6 +34,7 @@
                             <th>Untuk Tahun</th>
                             <th>Nominal</th>
                             <th>Status</th>
+                            <th>Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -50,6 +51,15 @@
                             <td>{{ $row->jumlah_bayar }}</td>
                             <td>
                                 <a href="javascript:(0)" class="btn btn-success btn-sm"><i class=""></i> DIBAYAR</a>
+                            </td>
+                            <td>
+
+                                <div class="row">
+                                    <a href="{{
+                        route('atlet.history-pembayaran.preview', $row->id)}}" class="btn btn-danger btn-sm ml-2"
+                                        target="_blank">
+                                        <i class="fas fa-print fa-fw"></i></a>
+                                </div>
                             </td>
                         </tr>
                         @endforeach

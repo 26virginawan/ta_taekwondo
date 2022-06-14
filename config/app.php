@@ -168,6 +168,7 @@ return [
         Barryvdh\DomPDF\ServiceProvider::class,
         Spatie\Permission\PermissionServiceProvider::class,
         Yajra\DataTables\DataTablesServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         
         /*
          * Application Service Providers...
@@ -233,6 +234,8 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'PDF' => Barryvdh\DomPDF\Facade::class,
         'Universe' => App\Helpers\Universe::class,
+        'Image' => Intervention\Image\Facades\Image::class
+
         
     ],
 

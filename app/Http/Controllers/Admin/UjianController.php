@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\User;
 
+use App\Models\DaftarUjian;
 use App\Models\Ujian;
 use Carbon\Carbon;
 use Illuminate\Support\Str;
@@ -21,7 +22,6 @@ class UjianController extends Controller
 {
     public function index()
     {
-
         $ujian = Ujian::all();
 
         return view('admin.ujian.index', compact('ujian'));
@@ -41,9 +41,8 @@ class UjianController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-     
             'name' => 'required',
-           
+
             'tgl_ditutup' => 'required',
             'kuota' => 'required',
             // 'status' => 'required',
@@ -51,15 +50,14 @@ class UjianController extends Controller
         $tgl = Carbon::now();
 
         if ($validator->passes()) {
-                Ujian::create([
-               
-                    'name' => $request->name,
-                    'tgl_ujian' => $tgl,
-                    'tgl_ditutup' => $request->tgl_ditutup,
-                    'kuota' => $request->kuota,
-                    'sisa' => '0',
-                    'status' => 'buka',
-                ]);
+            Ujian::create([
+                'name' => $request->name,
+                'tgl_ujian' => $tgl,
+                'tgl_ditutup' => $request->tgl_ditutup,
+                'kuota' => $request->kuota,
+                'sisa' => '0',
+                'status' => 'buka',
+            ]);
             Alert::success('Sukses', 'Data Berhasil Ditambahkan');
             return redirect()->route('ujian.index');
         }
@@ -90,7 +88,7 @@ class UjianController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-           
+
             'tgl_ditutup' => 'required',
             'kuota' => 'required',
         ]);
@@ -100,7 +98,6 @@ class UjianController extends Controller
                 'name' => $request->name,
                 'tgl_ditutup' => $request->tgl_ditutup,
                 'kuota' => $request->kuota,
-               
             ]);
             Alert::success('Sukses', 'Data Berhasil Diubah');
             return redirect()->route('ujian.index');
@@ -116,23 +113,26 @@ class UjianController extends Controller
      * @return \Illuminate\Http\Response
      */
 
-    public function updatestatus($id) 
-    { 
-       
-     $status = DB::table('ujian')->where('id', '=', $id)->get(); 
-     //mengubah data status menjadi kondisi php sederhana (penyederhanaan data)
-     $status = $status->toArray(); 
-     if ($status[0]->status == "buka") 
-      { 
-       DB::table('ujian')->where('id', '=', $id)->update(['status' => "tutup"]);
-       Alert::success('Sukses', 'Status Pendaftaran Berhasil Ditutup');
+    public function updatestatus($id)
+    {
+        $status = DB::table('ujian')
+            ->where('id', '=', $id)
+            ->get();
+        //mengubah data status menjadi kondisi php sederhana (penyederhanaan data)
+        $status = $status->toArray();
+        if ($status[0]->status == 'buka') {
+            DB::table('ujian')
+                ->where('id', '=', $id)
+                ->update(['status' => 'tutup']);
+            Alert::success('Sukses', 'Status Pendaftaran Berhasil Ditutup');
             return redirect()->route('ujian.index');
-      }  
-      else 
-      { 
-       DB::table('ujian')->where('id', '=', $id)->update(['status' => "buka"]); 
-       Alert::success('Sukses', 'Status Pendaftaran Berhasil Dibuka');
-            return redirect()->route('ujian.index');} 
+        } else {
+            DB::table('ujian')
+                ->where('id', '=', $id)
+                ->update(['status' => 'buka']);
+            Alert::success('Sukses', 'Status Pendaftaran Berhasil Dibuka');
+            return redirect()->route('ujian.index');
+        }
     }
 
     public function destroy($id)
