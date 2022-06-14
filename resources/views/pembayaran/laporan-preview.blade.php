@@ -39,7 +39,26 @@
             </tr>
             @endforeach
         </tbody>
+
+        
     </table>
+    <br>
+    <br>
+    <table style="float:right; margin-right:30px;" >    
+    <tr>
+			<td align="right">
+				<p>Mengetahui,</p>
+				<img class="mx-auto" src="images/sign.png" alt="" width="80" style="margin-left:25px; margin-top: 5px;">
+                <div class="border-b border-black border-b-1 w-full register-hr"></div>
+				<p><b>Dwi Wijayanto</b></p>
+			</td>
+		</tr>
+    </table>
+    <!-- <img class="mx-auto" src="images/sign.png" alt="" width="70" style="margin-left:25px; margin-top: 5px;">
+    <div class="border-b border-black border-b-1 w-full register-hr"></div>
+    <span class="mx-auto text-center block" style="margin-left: 25px;">Register</span> -->
+
+        
 </body>
 
 </html>
