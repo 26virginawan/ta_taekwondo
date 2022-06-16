@@ -125,8 +125,28 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="tingkat_sabuk">Tingkat Sabuk:</label>
-                                <input required="" type="text" name="tingkat_sabuk" id="tingkat_sabuk"
-                                    class="form-control" value="{{$atlet->tingkat_sabuk}}">
+                                <select required="" name="tingkat_sabuk" id="tingkat_sabuk"
+                                    class="form-control select2bs4">
+                                    <option value="{{$atlet->tingkat_sabuk}}">
+                                        {{$atlet->tingkat_sabuk}}</option>
+                                    <option value="putih">Putih</option>
+                                    <option value="kuning">Kuning</option>
+                                    <option value="kuning-strip-hijau">Kuning Strip Hijau</option>
+                                    <option value="Hijau">Hijau</option>
+                                    <option value="Hijau-strip-biru">Hijau Strip Biru</option>
+                                    <option value="Biru">Biru</option>
+                                    <option value="Biru-strip-merah">Biru Strip Merah</option>
+                                    <option value="merah">Merah</option>
+                                    <option value="merah-strip-hitam1">Merah Strip Hitam 1</option>
+                                    <option value="merah-strip-hitam2">Merah Strip Hitam 2</option>
+                                    <option value="Hitam">Hitam</option>
+                                    <option value="Dan1">Dan 1</option>
+                                    <option value="Dan2">Dan 2</option>
+                                    <option value="Dan3">Dan 3</option>
+                                    <option value="Dan4">Dan 4</option>
+                                    <option value="Dan5">Dan 5</option>
+                                    <option value="Dan6">Dan 6</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-4">

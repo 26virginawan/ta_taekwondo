@@ -103,18 +103,24 @@
                     <div class="info">
                         <img style="width: 80px; height: 80px;" src="{{public_path('atlet/images/' . $dt->image)}}"
                             alt="">
+                        <br>
+                        <!-- <div class="border-b border-black border-b-1 w-full register-hr"></div> -->
                         <!-- <div class="flex items-center" style="margin-top: 10px;">
 
                             <span class="text-xs ml-2" style="font-size: 13px;">{{$dt->no_telepon}}</span>
                         </div> -->
-                        <div class="flex items-center">
+                        <!-- <div class="flex items-center">
                             <span class="text-xs ml-2"
-                                style="font-size: 13px; margin-left: 20px;">{{$dt->tgl_lahir}}</span>
-                        </div>
+                                style="font-size: 9px; margin-left: 15px;">{{$dt->tgl_lahir}}</span>
+                        </div> -->
+                        <span class="mx-auto text-center block" style="margin-left: 15px;font-size: 8px;">Ketua
+                            Bumiaji</span>
                         <img class="mx-auto" src="images/sign.png" alt="" width="45"
-                            style="margin-left:25px; margin-top: 5px;">
-                        <div class="border-b border-black border-b-1 w-full register-hr"></div>
-                        <span class="mx-auto text-center block" style="margin-left: 25px;">Register</span>
+                            style="margin-left:15px; margin-top: 5px;">
+                        <br>
+
+                        <span class="mx-auto text-center block" style="margin-top:5;font-size: 10px;">Dwi
+                            Wijayanto</span>
 
                     </div>
                 </div>

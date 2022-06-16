@@ -52,7 +52,7 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <label for="nisn">NISN:</label>
+                                <label for="nisn">NIA:</label>
                                 <input required="" type="text" name="nisn" id="nisn" class="form-control"
                                     value="{{$dt->nisn}}">
                             </div>
@@ -126,8 +126,28 @@
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="tingkat_sabuk">Tingkat Sabuk:</label>
-                                <input required="" type="text" name="tingkat_sabuk" id="tingkat_sabuk"
-                                    class="form-control" value="{{$dt->tingkat_sabuk}}">
+                                <select required="" name="tingkat_sabuk" id="tingkat_sabuk"
+                                    class="form-control select2bs4">
+                                    <option value="{{$dt->tingkat_sabuk}}">
+                                        {{$dt->tingkat_sabuk}}</option>
+                                    <option value="putih">Putih</option>
+                                    <option value="kuning">Kuning</option>
+                                    <option value="kuning-strip-hijau">Kuning Strip Hijau</option>
+                                    <option value="Hijau">Hijau</option>
+                                    <option value="Hijau-strip-biru">Hijau Strip Biru</option>
+                                    <option value="Biru">Biru</option>
+                                    <option value="Biru-strip-merah">Biru Strip Merah</option>
+                                    <option value="merah">Merah</option>
+                                    <option value="merah-strip-hitam1">Merah Strip Hitam 1</option>
+                                    <option value="merah-strip-hitam2">Merah Strip Hitam 2</option>
+                                    <option value="Hitam">Hitam</option>
+                                    <option value="Dan1">Dan 1</option>
+                                    <option value="Dan2">Dan 2</option>
+                                    <option value="Dan3">Dan 3</option>
+                                    <option value="Dan4">Dan 4</option>
+                                    <option value="Dan5">Dan 5</option>
+                                    <option value="Dan6">Dan 6</option>
+                                </select>
                             </div>
                         </div>
                         <div class="col-lg-4">
@@ -155,3 +175,16 @@
     </div>
 </form>
 @endsection
+@push('js')
+<!-- Select2 -->
+<script src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/select2/js/select2.full.min.js"></script>
+<script type="text/javascript">
+//Initialize Select2 Elements
+$('.select2').select2()
+
+//Initialize Select2 Elements
+$('.select2bs4').select2({
+    theme: 'bootstrap4'
+})
+</script>
+@endpush

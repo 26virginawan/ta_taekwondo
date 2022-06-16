@@ -9,7 +9,7 @@
 
             <p>
                 Nama Siswa : <b>{{ $atlet->name }}</b><br>
-                Nisn : <b>{{ $atlet->nisn }}</b><br>
+                Kode Atlet : <b>{{ $atlet->kode_atlet }}</b><br>
                 Kelas : <b>{{ $atlet->kelas}}</b>
             </p>
         </div>

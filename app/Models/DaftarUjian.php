@@ -14,7 +14,14 @@ class DaftarUjian extends Model
 
     protected $table = 'daftarujian';
 
-    protected $fillable = ['id', 'name', 'tgl_daftar', 'sabuk', 'ujian_id'];
+    protected $fillable = [
+        'id',
+        'name',
+        'tgl_daftar',
+        'sebelum',
+        'sabuk',
+        'ujian_id',
+    ];
 
     public function user()
     {

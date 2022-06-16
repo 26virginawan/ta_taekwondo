@@ -1,5 +1,5 @@
 @extends('layouts.backend.app')
-@section('title', 'Daftar Ujian')
+
 @push('css')
 <!-- DataTables -->
 <link rel="stylesheet"
@@ -14,16 +14,25 @@
 <link rel="stylesheet"
     href="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 @endpush
-@section('content_title', 'Daftar Ujian')
+
 @section('content')
 <x-alert></x-alert>
 <div class="row">
-    <div class="col-12">
+    <div class="col-7">
+        <h4>Daftar Ujian</h4>
+    </div>
+    <div class="col-5">
+        <h4>History Saya</h4>
+    </div>
+</div>
+<br>
+<div class="row">
+    <div class="col-7">
         <div class="card">
             <div class="card-header">
-
-                <!-- <a href="atlet/cetak" class="btn btn-danger btn-sm"><i class="fa fa-pdf fa-fw"></i>
-                    Cetak PDF</a> -->
+                <a href="{{ route('daftarujian.create') }}" class="btn btn-primary btn-sm"><i
+                        class="fa fa-registered fa-fw"></i>
+                    DAFTAR SEKARANG</a>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -35,7 +44,7 @@
                             <th>Tanggal Ujian</th>
                             <th>Kuota</th>
                             <th>Status</th>
-                            <th>Aksi</th>
+                            <!-- <th>Aksi</th> -->
                         </tr>
                     </thead>
                     <tbody>
@@ -46,12 +55,41 @@
                             <td>{{\Carbon\Carbon::parse($dt->tgl_ujian)->format('d-m-Y') }}</td>
                             <td>{{$dt -> sisa}} dari {{$dt -> kuota}}</td>
                             <td>{{$dt->status}}</td>
-                            <td>
+                            <!-- <td>
                                 <div class="row">
                                     <a href="{{ route('daftarujian.create') }}"
                                         class="btn btn-primary btn-sm ml-2">Daftar</a>
                                 </div>
-                            </td>
+                            </td> -->
+                        </tr>
+                        @endforeach
+                    </tbody>
+                </table>
+            </div>
+            <!-- /.card-body -->
+        </div>
+        <!-- /.card -->
+    </div>
+    <div class="col-5">
+        <div class="card">
+            <!-- /.card-header -->
+            <div class="card-body">
+                <table id="table" class="table table-bordered table-striped">
+                    <thead>
+                        <tr>
+                            <th>No</th>
+                            <th>Nama Atlet</th>
+                            <th>Tanggal Daftar</th>
+                            <th>Sabuk</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach($daftarujian as $dt)
+                        <tr>
+                            <td>{{ $loop->iteration }}</td>
+                            <td>{{$dt->name}}</td>
+                            <td>{{\Carbon\Carbon::parse($dt->tgl_daftar)->format('d-m-Y') }}</td>
+                            <td>{{$dt -> sabuk}}</td>
                         </tr>
                         @endforeach
                     </tbody>

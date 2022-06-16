@@ -19,14 +19,33 @@
 <x-alert></x-alert>
 <div class="row">
     <div class="col-12">
+        <!-- <div class="card">
+            <div class="card-header">
+                Filter Daftar Ujian
+            </div>
+            
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-md-4">
+                        <label>Nama Ujian</label>
+                        <select id="filter-ujian" class="form-control filter">
+                            <option value="">Pilih Nama Ujian</option>
+                            @foreach($ujian as $dt)
+                            <option value="{{$dt->id}}">{{$dt->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div> -->
+
         <div class="card">
             <div class="card-header">
-
-                <!-- <a href="atlet/cetak" class="btn btn-danger btn-sm"><i class="fa fa-pdf fa-fw"></i>
-                    Cetak PDF</a> -->
+                Daftar Ujian
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+
                 <table id="table" class="table table-bordered table-striped">
                     <thead>
                         <tr>
@@ -82,12 +101,22 @@
 
 </script>
 <script type="text/javascript">
+let ujian = $("#filter-ujian").val()
 $(document).ready(function() {
     $('#table').DataTable({
         "iDisplayLength": 10
+        data: function(d) {
+            d.ujian = ujian;
+            return d
+        }
     });
 
 });
+
+$(".filter").on('change', function() {
+    ujian = $("#filter-ujian").val()
+    table.reload(null, false)
+})
 </script>
 
 @endpush

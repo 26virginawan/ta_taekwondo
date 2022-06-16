@@ -22,13 +22,18 @@ class DaftarUjianController extends Controller
 {
     public function index()
     {
+        $daftarujian = DaftarUjian::where('name', Auth::user()->name)->get();
         $kegiatan = DB::table('ujian')->get();
-        return view('atlet.ujian.index', compact('kegiatan'));
+        return view('atlet.ujian.index', compact('kegiatan', 'daftarujian'));
     }
     public function detail()
     {
+        $ujian = Ujian::get();
         $daftarujian = DaftarUjian::get();
-        return view('admin/ujian/detaildaftar', compact('daftarujian'));
+        return view(
+            'admin/ujian/detaildaftar',
+            compact('daftarujian', 'ujian')
+        );
     }
     public function create()
     {
@@ -54,8 +59,9 @@ class DaftarUjianController extends Controller
 
             Auth::user()->name
         )->get();
+        $tgl = Carbon::now();
         $name = $req->name;
-        $tgl_daftar = $req->tgl_daftar;
+        $tgl_daftar = $tgl;
         $sabuk = $req->sabuk;
         $kegiatan = $req->keg;
         $kegiatan_id = $req->ujian_id;

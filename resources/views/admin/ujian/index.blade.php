@@ -25,6 +25,9 @@
                 <a href="{{ route('ujian.create')  }}" class="btn btn-primary btn-sm">
                     <i class="fas fa-plus fa-fw"></i> Tambah Data
                 </a>
+                <a href="{{ route('ujian.detail')  }}" class="btn btn-warning btn-sm">
+                    <i class="fas  fa-fw"></i> Atlet Mendaftar
+                </a>
 
                 <!-- <a href="atlet/cetak" class="btn btn-danger btn-sm"><i class="fa fa-pdf fa-fw"></i>
                     Cetak PDF</a> -->
@@ -58,7 +61,7 @@
                                         Status</a>
                                     <a href="{{route('ujian.edit', $dt->id)}}"
                                         class="btn btn-warning btn-sm ml-2">Edit</a>
-                                    <a href="{{route('ujian.detail')}}" class="btn btn-warning btn-sm ml-2">Detail</a>
+                                    <!-- <a href="{{route('ujian.detail')}}" class="btn btn-warning btn-sm ml-2">Detail</a> -->
                                     <form action="{{ route('ujian.destroy', $dt->id) }}" class="pull-left"
                                         method="post">
                                         {{ csrf_field() }}

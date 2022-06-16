@@ -172,15 +172,6 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('kaskeluar.index') }}"
-                        class="nav-link {{ Request::segment(2) == 'kas' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-money-bill"></i>
-                        <p>
-                            Laporan KAS
-                        </p>
-                    </a>
-                </li>
 
                 @endrole
 

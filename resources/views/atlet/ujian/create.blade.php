@@ -34,12 +34,12 @@
                                 @endforeach
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <!-- <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="tingkat_sabuk">Tanggal daftar:</label>
                                 <input required="" type="date" name="tgl_daftar" id="tgl_daftar" class="form-control">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="tingkat_sabuk">Tingkat Sabuk:</label>
@@ -53,11 +53,7 @@
                                     <option selected disabled value="">Pilih Ujian </option>
                                     @foreach ($var_kegiatan as $ujian)
 
-                                    @if ($ujian ->status == "tutup");
-                                    @php
-                                    echo '<option value="'.$ujian->id.'" disabled>'.$ujian ->name.'</option>';
-                                    @endphp
-                                    @else
+                                    @if ($ujian ->status == "buka");
                                     @php
                                     echo '<option value="'.$ujian->id.'">'.$ujian ->name.'</option>';
                                     @endphp

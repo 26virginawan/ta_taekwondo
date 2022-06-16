@@ -149,7 +149,7 @@ class AtletController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-            'image' => 'required|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+
             'tgl_registrasi' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required',
@@ -183,7 +183,7 @@ class AtletController extends Controller
             return redirect()->route('atlet.index');
         }
 
-        return redirect()->back();
+        return response()->json(['error' => $validator->errors()->all()]);
     }
 
     /**
