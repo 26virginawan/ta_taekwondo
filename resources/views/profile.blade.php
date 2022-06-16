@@ -14,14 +14,14 @@
                 <div class="row">
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label for="">Nama Petugas:</label>
+                            <label for="">Nama Admin:</label>
                             <input type="" name="" value="{{ Universe::petugas()->nama_petugas }}" readonly="" id=""
                                 class="form-control">
                         </div>
                     </div>
                     <div class="col-lg-4">
                         <div class="form-group">
-                            <label for="">Kode Petugas:</label>
+                            <label for="">Kode Admin:</label>
                             <input type="" name="" value="{{ Universe::petugas()->kode_petugas }}" readonly="" id=""
                                 class="form-control">
                         </div>
@@ -49,23 +49,23 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <label for="username">Nama Atlet:</label>
                             <input type="" name="" value="{{ Universe::atlet()->name }}" readonly="" id=""
                                 class="form-control">
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="form-group">
                             <label for="username">Kelas:</label>
                             <input type="" name="" value="{{ Universe::atlet()->kelas }}" readonly="" id=""
                                 class="form-control">
                         </div>
                     </div>
-                    <div class="col-lg-4">
+                    <div class="col-lg-6">
                         <div class="form-group">
-                            <label for="username">Nisn:</label>
+                            <label for="username">Nia:</label>
                             <input type="" name="" value="{{ Universe::atlet()->nisn }}" readonly="" id=""
                                 class="form-control">
                         </div>

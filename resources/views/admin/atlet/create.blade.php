@@ -20,62 +20,63 @@
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
-            </div>
+
             <!-- /.card-header -->
             <div class="card-body">
                 <form method="POST" action="{{ route('atlet.store')  }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
-                        <div class="col-lg-3">
-                            <div class="form-group">
-
-                                <label for="image">
-                                    Photo
-                                </label>
-                                <div class="img-holder"> </div>
-
-                                <div class="mt-2 flex items-center">
-
-                                    <input class="border border-gray-400 p-2 w-full" type="file" name="image" id="image"
-                                        accept=".jpg, .png, .jpeg" placeholder="Enter your name" required>
-
-                                </div>
-
+                        <div class="col-lg-6">
+                            <label for="image">
+                                Photo
+                            </label>
+                            <div class="img-holder"> </div>
+                            <div class="custom-file">
+                                <input type="file" class="custom-file-input" id="image" name="image"
+                                    accept=".jpg, .png, .jpeg" required>
+                                <label class="custom-file-label" for="contohupload2">Choose file</label>
                             </div>
-
                         </div>
                     </div>
+                    <br>
                     <div class="row">
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label for="nisn">NISN:</label>
-                                <input required="" type="text" name="nisn" id="nisn" class="form-control">
-                            </div>
-                        </div>
-
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="name">Nama Atlet:</label>
                                 <input required="" type="text" name="name" id="name" class="form-control">
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="username">Username:</label>
                                 <input required="" type="text" name="username" id="username" class="form-control">
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-4">
+                            <div class="form-group">
+                                <label for="nisn">NIA:</label>
+                                <input required="" type="text" name="nisn" id="nisn" class="form-control">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-6">
                             <div class="form-group">
                                 <label for="tgl_registrasi">Tanggal registrasi:</label>
                                 <input required="" type="date" name="tgl_registrasi" id="tgl_registrasi"
                                     class="form-control">
                             </div>
                         </div>
-
+                        <div class="col-lg-6">
+                            <div class="form-group">
+                                <label for="alamat">ALamat:</label>
+                                <textarea required="" type="text" name="alamat" id="alamat"
+                                    class="form-control"></textarea>
+                            </div>
+                        </div>
                     </div>
                     <div class="row">
+
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="tempat_lahir">Tempat Lahir:</label>
@@ -92,8 +93,7 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="jenis_kelamin">Jenis Kelamin:</label>
-                                <select required="" name="jenis_kelamin" id="jenis_kelamin"
-                                    class="form-control select2bs4">
+                                <select required="" name="jenis_kelamin" id="jenis_kelamin" class="form-control ">
                                     <option disabled="" selected="">- PILIH JENIS KELAMIN -</option>
                                     <option value="Laki-laki">Laki-laki</option>
                                     <option value="Perempuan">Perempuan</option>
@@ -151,7 +151,7 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="kelas">kelas:</label>
-                                <select required="" name="kelas" id="kelas" class="form-control select2bs4">
+                                <select required="" name="kelas" id="kelas" class="form-control">
                                     <option disabled="" selected="">- PILIH KELAS -</option>
                                     <option value="reguler">Reguler</option>
                                     <option value="poomsae">Poomsae</option>
@@ -162,7 +162,10 @@
 
                     </div>
                     <div class="modal-footer">
-                        <a href="{{route('atlet.index')}}" class="btn btn-secondary pull-right">Back</a>
+                        <button type="button" class="btn btn-secondary"><a style="color:white;"
+                                href="{{ route('atlet.index')  }}"><i class="fas fa-caret-left fa-fw"></i>
+                                BACK
+                            </a></button>
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-save fa-fw"></i> SIMPAN
                         </button>

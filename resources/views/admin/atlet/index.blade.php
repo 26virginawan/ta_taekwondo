@@ -32,7 +32,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table class="table table-bordered table-striped">
+                <table class="table table-bordered table-striped" id="table">
                     <thead>
                         <tr>
                             <th>No</th>
@@ -113,5 +113,14 @@
     src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/sweetalert2/sweetalert2.min.js"></script>
 <!-- Select2 -->
 <script src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/select2/js/select2.full.min.js"></script>
+
+<script type="text/javascript">
+$(document).ready(function() {
+    $('#table').DataTable({
+        "iDisplayLength": 10
+    });
+
+});
+</script>
 
 @endpush

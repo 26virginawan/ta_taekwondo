@@ -26,7 +26,7 @@
                     <i class="fas fa-plus fa-fw"></i> Tambah Data
                 </a>
                 <a href="{{ route('ujian.detail')  }}" class="btn btn-warning btn-sm">
-                    <i class="fas  fa-fw"></i> Atlet Mendaftar
+                    <i class="fas fa-registered  fa-fw"></i> Atlet Mendaftar
                 </a>
 
                 <!-- <a href="atlet/cetak" class="btn btn-danger btn-sm"><i class="fa fa-pdf fa-fw"></i>

@@ -114,7 +114,10 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">CLOSE</button>
+                        <button type="button" class="btn btn-secondary"><a style="color:white;"
+                                href="{{ route('prestasi.index')  }}"><i class="fas fa-caret-left fa-fw"></i>
+                                CLOSE
+                            </a></button>
                         <button type="submit" class="btn btn-primary">
                             <i class="fas fa-save fa-fw"></i> SIMPAN
                         </button>

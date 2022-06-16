@@ -24,6 +24,7 @@ class Atlet extends Model
         'image',
         'name',
         'tgl_registrasi',
+        'alamat',
         'tempat_lahir',
         'tgl_lahir',
         'jenis_kelamin',

@@ -14,7 +14,7 @@
 
 
             <h1 class="display-4">Hello, {{ Auth::user()->username }}!</h1>
-            <p class="lead">Selamat datang di WEB SPPR.</p>
+            <p class="lead">Selamat datang di TAEKWONDO BUMIAJI.</p>
             <br>
             <!-- <p>Mohon Lengkapi Data Diri Anda, <a href="{{ route('dataAtlet.update', $atlet->id.'/edit') }}">Klik
                     Disini</a>

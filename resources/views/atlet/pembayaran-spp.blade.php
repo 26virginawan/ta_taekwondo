@@ -38,7 +38,7 @@
 </div>
 <br>
 <h3>Laporan</h3>
-<br>
+
 <div class="row">
     <div class="col-lg-6">
         <div class="card">

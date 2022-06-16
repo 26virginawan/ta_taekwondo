@@ -72,6 +72,7 @@ class AtletController extends Controller
             'name' => 'required',
             'username' => 'required|unique:users',
             'tgl_registrasi' => 'required',
+            'alamat' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required',
             'jenis_kelamin' => 'required',
@@ -109,6 +110,7 @@ class AtletController extends Controller
                     'name' => $request->name,
                     'nisn' => $request->nisn,
                     'tgl_registrasi' => $request->tgl_registrasi,
+                    'alamat' => $request->alamat,
                     'tempat_lahir' => $request->tempat_lahir,
                     'tgl_lahir' => $request->tgl_lahir,
                     'jenis_kelamin' => $request->jenis_kelamin,
@@ -149,7 +151,7 @@ class AtletController extends Controller
     {
         $validator = Validator::make($request->all(), [
             'name' => 'required',
-
+            'alamat' => 'required',
             'tgl_registrasi' => 'required',
             'tempat_lahir' => 'required',
             'tgl_lahir' => 'required',

@@ -19,11 +19,11 @@
 <x-alert></x-alert>
 <div class="row">
     <div class="col-12">
-        <!-- <div class="card">
+        <div class="card">
             <div class="card-header">
                 Filter Daftar Ujian
             </div>
-            
+
             <div class="card-body">
                 <div class="row">
                     <div class="col-md-4">
@@ -37,7 +37,7 @@
                     </div>
                 </div>
             </div>
-        </div> -->
+        </div>
 
         <div class="card">
             <div class="card-header">
