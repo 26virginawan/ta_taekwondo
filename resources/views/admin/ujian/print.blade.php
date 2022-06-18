@@ -27,35 +27,30 @@
         <hr>
     </center>
     <center>
-        <h2 style="font-family: sans-serif;">Laporan Saldo Kas Per Tanggal {{ \Carbon\Carbon::now()->format('d-m-Y') }}
-        </h2>
+        <h2 style="font-family: sans-serif;">Daftar Atlet Ujian tanggal
+            {{ \Carbon\Carbon::parse(request()->tanggal_daftar)->format('d-m-Y') }}</h2>
     </center>
     <br>
     <br><br>
     <table style="" border="1" cellspacing="0" cellpadding="10" width="100%">
         <thead>
             <tr>
-                <th scope="col" style="font-family: sans-serif;">Kas Masuk</th>
-                <th scope="col" style="font-family: sans-serif;">Kas Keluar</th>
-                <th scope="col" style="font-family: sans-serif;">Jumlah Saldo</th>
+                <th scope="col" style="font-family: sans-serif;">No</th>
+                <th scope="col" style="font-family: sans-serif;">Nama</th>
+                <th scope="col" style="font-family: sans-serif;">Jenis Sabuk</th>
+
             </tr>
         </thead>
         <tbody>
-
+            @foreach($daftarujian as $row)
             <tr>
-
-                <td style="font-family: sans-serif;">Rp.
-                    {{ number_format($jumlahmasuk,2,',','.') }}</td>
-                <td style="font-family: sans-serif;">Rp.
-                    {{ number_format($jumlahkeluar,2,',','.') }}</td>
-                <td style="font-family: sans-serif;">Rp.
-                    {{ number_format($saldo,2,',','.') }}</td>
-
+                <th scope="row" style="font-family: sans-serif;">{{ $loop->iteration }}</th>
+                <td style="font-family: sans-serif;">{{ $row->name }}</td>
+                <td style="font-family: sans-serif;">{{ $row->sabuk }}</td>
             </tr>
-
+            @endforeach
         </tbody>
     </table>
-
 </body>
 
 </html>

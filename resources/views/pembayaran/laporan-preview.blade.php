@@ -3,10 +3,34 @@
 
 <head>
     <title>GENERATE PDF</title>
+    <style>
+    .tulisan {
+        margin-right: 70px;
+    }
+    </style>
 </head>
 
 <body>
-    <br><br>
+    <table width="100%">
+        <tr>
+            <td><img src="images/taekwondologo.png" alt="" height="90"></td>
+            <td align="center" class="tulisan">
+                <center>
+                    <font size="5"><b>TAEKWONDO INDONESIA</b></font><br>
+                    <font size="4"><b>PENGURUS KOTA BATU</b></font><br>
+                    <font size="4"><b>Unit BUMIAJI</b></font><br>
+                    <font size="3">Jl. Raya Junggo 35 Tulungrejo Kec. Bumiaji. Batu</font><br>
+                    <font size="3">081249380063</font><br>
+                </center>
+            </td>
+            <td><img src="images/lg.png" alt="" width="90" height="90"></td>
+
+        </tr>
+
+    </table>
+    <center>
+        <hr>
+    </center>
     <center>
         <h2 style="font-family: sans-serif;">Laporan Pembayaran Spp</h2>
     </center>
@@ -40,25 +64,25 @@
             @endforeach
         </tbody>
 
-        
+
     </table>
     <br>
     <br>
-    <table style="float:right; margin-right:30px;" >    
-    <tr>
-			<td align="right">
-				<p>Mengetahui,</p>
-				<img class="mx-auto" src="images/sign.png" alt="" width="80" style="margin-left:25px; margin-top: 5px;">
+    <table style="float:right; margin-right:30px;">
+        <tr>
+            <td align="right">
+                <p>Mengetahui,</p>
+                <img class="mx-auto" src="images/sign.png" alt="" width="80" style="margin-left:25px; margin-top: 5px;">
                 <div class="border-b border-black border-b-1 w-full register-hr"></div>
-				<p><b>Dwi Wijayanto</b></p>
-			</td>
-		</tr>
+                <p><b>Dwi Wijayanto</b></p>
+            </td>
+        </tr>
     </table>
     <!-- <img class="mx-auto" src="images/sign.png" alt="" width="70" style="margin-left:25px; margin-top: 5px;">
     <div class="border-b border-black border-b-1 w-full register-hr"></div>
     <span class="mx-auto text-center block" style="margin-left: 25px;">Register</span> -->
 
-        
+
 </body>
 
 </html>

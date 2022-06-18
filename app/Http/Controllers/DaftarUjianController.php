@@ -23,8 +23,12 @@ class DaftarUjianController extends Controller
     public function index()
     {
         $daftarujian = DaftarUjian::where('name', Auth::user()->name)->get();
+        $data = DaftarUjian::get();
         $kegiatan = DB::table('ujian')->get();
-        return view('atlet.ujian.index', compact('kegiatan', 'daftarujian'));
+        return view(
+            'atlet.ujian.index',
+            compact('kegiatan', 'daftarujian', 'data')
+        );
     }
     public function detail()
     {
@@ -98,6 +102,30 @@ class DaftarUjianController extends Controller
             $kegiatan = DB::table('ujian')->get();
             Alert::success('Sukses', 'Data Berhasil Ditambahkan');
             return redirect()->route('daftarujian.index');
+        }
+    }
+
+    public function print(Request $request)
+    {
+        $data = DaftarUjian::get();
+        $tanggal = $request->validate([
+            'tanggal_daftar' => 'required',
+        ]);
+
+        $data['daftarujian'] = DaftarUjian::with(['atlet'])
+            ->where('tgl_daftar', $tanggal)
+            ->get();
+
+        if ($data['daftarujian']->count() > 0) {
+            $pdf = PDF::loadView('admin.ujian.print', $data);
+            return $pdf->stream(
+                'Daftar-Atlet-Ujian' .
+                    Carbon::parse($request->tanggal_daftar)->format('d-m-Y') .
+                    '-' .
+                    '.pdf'
+            );
+        } else {
+            return back()->with('error');
         }
     }
 }

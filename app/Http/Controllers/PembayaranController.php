@@ -176,7 +176,7 @@ class PembayaranController extends Controller
         //         ->make(true);
         // }
 
-        return view('pembayaran.history-pembayaran',compact('data'));
+        return view('pembayaran.history-pembayaran', compact('data'));
     }
 
     public function printHistoryPembayaran($id)
@@ -207,7 +207,7 @@ class PembayaranController extends Controller
 
         if ($data['pembayaran']->count() > 0) {
             $pdf = PDF::loadView('pembayaran.laporan-preview', $data);
-            return $pdf->download(
+            return $pdf->stream(
                 'pembayaran-spp-' .
                     Carbon::parse($request->tanggal_mulai)->format('d-m-Y') .
                     '-' .

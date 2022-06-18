@@ -17,6 +17,27 @@
 @section('content_title', 'Daftar Ujian')
 @section('content')
 <x-alert></x-alert>
+<div class="col-lg-6">
+    <div class="card" style="height:183px;">
+
+        <div class="card-header" style="font-weight: bold;">Laporan Daftar Atlet</div>
+        <div class="card-body">
+            <form method="POST" action="{{ route('daftarujian.print') }}">
+                @csrf
+                <div class="row">
+                    <div class="col-md-5">
+                        <input type="date" name="tanggal_daftar" required="" class="form-control" id="tanggal_daftar">
+                    </div>
+                    <div class="col-md-2">
+                        <button type="submit" class="btn btn-danger btn-sm" target="_blank">
+                            PRINT
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
 <div class="row">
     <div class="col-12">
         <div class="card">

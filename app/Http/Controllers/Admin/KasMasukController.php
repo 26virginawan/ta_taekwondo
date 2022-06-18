@@ -165,18 +165,9 @@ class KasMasukController extends Controller
         ]);
 
         $data['kasmasuk'] = KasMasuk::whereBetween('tanggal', $tanggal)->get();
-        $jumlahmasuk = kasMasuk::get();
-        foreach ($data as $item => $value) {
-            // simpan nilai harga ke variabel $harga_total
-            $jumlahmasuk += $value['jumlah'];
-        }
 
         if ($data['kasmasuk']->count() > 0) {
-            $pdf = PDF::loadView(
-                'admin.kas.masuk.laporanpdf',
-                $data,
-                $jumlahmasuk
-            );
+            $pdf = PDF::loadView('admin.kas.masuk.laporanpdf', $data);
             return $pdf->stream(
                 'Kas-Masuk-' .
                     Carbon::parse($request->tanggal_mulai)->format('d-m-Y') .

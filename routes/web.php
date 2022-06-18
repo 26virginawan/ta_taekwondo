@@ -89,6 +89,9 @@ Route::prefix('admin')
             Route::get('laporan', 'KasMasukController@laporan')->name(
                 'kasmasuk.laporan'
             );
+            Route::post('daftarujian/print', 'UjianController@print')->name(
+                'daftarujian.print'
+            );
             Route::post(
                 'kasmasuk/laporan',
                 'KasMasukController@printPdf'

@@ -18,27 +18,55 @@
 @section('content')
 <x-alert></x-alert>
 <div class="row">
-    <div class="col-12">
-        <div class="card">
-            <div class="card-header">
-                Filter Daftar Ujian
+    <div class="col-lg-12">
+        <div class="row">
+            <div class="col-lg-4">
+                <div class="card" style="height:160px;">
+                    <div class="card-header" style="font-weight: bold;">Cetak Daftar Atlet Berdasarkan tanggal</div>
+                    <div class="card-body">
+                        <form method="POST" action="{{ route('daftarujian.print') }}">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <input type="date" name="tanggal_daftar" required="" class="form-control"
+                                        id="tanggal_daftar">
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="submit" class="btn btn-danger btn-sm" target="_blank">
+                                        PRINT
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
             </div>
-
-            <div class="card-body">
-                <div class="row">
-                    <div class="col-md-4">
-                        <label>Nama Ujian</label>
-                        <select id="filter-ujian" class="form-control filter">
-                            <option value="">Pilih Nama Ujian</option>
-                            @foreach($ujian as $dt)
-                            <option value="{{$dt->id}}">{{$dt->name}}</option>
-                            @endforeach
-                        </select>
+            <div class="col-4">
+                <div class="card">
+                    <div class="card-header">
+                        Filter Daftar Ujian
+                    </div>
+                    <div class="card-body">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <label>Nama Ujian</label>
+                                <select id="filter-ujian" class="form-control filter">
+                                    <option value="">Pilih Nama Ujian</option>
+                                    @foreach($ujian as $dt)
+                                    <option value="{{$dt->id}}">{{$dt->name}}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
         </div>
+    </div>
+</div>
 
+<div class="row">
+    <div class="col-12">
         <div class="card">
             <div class="card-header">
                 Daftar Ujian
@@ -53,7 +81,7 @@
                             <th>Nama Atlet</th>
                             <th>Tanggal Daftar</th>
                             <th>Sabuk</th>
-                            <th width="200px">Aksi</th>
+
                         </tr>
                     </thead>
                     <tbody>

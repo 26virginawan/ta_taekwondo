@@ -17,7 +17,7 @@
 @section('content_title', 'Kas Keluar')
 @section('content')
 <div class="row">
-    <div class="col-lg-12">
+    <div class="col-lg-6">
         <div class="card">
             <div class="card-header">Jumlah Kas Keluar</div>
             <div class="card-body text-center">
@@ -35,36 +35,10 @@
             </div>
         </div>
     </div>
-</div>
-<div class="row">
-
     <div class="col-lg-6">
-        <div class="card">
+        <div class="card" style="height:183px;">
+
             <div class="card-header" style="font-weight: bold;">Laporan Kas Keluar</div>
-            <div class="card-body">
-                <form method="POST" action="{{ route('kaskeluar.print-pdf') }}">
-                    @csrf
-                    <div class="row">
-                        <div class="col-md-5">
-                            <input type="date" name="tanggal1" required="" class="form-control" id="tanggal1">
-                        </div>
-                        <div class="col-md-5">
-                            <input type="date" name="tanggal2" required="" class="form-control" id="tanggal2">
-                        </div>
-                        <div class="col-md-2">
-                            <button type="submit" class="btn btn-danger btn-sm">
-                                PRINT
-                            </button>
-                        </div>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-    <div class="col-lg-6">
-        <div class="card">
-
-            <div class="card-header" style="font-weight: bold;">Filter Data Kas Keluar</div>
             <div class="card-body">
                 <form method="POST" action="{{ route('kaskeluar.print-pdf') }}">
                     @csrf
@@ -77,7 +51,7 @@
                                 id="tanggal_selesai">
                         </div>
                         <div class="col-md-2">
-                            <button type="submit" class="btn btn-danger btn-sm">
+                            <button type="submit" class="btn btn-danger btn-sm" target="_blank">
                                 PRINT
                             </button>
                         </div>

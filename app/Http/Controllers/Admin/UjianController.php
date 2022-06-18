@@ -161,4 +161,26 @@ class UjianController extends Controller
             ->setPaper('a4', 'potrait')
             ->download('kartu_atlet' . '_' . date('Y-m-d_H-i-s') . '.pdf');
     }
+    public function print(Request $request)
+    {
+        $tanggal = $request->validate([
+            'tanggal_daftar' => 'required',
+        ]);
+
+        $data['daftarujian'] = DaftarUjian::with(['atlet'])
+            ->where('tgl_daftar', $tanggal)
+            ->get();
+
+        if ($data['daftarujian']->count() > 0) {
+            $pdf = PDF::loadView('admin.ujian.print', $data);
+            return $pdf->stream(
+                'Daftar-Atlet-Ujian' .
+                    Carbon::parse($request->tanggal_daftar)->format('d-m-Y') .
+                    '-' .
+                    '.pdf'
+            );
+        } else {
+            return back()->with('error');
+        }
+    }
 }
