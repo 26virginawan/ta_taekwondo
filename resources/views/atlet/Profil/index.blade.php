@@ -50,9 +50,9 @@
                     </div>
                     <div class=" col-lg-3">
                         <div class="form-group">
-                            <label for="nisn">NIA:</label>
-                            <input required="" type="text" name="nisn" id="nisn" class="form-control"
-                                value="{{$dt->nisn}}" readonly>
+                            <label for="nia">NIA:</label>
+                            <input required="" type="text" name="nia" id="nia" class="form-control" value="{{$dt->nia}}"
+                                readonly>
                         </div>
                     </div>
                     <div class=" col-lg-3">

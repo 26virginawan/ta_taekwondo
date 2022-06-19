@@ -22,12 +22,16 @@ class DaftarUjianController extends Controller
 {
     public function index()
     {
-        $daftarujian = DaftarUjian::where('name', Auth::user()->name)->get();
+        $dataujian = DaftarUjian::where(
+            'name',
+
+            Auth::user()->name
+        )->get();
         $data = DaftarUjian::get();
         $kegiatan = DB::table('ujian')->get();
         return view(
             'atlet.ujian.index',
-            compact('kegiatan', 'daftarujian', 'data')
+            compact('kegiatan', 'dataujian', 'data')
         );
     }
     public function detail()
@@ -41,6 +45,7 @@ class DaftarUjianController extends Controller
     }
     public function create()
     {
+        $daftarujian = Atlet::where('user_id', Auth::user()->id)->get();
         $atlet = Atlet::where(
             'name',
 
@@ -51,13 +56,14 @@ class DaftarUjianController extends Controller
         return view(
             'atlet.ujian.create',
             ['var_kegiatan' => $kegiatan],
-            compact('atlet', 'kegiatan')
+            compact('atlet', 'kegiatan', 'daftarujian')
         );
     }
 
     //form dafatar kegiatan
     public function store(Request $req)
     {
+        $daftarujian = Atlet::where('user_id', Auth::user()->id)->get();
         $atlet = Atlet::where(
             'name',
 
@@ -66,6 +72,7 @@ class DaftarUjianController extends Controller
         $tgl = Carbon::now();
         $name = $req->name;
         $tgl_daftar = $tgl;
+        $tgl_lahir = $req->tgl_lahir;
         $sabuk = $req->sabuk;
         $kegiatan = $req->keg;
         $kegiatan_id = $req->ujian_id;
@@ -84,6 +91,7 @@ class DaftarUjianController extends Controller
         else {
             DB::table('daftarujian')->insert([
                 'name' => $name,
+                'tgl_lahir' => $tgl_lahir,
                 'tgl_daftar' => $tgl_daftar,
                 'sabuk' => $sabuk,
                 'ujian_id' => $kegiatan_id,

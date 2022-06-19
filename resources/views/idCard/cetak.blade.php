@@ -126,7 +126,7 @@
                 </div>
                 <div class="right-div" style=" padding-top : 10px; line-height: 2.0; letter-spacing: 4px;">
                     <span class="capitalize">Nama: {{$dt->name}}</span><br>
-                    <span class="text-sm">NISN: {{$dt->nisn}}</span><br>
+                    <span class="text-sm">NIA: {{$dt->nia}}</span><br>
                     <span class="text-md">JK: {{$dt->jenis_kelamin}}</span><br>
                     <span class="text-md">Kelas: {{$dt->kelas}}</span><br>
 

@@ -17,7 +17,7 @@ class DataAtletcontroller extends Controller
     {
         $title = 'Update Data';
         $dt = Atlet::where('user_id', \Auth::user()->id)->first();
-        $cek = Atlet::where('nisn', \Auth::user()->id)->count();
+        $cek = Atlet::where('nia', \Auth::user()->id)->count();
 
         return view('atlet.profil.index', compact('title', 'dt', 'cek'));
     }

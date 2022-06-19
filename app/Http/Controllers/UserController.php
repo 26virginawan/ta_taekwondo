@@ -70,6 +70,7 @@ class UserController extends Controller
             'id' => $user->id,
             'user_id' => $user->id,
             'kode_atlet' => 'ATLT' . Str::upper(Str::random(5)),
+            'nia' => random_int(100000, 999999),
             'name' => Str::lower($request->name),
         ]);
 

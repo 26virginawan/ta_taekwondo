@@ -19,7 +19,7 @@
                 </a>
             </div>
             <div class="card-body">
-                <form method="POST" action="{{ route('pembayaran.proses-bayar', $atlet->nisn) }}">
+                <form method="POST" action="{{ route('pembayaran.proses-bayar', $atlet->nia) }}">
                     @csrf
                     <div class="row">
                         <div class="col-lg-3">
@@ -36,10 +36,10 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
-                                <label for="nisn">Nisn</label>
-                                <input required="" type="text" name="nisn" value="{{ $atlet->nisn }}" readonly id="nisn"
+                                <label for="nia">NIA</label>
+                                <input required="" type="text" name="nia" value="{{ $atlet->nia }}" readonly id="nia"
                                     class="form-control">
-                                @error('nisn')
+                                @error('nia')
                                 <small class="text-danger">{{ $message }}</small>
                                 @enderror
                             </div>

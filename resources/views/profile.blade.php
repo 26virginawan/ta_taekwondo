@@ -66,7 +66,7 @@
                     <div class="col-lg-6">
                         <div class="form-group">
                             <label for="username">Nia:</label>
-                            <input type="" name="" value="{{ Universe::atlet()->nisn }}" readonly="" id=""
+                            <input type="" name="" value="{{ Universe::atlet()->nia }}" readonly="" id=""
                                 class="form-control">
                         </div>
                     </div>

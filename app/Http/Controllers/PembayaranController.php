@@ -28,7 +28,7 @@ class PembayaranController extends Controller
         //         ->addColumn('action', function ($row) {
         //             $btn =
         //                 '<div class="row"><a href="' .
-        //                 route('pembayaran.bayar', $row->nisn) .
+        //                 route('pembayaran.bayar', $row->nia) .
         //                 '"class="btn btn-primary btn-sm ml-2">
         //             <i class="fas fa-money-check"></i> BAYAR
         //             </a>';
@@ -61,7 +61,7 @@ class PembayaranController extends Controller
         ]);
     }
 
-    public function prosesBayar(Request $request, $nisn)
+    public function prosesBayar(Request $request, $nia)
     {
         $request->validate(
             [
@@ -87,7 +87,7 @@ class PembayaranController extends Controller
                         'kode_pembayaran' =>
                             'SPPR' . Str::upper(Str::random(5)),
                         'atlet_id' => $request->atlet_id,
-                        'nisn' => $request->nisn,
+                        'nia' => $request->nia,
                         'kelas' => $request->kelas,
                         'tanggal_bayar' => Carbon::now('Asia/Jakarta'),
                         'tahun_bayar' => $request->tahun_bayar,
@@ -105,8 +105,8 @@ class PembayaranController extends Controller
                 'error',
                 'Atlet Dengan Nama : ' .
                     $request->name .
-                    ' , NISN : ' .
-                    $request->nisn .
+                    ' , NIA : ' .
+                    $request->nia .
                     ' Sudah Membayar Spp di bulan yang diinput (' .
                     implode($pembayaran, ',') .
                     ')' .

@@ -36,7 +36,7 @@
                 <th style="font-family: sans-serif;">No</th>
                 <th style="font-family: sans-serif;">Foto</th>
                 <th style="font-family: sans-serif;">Nama Atlet</th>
-                <th style="font-family: sans-serif;">Nisn</th>
+                <th style="font-family: sans-serif;">NIA</th>
                 <th style="font-family: sans-serif;">tgl_registrasi</th>
                 <th style="font-family: sans-serif;">Jenis Kelamin</th>
                 <th style="font-family: sans-serif;">Tingkat Sabuk</th>
@@ -52,7 +52,7 @@
                     <img src="{{asset('atlet/images/'.$row->image)}}" alt="" style="width:80px;">
                 </td>
                 <td style="font-family: sans-serif;">{{ $row->name }}</td>
-                <td style="font-family: sans-serif;">{{ $row->nisn }}</td>
+                <td style="font-family: sans-serif;">{{ $row->nia }}</td>
                 <td style="font-family: sans-serif;">{{\Carbon\Carbon::parse ($row->tgl_registrasi)->format('d-m-Y') }}
                 </td>
 

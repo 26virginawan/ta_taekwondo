@@ -67,7 +67,6 @@ class AtletController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'nisn' => 'required|unique:atlet',
             'image' => 'required|image|mimes:jpeg,png,jpg,',
             'name' => 'required',
             'username' => 'required|unique:users',
@@ -108,7 +107,7 @@ class AtletController extends Controller
                     'kode_atlet' => 'ATLT' . Str::upper(Str::random(5)),
                     'image' => $imageatlet,
                     'name' => $request->name,
-                    'nisn' => $request->nisn,
+                    'nia' => random_int(100000, 999999),
                     'tgl_registrasi' => $request->tgl_registrasi,
                     'alamat' => $request->alamat,
                     'tempat_lahir' => $request->tempat_lahir,
@@ -124,7 +123,7 @@ class AtletController extends Controller
             Alert::success('Sukses', 'Data Berhasil Ditambahkan');
             return redirect()->route('atlet.index');
         }
-        Alert::error('Gagal', 'Ukuran Maksimal Foto 2048 kb');
+        Alert::error('Gagal');
         return redirect()->back();
     }
 

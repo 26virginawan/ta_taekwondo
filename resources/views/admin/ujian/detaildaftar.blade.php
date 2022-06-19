@@ -79,6 +79,7 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Atlet</th>
+                            <th>Tanggal Lahir</th>
                             <th>Tanggal Daftar</th>
                             <th>Sabuk</th>
 
@@ -89,6 +90,7 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{$dt->name}}</td>
+                            <td>{{\Carbon\Carbon::parse($dt->tgl_lahir)->format('d-m-Y') }}</td>
                             <td>{{\Carbon\Carbon::parse($dt->tgl_daftar)->format('d-m-Y') }}</td>
                             <td>{{$dt -> sabuk}}</td>
 

@@ -17,7 +17,7 @@ class Pembayaran extends Model
     protected $fillable = [
         'kode_pembayaran',
         'atlet_id',
-        'nisn',
+        'nia',
         'kelas',
         'tanggal_bayar',
         'bulan_bayar',

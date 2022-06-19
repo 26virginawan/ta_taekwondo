@@ -24,7 +24,7 @@
                             <th>No</th>
                             <th>Nama Atlet</th>
                             <th>Kelas</th>
-                            <th>Nisn</th>
+                            <th>NIA</th>
                             <th>Tanggal Bayar</th>
                             <th>Untuk Bulan</th>
                             <th>Untuk Tahun</th>
@@ -89,8 +89,8 @@ $(function() {
                 name: 'atlet.kelas'
             },
             {
-                data: 'atlet.nisn',
-                name: 'atlet.nisn'
+                data: 'atlet.nia',
+                name: 'atlet.nia'
             },
             {
                 data: 'tanggal_bayar',

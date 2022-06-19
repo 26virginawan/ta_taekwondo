@@ -48,6 +48,15 @@
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
+                                <label for="tgl_lahir">Tanggal Lahir:</label>
+                                @foreach($daftarujian as $row)
+                                <input type="text" class="form-control" name="tgl_lahir" value="{{$row->tgl_lahir}}"
+                                    readonly>
+                                @endforeach
+                            </div>
+                        </div>
+                        <div class="col-lg-3">
+                            <div class="form-group">
                                 <label for="ujian">Daftar Ujian</label>
                                 <select class="form-control" id="ujian_id" name="ujian_id" required>
                                     <option selected disabled value="">Pilih Ujian </option>

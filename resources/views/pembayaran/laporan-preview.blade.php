@@ -42,7 +42,7 @@
             <tr>
                 <th scope="col" style="font-family: sans-serif;">No</th>
                 <th scope="col" style="font-family: sans-serif;">Nama Atlet</th>
-                <th scope="col" style="font-family: sans-serif;">Nisn</th>
+                <th scope="col" style="font-family: sans-serif;">NIA</th>
                 <th scope="col" style="font-family: sans-serif;">Kelas</th>
                 <th scope="col" style="font-family: sans-serif;">Tanggal Bayar</th>
                 <th scope="col" style="font-family: sans-serif;">Jumlah Bayar</th>
@@ -53,7 +53,7 @@
             <tr>
                 <th scope="row" style="font-family: sans-serif;">{{ $loop->iteration }}</th>
                 <td style="font-family: sans-serif;">{{ $row->atlet->name }}</td>
-                <td style="font-family: sans-serif;">{{ $row->nisn }}</td>
+                <td style="font-family: sans-serif;">{{ $row->nia }}</td>
                 <td style="font-family: sans-serif;">{{ $row->atlet->kelas }}</td>
                 <td style="font-family: sans-serif;">
                     {{ \Carbon\Carbon::parse($row->tanggal_bayar)->format('d-m-Y') }}

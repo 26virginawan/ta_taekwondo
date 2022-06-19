@@ -27,7 +27,7 @@
 </div>
 <br>
 <div class="row">
-    <div class="col-7">
+    <div class="col-6">
         <div class="card">
             <div class="card-header">
                 <a href="{{ route('daftarujian.create') }}" class="btn btn-primary btn-sm"><i
@@ -70,7 +70,7 @@
         </div>
         <!-- /.card -->
     </div>
-    <div class="col-5">
+    <div class="col-6">
         <div class="card">
             <!-- /.card-header -->
             <div class="card-body">
@@ -79,17 +79,21 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Atlet</th>
+                            <th>Tanggal Lahir</th>
                             <th>Tanggal Daftar</th>
                             <th>Sabuk</th>
+
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach($daftarujian as $dt)
+                        @foreach($dataujian as $dt)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{$dt->name}}</td>
+                            <td>{{\Carbon\Carbon::parse($dt->tgl_lahir)->format('d-m-Y') }}</td>
                             <td>{{\Carbon\Carbon::parse($dt->tgl_daftar)->format('d-m-Y') }}</td>
                             <td>{{$dt -> sabuk}}</td>
+
                         </tr>
                         @endforeach
                     </tbody>

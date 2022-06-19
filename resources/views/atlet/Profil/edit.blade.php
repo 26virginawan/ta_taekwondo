@@ -50,13 +50,7 @@
                                     value="{{$dt->name}}">
                             </div>
                         </div>
-                        <div class="col-lg-3">
-                            <div class="form-group">
-                                <label for="nisn">NIA:</label>
-                                <input required="" type="text" name="nisn" id="nisn" class="form-control"
-                                    value="{{$dt->nisn}}">
-                            </div>
-                        </div>
+
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="tgl_registrasi">Tanggal registrasi:</label>

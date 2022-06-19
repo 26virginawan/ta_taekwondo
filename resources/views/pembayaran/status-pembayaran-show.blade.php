@@ -27,7 +27,7 @@
                             <th>No</th>
                             <th>Nama Atlet</th>
                             <th>Kelas</th>
-                            <th>Nisn</th>
+                            <th>NIA</th>
                             <th>Tanggal Bayar</th>
                             <th>Untuk Bulan</th>
                             <th>Untuk Tahun</th>
@@ -41,7 +41,7 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->atlet->name }}</td>
                             <td>{{ $row->atlet->kelas }}</td>
-                            <td>{{ $row->nisn }}</td>
+                            <td>{{ $row->nia }}</td>
                             <td>{{ \Carbon\Carbon::parse($row->tanggal_bayar)->format('d-m-Y') }}</td>
                             <td>{{ $row->bulan_bayar }}</td>
                             <td>{{ $row->tahun_bayar }}</td>

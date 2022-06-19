@@ -8,20 +8,21 @@ use App\Models\User;
 use App\Models\Atlet;
 use App\Models\Ujian;
 
-class Ujian extends Model
+class AtletUjian extends Model
 {
     use HasFactory;
 
-    protected $table = 'ujian';
+    protected $table = 'atletujian';
 
     protected $fillable = [
         'id',
         'name',
-        'tgl_ujian',
-        'tgl_ditutup',
-        'kuota',
-        'sisa',
-        'status',
+        'tgl_daftar',
+        'tgl_lahir',
+        'sebelum',
+        'sabuk',
+        'ujian_id',
+        'atlet_id',
     ];
 
     public function user()
@@ -29,14 +30,12 @@ class Ujian extends Model
         return $this->belongsTo(User::class);
     }
 
-    
     public function atlet()
     {
         return $this->belongsTo(Atlet::class);
     }
-
-    public function daftarujian()
+    public function ujian()
     {
-        return $this->belongsTo(DaftarUjian::class);
+        return $this->belongsTo(Ujian::class);
     }
 }

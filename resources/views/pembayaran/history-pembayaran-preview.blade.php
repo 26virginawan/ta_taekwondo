@@ -33,7 +33,7 @@
     <div style="float: left;">
         <b style="font-family: sans-serif;">Nama Atlet : {{ $pembayaran->atlet->name }}</h3><br>
             <b style="font-family: sans-serif;">Kelas : {{ $pembayaran->atlet->kelas }}</b><br>
-            <b style="font-family: sans-serif;">Nisn : {{ $pembayaran->atlet->nisn }}</b><br>
+            <b style="font-family: sans-serif;">NIA : {{ $pembayaran->atlet->nia }}</b><br>
     </div>
 
     <br><br><br><br><br>

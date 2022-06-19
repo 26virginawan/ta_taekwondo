@@ -48,13 +48,13 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-4">
+                        <!-- <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="nisn">NIA:</label>
                                 <input required="" type="text" name="nisn" id="nisn" class="form-control"
                                     value="{{$atlet->nisn}}">
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-lg-4">
                             <div class="form-group">
                                 <label for="name">Nama Atlet:</label>

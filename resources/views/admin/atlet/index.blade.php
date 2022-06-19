@@ -57,7 +57,7 @@
                                 </div>
                             </td>
                             <td>{{$dt->name}}</td>
-                            <td>{{$dt->nisn}}</td>
+                            <td>{{$dt->nia}}</td>
                             <td>{{$dt->tgl_registrasi}}</td>
                             <td>{{$dt->no_telepon}}</td>
                             <td>{{$dt->tingkat_sabuk}}</td>

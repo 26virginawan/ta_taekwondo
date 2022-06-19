@@ -20,7 +20,7 @@
                             <tr>
                                 <th>No</th>
                                 <th>Nama Atlet</th>
-                                <th>Nisn</th>
+                                <th>NIA</th>
                                 <th>Kelas</th>
                                 <th>Detail</th>
                             </tr>
@@ -30,7 +30,7 @@
                             <tr>
                                 <td>{{$loop->iteration}}</td>
                                 <td>{{$dt->name}}</td>
-                                <td>{{$dt->nisn}}</td>
+                                <td>{{$dt->nia}}</td>
                                 <td>{{$dt->kelas}}</td>
                                 <td>
                                     <div class="row">
