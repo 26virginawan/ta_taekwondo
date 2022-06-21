@@ -44,16 +44,16 @@ class UjianController extends Controller
             'name' => 'required',
 
             'tgl_ditutup' => 'required',
+            'tgl_ujian' => 'required',
             'kuota' => 'required',
             // 'status' => 'required',
         ]);
-        $tgl = Carbon::now();
 
         if ($validator->passes()) {
             Ujian::create([
                 'name' => $request->name,
-                'tgl_ujian' => $tgl,
                 'tgl_ditutup' => $request->tgl_ditutup,
+                'tgl_ujian' => $request->tgl_ujian,
                 'kuota' => $request->kuota,
                 'sisa' => '0',
                 'status' => 'buka',
@@ -90,6 +90,7 @@ class UjianController extends Controller
             'name' => 'required',
 
             'tgl_ditutup' => 'required',
+            'tgl_ujian' => 'required',
             'kuota' => 'required',
         ]);
 
@@ -97,6 +98,7 @@ class UjianController extends Controller
             Ujian::findOrFail($id)->update([
                 'name' => $request->name,
                 'tgl_ditutup' => $request->tgl_ditutup,
+                'tgl_ujian' => $request->tgl_ujian,
                 'kuota' => $request->kuota,
             ]);
             Alert::success('Sukses', 'Data Berhasil Diubah');

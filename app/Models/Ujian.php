@@ -17,8 +17,8 @@ class Ujian extends Model
     protected $fillable = [
         'id',
         'name',
-        'tgl_ujian',
         'tgl_ditutup',
+        'tgl_ujian',
         'kuota',
         'sisa',
         'status',
@@ -29,7 +29,6 @@ class Ujian extends Model
         return $this->belongsTo(User::class);
     }
 
-    
     public function atlet()
     {
         return $this->belongsTo(Atlet::class);

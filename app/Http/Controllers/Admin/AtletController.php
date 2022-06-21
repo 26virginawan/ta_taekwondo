@@ -104,7 +104,6 @@ class AtletController extends Controller
 
                 Atlet::create([
                     'user_id' => $user->id,
-                    'kode_atlet' => 'ATLT' . Str::upper(Str::random(5)),
                     'image' => $imageatlet,
                     'name' => $request->name,
                     'nia' => random_int(100000, 999999),

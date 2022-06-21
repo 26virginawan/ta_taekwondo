@@ -43,7 +43,7 @@
                             <th>No Telepon</th>
                             <th>Tingkat Sabuk</th>
                             <th>Kelas</th>
-                            <th width="200px">Aksi</th>
+                            <th width="150px">Aksi</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -117,7 +117,7 @@
 <script type="text/javascript">
 $(document).ready(function() {
     $('#table').DataTable({
-        "iDisplayLength": 10
+        "iDisplayLength": 30
     });
 
 });

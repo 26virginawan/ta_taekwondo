@@ -62,14 +62,13 @@ class UserController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => bcrypt('bumiaji'),
-            'id_register' => 'REG-' . date('YmdHis'),
+            'id_register' => 'REG-' . date('d-m-Y'),
         ]);
 
-        $user->assignRole('atlet');
         $atlet = Atlet::create([
             'id' => $user->id,
             'user_id' => $user->id,
-            'kode_atlet' => 'ATLT' . Str::upper(Str::random(5)),
+
             'nia' => random_int(100000, 999999),
             'name' => Str::lower($request->name),
         ]);

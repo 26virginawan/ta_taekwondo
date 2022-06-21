@@ -60,8 +60,8 @@
                         <tr>
                             <th>No</th>
                             <th>Nama Ujian</th>
-                            <th>Tanggal Ujian</th>
                             <th>Tanggal Ditutup</th>
+                            <th>Tanggal Ujian</th>
                             <th>Kuota</th>
                             <th>Status</th>
                             <th width="200px">Aksi</th>
@@ -72,8 +72,8 @@
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{$dt->name}}</td>
-                            <td>{{\Carbon\Carbon::parse($dt->tgl_ujian)->format('d-m-Y') }}</td>
                             <td>{{\Carbon\Carbon::parse($dt->tgl_ditutup)->format('d-m-Y')}}</td>
+                            <td>{{\Carbon\Carbon::parse($dt->tgl_ujian)->format('d-m-Y') }}</td>
                             <td>{{$dt -> sisa}} dari {{$dt -> kuota}}</td>
                             <td>{{$dt->status}}</td>
                             <td>

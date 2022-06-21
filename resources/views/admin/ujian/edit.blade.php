@@ -43,6 +43,13 @@
                         </div>
                         <div class="col-lg-4">
                             <div class="form-group">
+                                <label for="tgl_ujian">Tanggal Ujian :</label>
+                                <input required="" type="date" name="tgl_ujian" id="tgl_ujian" class="form-control"
+                                    value="{{$ujian->tgl_ujian}}">
+                            </div>
+                        </div>
+                        <div class="col-lg-4">
+                            <div class="form-group">
                                 <label for="kuota">Kuota :</label>
                                 <input required="" type="text" name="kuota" id="kuota" class="form-control"
                                     value="{{$ujian->kuota}}">

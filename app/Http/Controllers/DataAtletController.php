@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Atlet;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
+use RealRashid\SweetAlert\Facades\Alert;
+use Intervention\Image\ImageManagerStatic as Image;
 
 use PDF;
 
@@ -87,18 +89,19 @@ class DataAtletcontroller extends Controller
                     uniqid(11) .
                     '.' .
                     $request->file('image')->getClientOriginalExtension();
-                $request
-                    ->file('image')
-                    ->move(public_path('atlet\images'), $imageatlet);
+                $image_resize = Image::make(
+                    $request->file('image')->getRealPath()
+                );
+                $image_resize->resize(300, 380);
+                $image_resize->save(public_path('atlet\images/' . $imageatlet));
                 $input['image'] = "$imageatlet";
             } else {
                 unset($input['image']);
             }
             Atlet::findOrFail($id)->update($input);
 
-            return redirect()
-                ->route('dataAtlet.index')
-                ->with('Sukses', 'Data Berhasil Diedit');
+            Alert::success('Sukses', 'Data Berhasil Diubah');
+            return redirect()->route('dataAtlet.index');
         }
     }
 

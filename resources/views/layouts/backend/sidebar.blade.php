@@ -46,6 +46,15 @@
                         </p>
                     </a>
                 </li>
+                <li class="nav-item">
+                    <a href="{{ route('user-role.index') }}"
+                        class="nav-link {{ Request::segment(2) == 'user-role' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-circle"></i>
+                        <p>
+                            User - Role
+                        </p>
+                    </a>
+                </li>
                 @endrole
 
                 @role('petugas')

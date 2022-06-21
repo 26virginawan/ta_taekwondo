@@ -37,17 +37,17 @@
 
     .right-div {
         font-size: 10pt;
-        margin-left: 20px;
+        margin-left: 10px;
         position: absolute;
         float: left;
-        width: 172px;
+        width: 240px;
         height: 212px;
     }
 
     .left-div {
         position: absolute;
         float: left;
-        width: 130px;
+        width: 100px;
         height: 212px;
     }
 
@@ -91,46 +91,42 @@
     <div>
         <div class="main">
             <img class="background-image" src="images/bg.jpg" alt="">
-
-
-
             <div class="main-data">
-                <center style=" padding-top : 5px;">
-                    <span>KARTU TANDA ATLET TAEKWONDO</span>
-                </center>
+                <table width="100%">
+                    <tr>
+                        <td><img style="margin-left:5px;" src="images/taekwondologo.png" alt="" height="30"></td>
+                        <td align="center">
+                            <center>
+                                <font size="1"><b>TAEKWONDO INDONESIA Unit BUMIAJI</b></font><br>
+                                <font size="1">Jl. Raya Junggo 35 Tulungrejo Kec. Bumiaji. Batu</font><br>
+                            </center>
+                        </td>
+                        <td><img src="images/lg.png" alt="" height="30"></td>
+                    </tr>
+                </table>
                 <hr>
-                <div class="left-div" style="font-size:15px;">
+                <div class="left-div">
                     <div class="info">
-                        <img style="width: 80px; height: 80px;" src="{{public_path('atlet/images/' . $dt->image)}}"
-                            alt="">
+                        <img style="height: 100px;" src="{{public_path('atlet/images/' . $dt->image)}}" alt="">
                         <br>
-                        <!-- <div class="border-b border-black border-b-1 w-full register-hr"></div> -->
-                        <!-- <div class="flex items-center" style="margin-top: 10px;">
-
-                            <span class="text-xs ml-2" style="font-size: 13px;">{{$dt->no_telepon}}</span>
-                        </div> -->
-                        <!-- <div class="flex items-center">
-                            <span class="text-xs ml-2"
-                                style="font-size: 9px; margin-left: 15px;">{{$dt->tgl_lahir}}</span>
-                        </div> -->
-                        <span class="mx-auto text-center block" style="margin-left: 15px;font-size: 8px;">Ketua
-                            Bumiaji</span>
-                        <img class="mx-auto" src="images/sign.png" alt="" width="45"
-                            style="margin-left:15px; margin-top: 5px;">
-                        <br>
-
-                        <span class="mx-auto text-center block" style="margin-top:5;font-size: 10px;">Dwi
-                            Wijayanto</span>
 
                     </div>
                 </div>
-                <div class="right-div" style=" padding-top : 10px; line-height: 2.0; letter-spacing: 4px;">
-                    <span class="capitalize">Nama: {{$dt->name}}</span><br>
-                    <span class="text-sm">NIA: {{$dt->nia}}</span><br>
-                    <span class="text-md">JK: {{$dt->jenis_kelamin}}</span><br>
-                    <span class="text-md">Kelas: {{$dt->kelas}}</span><br>
-
+                <div class="right-div" style=" line-height: 1.5; letter-spacing: 2px;">
+                    <font size="7.0" face="sans-serif"><b>{{$dt->name}}</b></font><br>
+                    <font size="7.0" face="sans-serif">NIA : {{$dt->nia}}</font><br>
+                    <font size="7.0" face="sans-serif">Jenis Kelamin : {{$dt->jenis_kelamin}}</font><br>
+                    <font size="7.0" face="sans-serif">Kelas : {{$dt->kelas}}</font><br>
                 </div>
+                <table style="float:right; margin-right:30px; margin-top:78px;">
+                    <tr>
+                        <td align="center">
+                            <font size="7.0" face="sans-serif">Ketua Unit Bumiaji</font><br>
+                            <img class="mx-auto" src="images/sign.png" alt="" height="20px"><br>
+                            <font size="7.0" face="sans-serif">Dwi Wijayanto</font><br>
+                        </td>
+                    </tr>
+                </table>
             </div>
 
         </div>
