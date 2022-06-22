@@ -37,7 +37,7 @@
     </div>
 </div>
 <br>
-<h3>Laporan</h3>
+<h3>Cetak Laporan</h3>
 
 <div class="row">
     <div class="col-lg-6">

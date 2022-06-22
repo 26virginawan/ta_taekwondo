@@ -98,7 +98,7 @@
                         <td align="center">
                             <center>
                                 <font size="1"><b>TAEKWONDO INDONESIA Unit BUMIAJI</b></font><br>
-                                <font size="1">Jl. Raya Junggo 35 Tulungrejo Kec. Bumiaji. Batu</font><br>
+                                <font size="6.0">Jl. Raya Junggo 35 Tulungrejo Kec. Bumiaji. Batu</font><br>
                             </center>
                         </td>
                         <td><img src="images/lg.png" alt="" height="30"></td>

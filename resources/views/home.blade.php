@@ -10,6 +10,7 @@
             <h1 class="display-4">Hello, {{ Auth::user()->username }}!</h1>
             @endrole
 
+
             @role('atlet')
 
 
@@ -17,9 +18,11 @@
             <p class="lead">Selamat datang di TAEKWONDO BUMIAJI.</p>
             <br>
             @endrole
+            @role('user')
             <h2><b>Menunggu Verifikasi Admin </b> </h2>
 
             <h2 style="color:red;">Lakukan Pembayaran dan Pengumpulan Berkas Saat Latihan !!</h2>
+            @endrole
             <hr class="my-4">
 
         </div>

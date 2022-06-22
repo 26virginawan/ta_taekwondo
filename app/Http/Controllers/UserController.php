@@ -64,7 +64,7 @@ class UserController extends Controller
             'password' => bcrypt('bumiaji'),
             'id_register' => 'REG-' . date('d-m-Y'),
         ]);
-
+        $user->assignRole('user');
         $atlet = Atlet::create([
             'id' => $user->id,
             'user_id' => $user->id,

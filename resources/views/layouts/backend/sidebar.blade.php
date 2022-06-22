@@ -10,15 +10,9 @@
     <div class="sidebar">
         <!-- Sidebar user panel (optional) -->
         <!-- <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-            <div class="my-auto ml-3">
-
-               
-            </div>
             <div class="info">
-                <a href="javascript:void(0)" class="d-block">
-                    <p>
-                        {{ Auth::user()->username }}</p>
-                </a>
+                <p> Hallo, <b>
+                        {{ Auth::user()->username }}</p></b>
             </div>
         </div> -->
 
@@ -46,15 +40,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a href="{{ route('user-role.index') }}"
-                        class="nav-link {{ Request::segment(2) == 'user-role' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-circle"></i>
-                        <p>
-                            User - Role
-                        </p>
-                    </a>
-                </li>
+
                 @endrole
 
                 @role('petugas')
@@ -108,7 +94,7 @@
                         </p>
                     </a>
                 </li>
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a href="{{ route('pembayaran-spp.index') }}"
                         class="nav-link {{ Request::segment(2) == 'pembayaran-spp' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-list"></i>
@@ -116,16 +102,17 @@
                             Pembayaran
                         </p>
                     </a>
-                </li>
-                <!-- <li class="nav-item">
-                    <a href="{{ route('admin-list.index') }}"
-                        class="nav-link {{ Request::segment(2) == 'admin-list' ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-user-tie"></i>
+                </li> -->
+                <li class="nav-item">
+                    <a href="{{ route('user-role.index') }}"
+                        class="nav-link {{ Request::segment(2) == 'user-role' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-circle"></i>
                         <p>
-                            Admin
+                            Verifikasi Registrasi
                         </p>
                     </a>
                 </li>
+                <!-- 
                 <li class="nav-item">
                     <a href="{{ route('user.index') }}"
                         class="nav-link {{ Request::segment(2) == 'user' ? 'active' : '' }}">
@@ -325,9 +312,18 @@
                 </li> -->
                 @endrole
 
-                <!-- @role('admin')
-                <li class="nav-header">ROLES - PERMISSIONS</li>
+                @role('admin')
+                <li class="nav-header">LAINYA</li>
                 <li class="nav-item">
+                    <a href="{{ route('admin-list.index') }}"
+                        class="nav-link {{ Request::segment(2) == 'admin-list' ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-user-tie"></i>
+                        <p>
+                            Admin
+                        </p>
+                    </a>
+                </li>
+                <!-- <li class="nav-item">
                     <a href="{{ route('roles.index') }}"
                         class="nav-link {{ Request::segment(2) == 'roles' ? 'active' : '' }}">
                         <i class="nav-icon fas fa-user-tie"></i>
@@ -371,8 +367,8 @@
                             User - Permission
                         </p>
                     </a>
-                </li>
-                @endrole -->
+                </li> -->
+                @endrole
             </ul>
         </nav>
         <!-- /.sidebar-menu -->

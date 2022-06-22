@@ -1,5 +1,5 @@
 @extends('layouts.backend.app')
-@section('title', 'User Role')
+@section('title', 'Verifikasi Registrasi')
 @push('css')
 <!-- DataTables -->
 <link rel="stylesheet"
@@ -7,10 +7,11 @@
 <link rel="stylesheet"
     href="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
 @endpush
-@section('content_title', 'User Role')
+@section('content_title', 'Verifikasi Registrasi')
 @section('content')
 <x-alert></x-alert>
 <div class="row">
+
     <div class="col-12">
         <div class="card">
             <div class="card-header">
@@ -31,6 +32,7 @@
                     </thead>
                     <tbody>
                         @foreach($users as $row)
+                        @if($row->hasAnyRole('user'))
                         <tr>
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $row->username }}</td>
@@ -41,12 +43,12 @@
                                     {{ $role->name }}
                                 </span>
                                 @endif
-                                @if($row->hasAnyRole('petugas'))
+                                @if($row->hasAnyRole('atlet'))
                                 <span class="badge badge-success">
                                     {{ $role->name }}
                                 </span>
                                 @endif
-                                @if($row->hasAnyRole('atlet'))
+                                @if($row->hasAnyRole('user'))
                                 <span class="badge badge-danger">
                                     {{ $role->name }}
                                 </span>
@@ -61,6 +63,7 @@
                                 </div>
                             </td>
                         </tr>
+                        @endif
                         @endforeach
                     </tbody>
                 </table>
@@ -70,6 +73,7 @@
         <!-- /.card -->
     </div>
     <!-- /.col -->
+
 </div>
 <!-- /.row -->
 @stop

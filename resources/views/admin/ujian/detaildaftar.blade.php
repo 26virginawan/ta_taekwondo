@@ -41,26 +41,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
-                <div class="card">
-                    <div class="card-header">
-                        Filter Daftar Ujian
-                    </div>
-                    <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-12">
-                                <label>Nama Ujian</label>
-                                <select id="filter-ujian" class="form-control filter">
-                                    <option value="">Pilih Nama Ujian</option>
-                                    @foreach($ujian as $dt)
-                                    <option value="{{$dt->id}}">{{$dt->name}}</option>
-                                    @endforeach
-                                </select>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </div>
@@ -82,6 +63,7 @@
                             <th>Tanggal Lahir</th>
                             <th>Tanggal Daftar</th>
                             <th>Sabuk</th>
+                            <th>Nama Ujian</th>
 
                         </tr>
                     </thead>
@@ -93,6 +75,7 @@
                             <td>{{\Carbon\Carbon::parse($dt->tgl_lahir)->format('d-m-Y') }}</td>
                             <td>{{\Carbon\Carbon::parse($dt->tgl_daftar)->format('d-m-Y') }}</td>
                             <td>{{$dt -> sabuk}}</td>
+                            <td>{{$dt->ujian_id}}</td>
 
                         </tr>
                         @endforeach
@@ -124,9 +107,11 @@
 </script>
 <!-- Sweetalert 2 -->
 <script type="text/javascript"
-    src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/sweetalert2/sweetalert2.min.js"></script>
+    src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/sweetalert2/sweetalert2.min.js">
+</script>
 <!-- Select2 -->
-<script src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/select2/js/select2.full.min.js"></script>
+<script src="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/select2/js/select2.full.min.js">
+</script>
 <script>
 
 </script>
