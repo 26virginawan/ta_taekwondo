@@ -30,57 +30,60 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
+                <div class="row">
+                    <div class="col-12 table-responsive">
+                        <table class="table table-bordered table-striped" id="dataTable2">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>name</th>
+                                    <th>Nama Kejuaraan</th>
+                                    <th>Tingkat</th>
+                                    <th>Kelas</th>
+                                    <th>Kategori</th>
+                                    <th>Perolehan</th>
+                                    <th>tgl_acara</th>
+                                    <th>lokasi</th>
+                                    <th width="300px">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
 
-                <table id="dataTable2" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>name</th>
-                            <th>Nama Kejuaraan</th>
-                            <th>Tingkat</th>
-                            <th>Kelas</th>
-                            <th>Kategori</th>
-                            <th>Perolehan</th>
-                            <th>tgl_acara</th>
-                            <th>lokasi</th>
-                            <th width="300px">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr>
 
+                                    <td>
 
-                            <td>
+                                    </td>
+                                    <td>
 
-                            </td>
-                            <td>
+                                    </td>
+                                    <td>
 
-                            </td>
-                            <td>
+                                    </td>
+                                    <td>
 
-                            </td>
-                            <td>
+                                    </td>
+                                    <td>
 
-                            </td>
-                            <td>
+                                    </td>
+                                    <td>
 
-                            </td>
-                            <td>
+                                    </td>
+                                    <td>
 
-                            </td>
-                            <td>
+                                    </td>
+                                    <td>
 
-                            </td>
-                            <td>
+                                    </td>
+                                    <td>
 
-                            </td>
-                            <td>
+                                    </td>
 
-                            </td>
-
-                        </tr>
-                    </tbody>
-                </table>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <!-- /.card-body -->

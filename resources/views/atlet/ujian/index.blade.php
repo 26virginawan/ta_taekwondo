@@ -36,35 +36,39 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="table" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Ujian</th>
-                            <th>Tanggal Ujian</th>
-                            <th>Kuota</th>
-                            <th>Status</th>
-                            <!-- <th>Aksi</th> -->
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($kegiatan as $dt)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{$dt->name}}</td>
-                            <td>{{\Carbon\Carbon::parse($dt->tgl_ujian)->format('d-m-Y') }}</td>
-                            <td>{{$dt -> sisa}} dari {{$dt -> kuota}}</td>
-                            <td>{{$dt->status}}</td>
-                            <!-- <td>
+                <div class="row">
+                    <div class="col-12 table-responsive">
+                        <table class="table table-bordered table-striped" id="table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Ujian</th>
+                                    <th>Tanggal Ujian</th>
+                                    <th>Kuota</th>
+                                    <th>Status</th>
+                                    <!-- <th>Aksi</th> -->
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($kegiatan as $dt)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{$dt->name}}</td>
+                                    <td>{{\Carbon\Carbon::parse($dt->tgl_ujian)->format('d-m-Y') }}</td>
+                                    <td>{{$dt -> sisa}} dari {{$dt -> kuota}}</td>
+                                    <td>{{$dt->status}}</td>
+                                    <!-- <td>
                                 <div class="row">
                                     <a href="{{ route('daftarujian.create') }}"
                                         class="btn btn-primary btn-sm ml-2">Daftar</a>
                                 </div>
                             </td> -->
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <!-- /.card-body -->
         </div>
@@ -74,30 +78,34 @@
         <div class="card">
             <!-- /.card-header -->
             <div class="card-body">
-                <table id="table" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>Nama Atlet</th>
-                            <th>Tanggal Lahir</th>
-                            <th>Tanggal Daftar</th>
-                            <th>Sabuk</th>
+                <div class="row">
+                    <div class="col-12 table-responsive">
+                        <table class="table table-bordered table-striped" id="table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>Nama Atlet</th>
+                                    <th>Tanggal Lahir</th>
+                                    <th>Tanggal Daftar</th>
+                                    <th>Sabuk</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($dataujian as $dt)
-                        <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{$dt->name}}</td>
-                            <td>{{\Carbon\Carbon::parse($dt->tgl_lahir)->format('d-m-Y') }}</td>
-                            <td>{{\Carbon\Carbon::parse($dt->tgl_daftar)->format('d-m-Y') }}</td>
-                            <td>{{$dt -> sabuk}}</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($dataujian as $dt)
+                                <tr>
+                                    <td>{{ $loop->iteration }}</td>
+                                    <td>{{$dt->name}}</td>
+                                    <td>{{\Carbon\Carbon::parse($dt->tgl_lahir)->format('d-m-Y') }}</td>
+                                    <td>{{\Carbon\Carbon::parse($dt->tgl_daftar)->format('d-m-Y') }}</td>
+                                    <td>{{$dt -> sabuk}}</td>
 
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
             <!-- /.card-body -->
         </div>

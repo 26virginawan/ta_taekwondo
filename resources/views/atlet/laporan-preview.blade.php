@@ -25,13 +25,14 @@
     </table>
     <center>
         <hr>
-    </center>
-    <center>
         <h2 style="font-family: sans-serif;">Laporan Pembayaran Spp</h2><br><br>
-        <b style="font-family: sans-serif;">Nama Atlet : {{ $data_atlet->name }}</b><br><br>
-        <b style="font-family: sans-serif;">Kode Atlet : {{ $data_atlet->kode_atlet }}</b><br><br>
-        <b style="font-family: sans-serif;">Kelas : {{ $data_atlet->kelas}}</b><br><br>
     </center>
+
+
+    <b style="font-family: sans-serif;">Nama Atlet : {{ $data_atlet->name }}</b><br><br>
+    <b style="font-family: sans-serif;">Kode Atlet : {{ $data_atlet->nia }}</b><br><br>
+    <b style="font-family: sans-serif;">Kelas : {{ $data_atlet->kelas}}</b><br><br>
+
     <br>
     <b>Untuk Tahun : {{ request()->tahun_bayar }}</b><br><br>
     <table style="" border="1" cellspacing="0" cellpadding="10" width="100%">

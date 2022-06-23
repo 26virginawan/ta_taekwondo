@@ -29,69 +29,72 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-
-                <table id="table" class="table table-bordered table-striped">
-                    <thead>
-                        <tr>
-                            <th>No</th>
-                            <th>name</th>
-                            <th>Nama Kejuaraan</th>
-                            <th>Tingkat</th>
-                            <th>Kelas</th>
-                            <th>Kategori</th>
-                            <th>Perolehan</th>
-                            <th>tgl_acara</th>
-                            <th>lokasi</th>
-                            <th style="width:80px;">Aksi</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        @foreach($prestasi as $data)
-                        <tr>
-                            <td>{{$loop->iteration}}</td>
-                            <td>
-                                {{$data->name}}
-                            </td>
-                            <td>
-                                {{$data->nama_kejuaraan}}
-                            </td>
-                            <td>
-                                {{$data->tingkat}}
-                            </td>
-                            <td>
-                                {{$data->kelas}}
-                            </td>
-                            <td>
-                                {{$data->kategori}}
-                            </td>
-                            <td>
-                                {{$data->perolehan}}
-                            </td>
-                            <td>
-                                {{$data->tgl_acara}}
-                            </td>
-                            <td>
-                                {{$data->lokasi}}
-                            </td>
-                            <td>
-                                <div class="row">
-                                    <a href="{{route('prestasi.edit', $data->id)}}"
-                                        class="btn btn-primary btn-sm ml-2">Edit</a>
-                                    <form action="{{ route('prestasi.destroy', $data->id) }}" class="pull-left"
-                                        method="post">
-                                        {{ csrf_field() }}
-                                        {{ method_field('delete') }}
-                                        <button class="btn btn-danger btn-sm ml-2"
-                                            onclick="return confirm('Anda yakin ingin menghapus data ini?')">
-                                            Delete
-                                        </button>
-                                    </form>
-                                </div>
-                            </td>
-                        </tr>
-                        @endforeach
-                    </tbody>
-                </table>
+                <div class="row">
+                    <div class="col-12 table-responsive">
+                        <table class="table table-bordered table-striped" id="table">
+                            <thead>
+                                <tr>
+                                    <th>No</th>
+                                    <th>name</th>
+                                    <th>Nama Kejuaraan</th>
+                                    <th>Tingkat</th>
+                                    <th>Kelas</th>
+                                    <th>Kategori</th>
+                                    <th>Perolehan</th>
+                                    <th>tgl_acara</th>
+                                    <th>lokasi</th>
+                                    <th style="width:80px;">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach($prestasi as $data)
+                                <tr>
+                                    <td>{{$loop->iteration}}</td>
+                                    <td>
+                                        {{$data->name}}
+                                    </td>
+                                    <td>
+                                        {{$data->nama_kejuaraan}}
+                                    </td>
+                                    <td>
+                                        {{$data->tingkat}}
+                                    </td>
+                                    <td>
+                                        {{$data->kelas}}
+                                    </td>
+                                    <td>
+                                        {{$data->kategori}}
+                                    </td>
+                                    <td>
+                                        {{$data->perolehan}}
+                                    </td>
+                                    <td>
+                                        {{$data->tgl_acara}}
+                                    </td>
+                                    <td>
+                                        {{$data->lokasi}}
+                                    </td>
+                                    <td>
+                                        <div class="row">
+                                            <a href="{{route('prestasi.edit', $data->id)}}"
+                                                class="btn btn-primary btn-sm ml-2">Edit</a>
+                                            <form action="{{ route('prestasi.destroy', $data->id) }}" class="pull-left"
+                                                method="post">
+                                                {{ csrf_field() }}
+                                                {{ method_field('delete') }}
+                                                <button class="btn btn-danger btn-sm ml-2"
+                                                    onclick="return confirm('Anda yakin ingin menghapus data ini?')">
+                                                    Delete
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                                @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
             </div>
 
             <!-- /.card-body -->
