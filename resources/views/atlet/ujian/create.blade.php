@@ -34,12 +34,15 @@
                                 @endforeach
                             </div>
                         </div>
-                        <!-- <div class="col-lg-3">
+                        <div class="col-lg-3">
                             <div class="form-group">
-                                <label for="tingkat_sabuk">Tanggal daftar:</label>
-                                <input required="" type="date" name="tgl_daftar" id="tgl_daftar" class="form-control">
+                                <label for="tgl_lahir">Sabuk Sebelumnya:</label>
+                                @foreach($daftarujian as $row)
+                                <input type="text" class="form-control" name="tingkat_sabuk" value="{{$row->tingkat_sabuk}}"
+                                    readonly>
+                                @endforeach
                             </div>
-                        </div> -->
+                        </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="tingkat_sabuk">Tingkat Sabuk:</label>
@@ -53,8 +56,8 @@
                                     <option value="Biru">Biru</option>
                                     <option value="Biru-strip-merah">Biru Strip Merah</option>
                                     <option value="merah">Merah</option>
-                                    <option value="merah-strip-hitam1">Merah Strip Hitam 1</option>
-                                    <option value="merah-strip-hitam2">Merah Strip Hitam 2</option>
+                                    <option value="merah-strip-hitam-1">Merah Strip Hitam 1</option>
+                                    <option value="merah-strip-hitam-2">Merah Strip Hitam 2</option>
                                     <option value="Hitam">Hitam</option>
                                     <option value="Dan1">Dan 1</option>
                                     <option value="Dan2">Dan 2</option>

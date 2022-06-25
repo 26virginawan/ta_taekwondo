@@ -77,6 +77,7 @@ class KasKeluarController extends Controller
             'jumlah' => $request->get('jumlah'),
         ]);
 
+        alert()->success('Berhasil.', 'Data telah Ditambahkan');
         return redirect('/admin/kaskeluar');
     }
 
@@ -132,7 +133,7 @@ class KasKeluarController extends Controller
             'jumlah' => $request->get('jumlah'),
         ]);
 
-        // alert()->success('Berhasil.', 'Data telah diubah!');
+        alert()->success('Berhasil.', 'Data telah diubah!');
         return redirect('/admin/kaskeluar');
     }
 
@@ -144,12 +145,9 @@ class KasKeluarController extends Controller
      */
     public function destroy($id)
     {
-        if (Auth::user()->level == 'user') {
-            Alert::info('Oopss..', 'Anda dilarang melakukan ini.');
-            return redirect()->to('/dataprestasi');
-        }
         KasKeluar::find($id)->delete();
 
+        alert()->success('Berhasil.', 'Data telah dihapus!');
         return redirect('/admin/kaskeluar');
     }
 

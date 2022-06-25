@@ -182,7 +182,12 @@ class UjianController extends Controller
                     '.pdf'
             );
         } else {
-            return back()->with('error');
+            Alert::error(
+                'Gagal',
+                'Tidak ada Data Pada tanggal ' .
+                    Carbon::parse($request->tanggal_daftar)->format('d-m-Y')
+            );
+            return redirect()->back();
         }
     }
 }

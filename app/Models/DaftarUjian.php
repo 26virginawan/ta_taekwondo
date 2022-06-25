@@ -17,6 +17,7 @@ class DaftarUjian extends Model
     protected $fillable = [
         'id',
         'name',
+        'tingkat_sabuk',
         'tgl_lahir',
         'tgl_daftar',
         'sebelum',

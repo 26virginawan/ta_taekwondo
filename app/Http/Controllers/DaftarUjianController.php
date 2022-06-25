@@ -37,7 +37,7 @@ class DaftarUjianController extends Controller
     public function detail()
     {
         $ujian = Ujian::get();
-        $daftarujian = DaftarUjian::get();
+        $daftarujian = DaftarUjian::with(['ujian'])->get();
         return view(
             'admin/ujian/detaildaftar',
             compact('daftarujian', 'ujian')
@@ -73,6 +73,7 @@ class DaftarUjianController extends Controller
         $name = $req->name;
         $tgl_daftar = $tgl;
         $tgl_lahir = $req->tgl_lahir;
+        $tingkat_sabuk = $req->tignkat_sabuk;
         $sabuk = $req->sabuk;
         $kegiatan = $req->keg;
         $kegiatan_id = $req->ujian_id;
@@ -94,6 +95,7 @@ class DaftarUjianController extends Controller
                 'tgl_lahir' => $tgl_lahir,
                 'tgl_daftar' => $tgl_daftar,
                 'sabuk' => $sabuk,
+                'tingkat_sabuk' => $tingkat_sabuk,
                 'ujian_id' => $kegiatan_id,
             ]);
             $row = DB::table('daftarujian')

@@ -37,6 +37,7 @@
             <tr>
                 <th scope="col" style="font-family: sans-serif;">No</th>
                 <th scope="col" style="font-family: sans-serif;">Nama</th>
+                <th scope="col" style="font-family: sans-serif;">Tanggal Lahir</th>
                 <th scope="col" style="font-family: sans-serif;">Jenis Sabuk</th>
 
             </tr>
@@ -46,6 +47,8 @@
             <tr>
                 <th scope="row" style="font-family: sans-serif;">{{ $loop->iteration }}</th>
                 <td style="font-family: sans-serif;">{{ $row->name }}</td>
+                <td style="font-family: sans-serif;">{{ \Carbon\Carbon::parse($row->tgl_lahir)->format('d-m-Y') }}
+                </td>
                 <td style="font-family: sans-serif;">{{ $row->sabuk }}</td>
             </tr>
             @endforeach

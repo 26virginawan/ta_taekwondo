@@ -31,7 +31,7 @@
                                     <input type="date" name="tanggal_daftar" required="" class="form-control"
                                         id="tanggal_daftar">
                                 </div>
-                                <div class="col-md-4">
+                                <div class="col-md-4" target="_blank">
                                     <button type="submit" class="btn btn-danger btn-sm" target="_blank">
                                         PRINT
                                     </button>
@@ -59,11 +59,13 @@
                     <thead>
                         <tr>
                             <th>No</th>
+                            <th>Nama Ujian</th>
                             <th>Nama Atlet</th>
                             <th>Tanggal Lahir</th>
                             <th>Tanggal Daftar</th>
                             <th>Sabuk</th>
-                            <th>Nama Ujian</th>
+                            <th>Aksi</th>
+
 
                         </tr>
                     </thead>
@@ -71,11 +73,17 @@
                         @foreach($daftarujian as $dt)
                         <tr>
                             <td>{{ $loop->iteration }}</td>
+                            <td>{{$dt->ujian->name}}</td>
                             <td>{{$dt->name}}</td>
                             <td>{{\Carbon\Carbon::parse($dt->tgl_lahir)->format('d-m-Y') }}</td>
                             <td>{{\Carbon\Carbon::parse($dt->tgl_daftar)->format('d-m-Y') }}</td>
                             <td>{{$dt -> sabuk}}</td>
-                            <td>{{$dt->ujian_id}}</td>
+                            <td>
+                                <div class="row">
+                                    <a href="/admin/ubahsabuk/{{ $dt->id }}" class="btn btn-primary btn-sm ml-2">Ganti
+                                        Sabuk</a>
+                                </div>
+                            </td>
 
                         </tr>
                         @endforeach

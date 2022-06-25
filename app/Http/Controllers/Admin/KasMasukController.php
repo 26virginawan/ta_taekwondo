@@ -131,7 +131,7 @@ class KasMasukController extends Controller
             'jumlah' => $request->get('jumlah'),
         ]);
 
-        // alert()->success('Berhasil.', 'Data telah diubah!');
+        alert()->success('Berhasil.', 'Data telah diubah!');
         return redirect('/admin/kasmasuk');
     }
 
@@ -148,7 +148,7 @@ class KasMasukController extends Controller
             return redirect()->to('/kasmasuk');
         }
         KasMasuk::find($id)->delete();
-        // alert()->success('Berhasil.', 'Data telah dihapus!');
+        alert()->success('Berhasil.', 'Data telah dihapus!');
         return redirect('/admin/kasmasuk');
     }
 

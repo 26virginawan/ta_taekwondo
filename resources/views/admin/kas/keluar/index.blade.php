@@ -102,7 +102,7 @@
                         @foreach($kas_keluar as $data)
                         <tr>
                             <td class="py-1">
-                                {{$data->tanggal}}
+                                {{ \Carbon\Carbon::parse($data->tanggal)->format('d-m-Y') }}
                             </td>
                             <td>
                                 {{$data->keterangan}}
