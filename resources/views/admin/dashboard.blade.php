@@ -9,70 +9,93 @@
 @section('content_title', 'Dashboard')
 @section('content')
 <!-- Small boxes (Stat box) -->
-<div class="row">
-    <div class="col-lg-4 col-4">
-        <!-- small box -->
-        <div class="small-box bg-info">
-            <div class="inner">
-                <h3>{{ $total_poomsae }}</h3>
+<div class="card">
+    <div class="card-body" style="height:300px;">
+        <div class="row">
+            <div class="col-lg-4 col-4">
+                <!-- small box -->
+                <div class="small-box bg-info">
+                    <div class="inner">
+                        <h3>{{ $total_poomsae }}</h3>
 
-                <p>Atlet Poomsae</p>
-            </div>
-            <div class="icon">
-                <i class="fas fa-users"></i>
-            </div>
-            <a href="{{ route('atlet.index') }}" class="small-box-footer">More info <i
-                    class="fas fa-arrow-circle-right"></i></a>
-        </div>
-    </div>
-    <!-- ./col -->
-    <!-- ./col -->
-    <div class="col-lg-4 col-4">
-        <!-- small box -->
-        <div class="small-box bg-danger">
-            <div class="inner">
-                <h3>{{ $total_kyorugi }}</h3>
-
-                <p>Atlet Kyorugi</p>
-            </div>
-            <div class="icon">
-                <i class="fas fa-school"></i>
-            </div>
-            <a href="{{ route('atlet.index') }}" class="small-box-footer">More info <i
-                    class="fas fa-arrow-circle-right"></i></a>
-        </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-4 col-4">
-        <!-- small box -->
-        <div class="small-box bg-success">
-            <div class="inner">
-                <h3>{{ $total_reguler }}</h3>
-
-                <p>Atlet Reguler</p>
-            </div>
-            <div class="icon">
-                <i class="fas fa-user-tie"></i>
-            </div>
-            <a href="{{ route('atlet.index') }}" class="small-box-footer">More info <i
-                    class="fas fa-arrow-circle-right"></i></a>
-        </div>
-    </div>
-    <!-- ./col -->
-</div>
-
-<!-- <div class="container mt-5">
-    <div class="row">
-        <div class="col-md-10 offset-md-1">
-            <div class="card">
-                <div class="card-header">Siswa</div>
-                <div class="card-body">
-                    <canvas id="canvas" height="200" width="500"></canvas>
+                        <h4>Atlet Poomsae</h4>
+                    </div>
+                    <div class="icon" style="color:white;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <a href="{{ route('atlet.index') }}" class="small-box-footer">More info <i
+                            class="fas fa-arrow-circle-right"></i></a>
                 </div>
             </div>
+            <!-- ./col -->
+            <!-- ./col -->
+            <div class="col-lg-4 col-4">
+                <!-- small box -->
+                <div class="small-box bg-danger">
+                    <div class="inner">
+                        <h3>{{ $total_kyorugi }}</h3>
+
+                        <h4>Atlet Kyorugi</h4>
+                    </div>
+                    <div class="icon" style="color:white;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <a href="{{ route('atlet.index') }}" class="small-box-footer">More info <i
+                            class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
+            <div class="col-lg-4 col-4">
+                <!-- small box -->
+                <div class="small-box bg-success">
+                    <div class="inner">
+                        <h3>{{ $total_reguler }}</h3>
+
+                        <h4>Atlet Reguler</h4>
+                    </div>
+                    <div class="icon" style="color:white;">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <a href="{{ route('atlet.index') }}" class="small-box-footer">More info <i
+                            class="fas fa-arrow-circle-right"></i></a>
+                </div>
+            </div>
+            <!-- ./col -->
         </div>
     </div>
-</div> -->
+</div>
+@role('atlet')
+<div class="row">
+    <div class="col-lg">
+        <div class="jumbotron" style="background-color:white;">
+
+
+
+
+
+
+            <h1 class="display-4">Hello, {{ Auth::user()->username }}!</h1>
+            <p class="lead">Selamat datang di TAEKWONDO BUMIAJI.</p>
+            <br>
+
+        </div>
+    </div>
+</div>
+@endrole
+@role('user')
+<div class="row">
+    <div class="col-lg">
+        <div class="jumbotron" style="background-color:white;">
+            <h2><b>Menunggu Verifikasi Admin </b> </h2>
+
+            <h2 style="color:red;">Lakukan Pembayaran dan Pengumpulan Berkas Saat Latihan !!</h2>
+
+            <hr class="my-4">
+
+        </div>
+    </div>
+</div>
+@endrole
 @endsection
 
 @push('js')

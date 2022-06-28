@@ -15,7 +15,7 @@
                     <font size="4"><b>PENGURUS KOTA BATU</b></font><br>
                     <font size="4"><b>Unit BUMIAJI</b></font><br>
                     <font size="3">Jl. Raya Junggo 35 Tulungrejo Kec. Bumiaji. Batu</font><br>
-                    <font size="3">081249380063</font><br>
+                    <font size="3">Phone : 081249380063</font><br>
                 </center>
             </td>
             <td><img src="images/lg.png" alt="" width="90" height="90"></td>
