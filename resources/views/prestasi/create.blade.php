@@ -24,7 +24,7 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <form method="POST" action="{{ route('prestasi.store')  }}" enctype="multipart/form-data">
+                <form method="POST" action="{{ route('prestasiAtlet.store')  }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row">
                         <div class="col-lg-6">
@@ -44,12 +44,9 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="name">Nama:</label>
-                                <select required="" name="name" id="name" class="form-control select2bs4">
-                                    <option disabled="" selected="">- PILIH NAMA -</option>
-                                    @foreach($name as $row)
-                                    <option value="{{ $row->name }}">{{ $row->name }}</option>
-                                    @endforeach
-                                </select>
+                                @foreach($data_name as $row)
+                                <input type="text" class="form-control" name="name" value="{{$row->name}}" readonly>
+                                @endforeach
                             </div>
                         </div>
                         <div class="col-lg-3">

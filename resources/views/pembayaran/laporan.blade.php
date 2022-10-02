@@ -28,6 +28,38 @@
             </div>
         </div>
     </div>
+    <div class="col-lg-6">
+        <div class="card">
+            <div class="card-header">Laporan Pembayaran Berdasarkan Nama</div>
+            <div class="card-body">
+                <form method="POST" action="{{ route('pembayaran.print-pdf2') }}">
+                    @csrf
+                    <!-- <div class="form-group">
+                        <label for="tanggal_mulai">Tanggal Mulai</label>
+                        <input type="date" name="tanggal_mulai" required="" class="form-control" id="tanggal_mulai">
+                    </div>
+                    <div class="form-group">
+                        <label for="tanggal_selesai">Tanggal Selesai</label>
+                        <input type="date" name="tanggal_selesai" required="" class="form-control" id="tanggal_selesai">
+                    </div> -->
+                    <div class="form-group">
+                        <label for="name">Nama:</label>
+                        <select required="" name="name" id="name" class="form-control select2bs4">
+                            <option disabled="" selected="">- PILIH NAMA -</option>
+                            @foreach($name as $row)
+                            <option value="{{ $row->id }}">{{ $row->name }}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" class="btn btn-danger btn-sm" target="_blank">
+                            <i class="fas fa-print fa-fw"></i> PRINT
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 </div>
 @endsection
 

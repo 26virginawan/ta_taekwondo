@@ -88,6 +88,7 @@ class AtletController extends Controller
                     'name' => Str::lower($request->name),
                     'username' => Str::lower($request->username),
                     'password' => Hash::make('rahasia'),
+                    'id_register' => 'REG-' . date('d-m-Y'),
                 ]);
 
                 $user->assignRole('atlet');

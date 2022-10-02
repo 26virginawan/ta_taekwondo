@@ -191,7 +191,9 @@ class PembayaranController extends Controller
 
     public function laporan()
     {
-        return view('pembayaran.laporan');
+        $name = Atlet::all();
+        $total = 50000;
+        return view('pembayaran.laporan', compact('name', $total));
     }
 
     public function printPdf(Request $request)
@@ -204,6 +206,7 @@ class PembayaranController extends Controller
         $data['pembayaran'] = Pembayaran::with(['atlet'])
             ->whereBetween('tanggal_bayar', $tanggal)
             ->get();
+        $total = $data;
 
         if ($data['pembayaran']->count() > 0) {
             $pdf = PDF::loadView('pembayaran.laporan-preview', $data);
@@ -215,6 +218,31 @@ class PembayaranController extends Controller
                     Str::random(9) .
                     '.pdf'
             );
+        } else {
+            return back()->with(
+                'error',
+                'Data pembayaran spp tanggal ' .
+                    Carbon::parse($request->tanggal_mulai)->format('d-m-Y') .
+                    ' sampai dengan ' .
+                    Carbon::parse($request->tanggal_selesai)->format('d-m-Y') .
+                    ' Tidak Tersedia'
+            );
+        }
+    }
+    public function printPdf2(Request $request)
+    {
+        $total = 50000;
+        $tanggal = $request->validate([
+            'name' => 'required',
+        ]);
+
+        $data['pembayaran'] = Pembayaran::with(['atlet'])
+            ->where('atlet_id', $tanggal)
+            ->get();
+
+        if ($data['pembayaran']->count() > 0) {
+            $pdf = PDF::loadView('pembayaran.laporan-preview', $data);
+            return $pdf->stream('pembayaran-spp-' . $request->name . '.pdf');
         } else {
             return back()->with(
                 'error',

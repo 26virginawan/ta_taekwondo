@@ -16,6 +16,7 @@ class Prestasi extends Model
     protected $table = 'prestasi';
     protected $fillable = [
         'id',
+        'image',
         'name',
         'nama_kejuaraan',
         'tingkat',
@@ -24,6 +25,7 @@ class Prestasi extends Model
         'perolehan',
         'tgl_acara',
         'lokasi',
+        'status',
     ];
 
     public function user()

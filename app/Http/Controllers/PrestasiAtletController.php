@@ -16,6 +16,8 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\DataTables\PrestasiAtletDataTable;
+use RealRashid\SweetAlert\Facades\Alert;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class PrestasiAtletController extends Controller
 {
@@ -43,13 +45,13 @@ class PrestasiAtletController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request, PrestasiAtletDataTable $datatable)
+    public function index(Request $request)
     {
-        if ($request->ajax()) {
-            return $datatable->data();
-        }
+        $prestasi = Prestasi::where(
+            'name',
 
-        // $dataprofil = Prestasi::get();
+            Auth::user()->name
+        )->get();
         $spp = Spp::all();
         $atlet = Atlet::where(
             'name',
@@ -57,7 +59,7 @@ class PrestasiAtletController extends Controller
             Auth::user()->name
         )->get();
 
-        return view('atlet.prestasi.index', compact('spp', 'atlet'));
+        return view('prestasi.index', compact('spp', 'atlet', 'prestasi'));
     }
 
     /**
@@ -66,10 +68,19 @@ class PrestasiAtletController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
+    public function create()
+    {
+        $data_name = Atlet::where(
+            'name',
+
+            Auth::user()->name
+        )->get();
+        return view('prestasi.create', compact('data_name'));
+    }
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
+            'image' => 'required|image|mimes:jpeg,png,jpg,',
             'nama_kejuaraan' => 'required',
             'tingkat' => 'required',
             'kelas' => 'required',
@@ -80,7 +91,19 @@ class PrestasiAtletController extends Controller
         ]);
 
         if ($validator->passes()) {
+            if ($request->hasfile('image')) {
+                $image = $request->file('image');
+                $imageprestasi =
+                    uniqid(11) . '.' . $image->getClientOriginalExtension();
+                $image_resize = Image::make($image->getRealPath());
+                $image_resize->resize(700, 250);
+                $image_resize->save(
+                    public_path('prestasi\images/' . $imageprestasi)
+                );
+            }
+
             Prestasi::create([
+                'image' => $imageprestasi,
                 'name' => $request->name,
                 'nama_kejuaraan' => $request->nama_kejuaraan,
                 'tingkat' => $request->tingkat,
@@ -89,12 +112,14 @@ class PrestasiAtletController extends Controller
                 'perolehan' => $request->perolehan,
                 'tgl_acara' => $request->tgl_acara,
                 'lokasi' => $request->lokasi,
+                'status' => 'pending',
             ]);
 
-            return response()->json(['message' => 'Data berhasil disimpan!']);
+            Alert::success('Sukses', 'Data Berhasil Ditambahkan');
+            return redirect()->route('prestasiAtlet.index');
         }
-
-        return response()->json(['error' => $validator->errors()->all()]);
+        Alert::error('Gagal', $validator->errors()->all());
+        return redirect()->back();
     }
 
     /**
@@ -105,8 +130,10 @@ class PrestasiAtletController extends Controller
      */
     public function edit($id)
     {
+        $name = Atlet::all();
         $prestasi = Prestasi::findOrFail($id);
-        return response()->json(['data' => $prestasi]);
+
+        return view('prestasi.edit', compact('name', 'prestasi'));
     }
 
     /**
@@ -119,7 +146,6 @@ class PrestasiAtletController extends Controller
     public function update(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
-            'name' => 'required',
             'nama_kejuaraan' => 'required',
             'tingkat' => 'required',
             'kelas' => 'required',
@@ -130,22 +156,31 @@ class PrestasiAtletController extends Controller
         ]);
 
         if ($validator->passes()) {
-            Prestasi::findOrFail($id)->update([
-                'name' => $request->name,
-                'nama_kejuaraan' => $request->nama_kejuaraan,
-                'tingkat' => $request->tingkat,
-                'kelas' => $request->kelas,
-                'kategori' => $request->kategori,
-                'perolehan' => $request->perolehan,
-                'tgl_acara' => $request->tgl_acara,
-                'lokasi' => $request->lokasi,
-                'atlet_id' => $request->atlet_id,
-            ]);
+            $input = $request->all();
+            if ($request->hasfile('image')) {
+                $imageprestasi =
+                    uniqid(11) .
+                    '.' .
+                    $request->file('image')->getClientOriginalExtension();
+                $image_resize = Image::make(
+                    $request->file('image')->getRealPath()
+                );
+                $image_resize->resize(700, 250);
+                $image_resize->save(
+                    public_path('prestasi\images/' . $imageprestasi)
+                );
+                $input['image'] = "$imageprestasi";
+            } else {
+                unset($input['image']);
+            }
+            Prestasi::findOrFail($id)->update($input);
 
-            return response()->json(['message' => 'Data berhasil diupdate!']);
+            Alert::success('Sukses', 'Data Berhasil Diupdate');
+            return redirect()->route('prestasiAtlet.index');
         }
 
-        return response()->json(['error' => $validator->errors()->all()]);
+        Alert::error('Gagal', $validator->errors()->all());
+        return redirect()->back();
     }
 
     /**
@@ -154,10 +189,12 @@ class PrestasiAtletController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
     public function destroy($id)
     {
         $prestasi = Prestasi::findOrFail($id);
         $prestasi->delete();
-        return response()->json(['message' => 'Data berhasil dihapus!']);
+        Alert::success('Sukses', 'Data Berhasil Dihapus');
+        return redirect()->route('prestasiAtlet.index');
     }
 }

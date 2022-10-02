@@ -1,5 +1,5 @@
 @extends('layouts.backend.app')
-@section('title', 'Data Prestasi')
+@section('title', 'Data Verifikasi Prestasi')
 @push('css')
 <!-- DataTables -->
 <link rel="stylesheet"
@@ -14,22 +14,12 @@
 <link rel="stylesheet"
     href="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 @endpush
-@section('content_title', 'Data Prestasi')
+@section('content_title', 'Data Verifikasi Prestasi')
 @section('content')
 <x-alert></x-alert>
 <div class="row">
     <div class="col-12">
         <div class="card">
-            <div class="card-header">
-                @can('create-prestasi')
-                <a href="{{ route('prestasi.create')  }}" class="btn btn-primary btn-sm">
-                    <i class="fas fa-plus fa-fw"></i> Tambah Data
-                </a>
-                @endcan
-                <a href="{{ route('prestasi.detail')  }}" class="btn btn-secondary btn-sm">
-                    <i class="fas fa-plus fa-fw"></i> Verifikasi Data
-                </a>
-            </div>
             <!-- /.card-header -->
             <div class="card-body">
                 <div class="row">
@@ -47,6 +37,7 @@
                                     <th>Perolehan</th>
                                     <th>tgl_acara</th>
                                     <th>lokasi</th>
+                                    <th>status</th>
                                     <th style="width:80px;">Aksi</th>
                                 </tr>
                             </thead>
@@ -86,9 +77,12 @@
                                         {{$data->lokasi}}
                                     </td>
                                     <td>
+                                        {{$data->status}}
+                                    </td>
+                                    <td>
                                         <div class="row">
-                                            <a href="{{route('prestasi.edit', $data->id)}}"
-                                                class="btn btn-primary btn-sm ml-2">Edit</a>
+                                            <a href="{{route('prestasi.konfirmasi', $data->id)}}"
+                                                class="btn btn-primary btn-sm ml-2">Konfirmasi</a>
                                             <form action="{{ route('prestasi.destroy', $data->id) }}" class="pull-left"
                                                 method="post">
                                                 {{ csrf_field() }}

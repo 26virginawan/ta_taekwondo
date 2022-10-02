@@ -67,6 +67,15 @@
 
     </table>
     <br>
+
+    @php
+    $i = 50000;
+    $j = $pembayaran->count();
+
+    @endphp
+
+    <h3 style="text-align:right; ">Total Jumlah bayar = {{$i * $j}}</h3>
+
     <br>
     <table style="float:right; margin-right:30px;">
         <tr>

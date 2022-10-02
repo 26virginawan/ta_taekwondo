@@ -1,5 +1,5 @@
 @extends('layouts.backend.app')
-@section('title', 'Tambah Prestasi')
+@section('title', 'Edit Prestasi')
 @push('css')
 <!-- DataTables -->
 <link rel="stylesheet"
@@ -14,7 +14,7 @@
 <link rel="stylesheet"
     href="{{ asset('templates/backend/AdminLTE-3.1.0') }}/plugins/select2-bootstrap4-theme/select2-bootstrap4.min.css">
 @endpush
-@section('content_title', 'Tambah Prestasi')
+@section('content_title', 'Edit Prestasi')
 @section('content')
 <x-alert></x-alert>
 <div class="row">
@@ -24,46 +24,52 @@
             </div>
             <!-- /.card-header -->
             <div class="card-body">
-                <form method="POST" action="{{ route('prestasi.store')  }}" enctype="multipart/form-data">
-                    @csrf
+                <form method="POST" action="{{ route('prestasiAtlet.update', $prestasi->id)}}"
+                    enctype="multipart/form-data">
+                    {{ csrf_field() }}
+                    {{ method_field('put') }}
                     <div class="row">
                         <div class="col-lg-6">
-                            <label for="image">
-                                Photo
-                            </label>
-                            <div class="img-holder"> </div>
-                            <div class="custom-file">
-                                <input type="file" class="custom-file-input" id="image" name="image"
-                                    accept=".jpg, .png, .jpeg" required>
-                                <label class="custom-file-label" for="contohupload2">Choose file</label>
+                            <div class="form-group">
+                                <label class="block text-sm font-bold text-gray-700">
+                                    Photo
+                                </label>
+                                <br>
+                                <span class="inline-block h-12 w-12 rounded-full overflow-hidden bg-gray-100 mr-2">
+                                    <img src="{{asset('prestasi/images/' . $prestasi->image)}}" alt=""
+                                        style="width:150px;">
+                                </span>
+                                <div class="custom-file">
+
+                                    <input type="file" class="custom-file-input" id="image" name="image"
+                                        accept=".jpg, .png, .jpeg">
+                                    <label class="custom-file-label" for="contohupload2">Choose file</label>
+                                </div>
                             </div>
+
                         </div>
                     </div>
-                    <br>
                     <div class="row">
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="name">Nama:</label>
-                                <select required="" name="name" id="name" class="form-control select2bs4">
-                                    <option disabled="" selected="">- PILIH NAMA -</option>
-                                    @foreach($name as $row)
-                                    <option value="{{ $row->name }}">{{ $row->name }}</option>
-                                    @endforeach
-                                </select>
+                                <input type="text" class="form-control" name="name" value="{{$prestasi->name}}"
+                                    readonly>
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="nama_kejuaraan">nama Kejuaraan:</label>
                                 <input required="" type="text" name="nama_kejuaraan" id="nama_kejuaraan"
-                                    class="form-control">
+                                    class="form-control" value="{{$prestasi->nama_kejuaraan}}">
                             </div>
                         </div>
-                        <div class="col-lg-3">
+                        <div class=" col-lg-3">
                             <div class="form-group">
                                 <label for="tingkat">Tingkat:</label>
                                 <select required="" name="tingkat" id="tingkat" class="form-control select2bs4">
-                                    <option disabled="" selected="">- PILIH TINGKAT -</option>
+                                    <option selected="" value="{{$prestasi->tingkat}}">
+                                        {{$prestasi->tingkat}}</option>
                                     <option value="internasional">Internasional</option>
                                     <option value="nasional">Nasional</option>
                                     <option value="provinsi">Provinsi</option>
@@ -75,7 +81,8 @@
                             <div class="form-group">
                                 <label for="kelas">Kelas:</label>
                                 <select required="" name="kelas" id="kelas" class="form-control select2bs4">
-                                    <option disabled="" selected="">- PILIH KELAS -</option>
+                                    <option selected="" value="{{$prestasi->kelas}}">{{$prestasi->kelas}}
+                                    </option>
                                     <option value="pracadet">Pracadet</option>
                                     <option value="cadet">Cadet</option>
                                     <option value="junior">Junior</option>
@@ -89,7 +96,8 @@
                             <div class="form-group">
                                 <label for="kategori">Kategori:</label>
                                 <select required="" name="kategori" id="kategori" class="form-control select2bs4">
-                                    <option disabled="" selected="">- PILIH KATEGORI -</option>
+                                    <option selected="" value="{{$prestasi->kategori}}">
+                                        {{$prestasi->kategori}}</option>
                                     <option value="prestasi">Prestasi</option>
                                     <option value="pemula">Pemula</option>
                                 </select>
@@ -99,7 +107,8 @@
                             <div class="form-group">
                                 <label for="perolehan">Perolehan:</label>
                                 <select required="" name="perolehan" id="perolehan" class="form-control select2bs4">
-                                    <option disabled="" selected="">- PILIH KELAS -</option>
+                                    <option selected="" value="{{$prestasi->perolehan}}">
+                                        {{$prestasi->perolehan}}</option>
                                     <option value="emas">Emas</option>
                                     <option value="perak">Perak</option>
                                     <option value="perunggu">Perunggu</option>
@@ -109,13 +118,15 @@
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="tgl_acara">Tanggal Acara:</label>
-                                <input required="" type="date" name="tgl_acara" id="tgl_acara" class="form-control">
+                                <input required="" type="date" name="tgl_acara" id="tgl_acara" class="form-control"
+                                    value="{{$prestasi->tgl_acara}}">
                             </div>
                         </div>
                         <div class="col-lg-3">
                             <div class="form-group">
                                 <label for="lokasi">Lokasi:</label>
-                                <input required="" type="text" name="lokasi" id="lokasi" class="form-control">
+                                <input required="" type="text" name="lokasi" id="lokasi" class="form-control"
+                                    value="{{$prestasi->lokasi}}">
                             </div>
                         </div>
                     </div>

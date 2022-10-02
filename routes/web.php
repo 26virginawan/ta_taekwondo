@@ -72,6 +72,9 @@ Route::prefix('pembayaran')
         Route::post('laporan', 'PembayaranController@printPdf')->name(
             'pembayaran.print-pdf'
         );
+        Route::post('laporan2', 'PembayaranController@printPdf2')->name(
+            'pembayaran.print-pdf2'
+        );
     });
 
 Route::get('printid/{atlet}', 'PrintController@printId')->name('printid');
@@ -92,6 +95,10 @@ Route::prefix('admin')
             Route::post('daftarujian/print', 'UjianController@print')->name(
                 'daftarujian.print'
             );
+            Route::get(
+                'prestasi/verifikasi',
+                'PrestasiController@verify'
+            )->name('prestasi.detail');
             Route::post(
                 'kasmasuk/laporan',
                 'KasMasukController@printPdf'
@@ -129,6 +136,9 @@ Route::prefix('admin')
                 'AdminListController@destroy'
             )->name('admin-list.destroy');
             Route::get('ubahstatus/{id}', 'UjianController@updatestatus');
+            Route::get('konfirmasi/{id}', 'PrestasiController@detail')->name(
+                'prestasi.konfirmasi'
+            );
             Route::get('/kasmasuk', 'KasMasukController@index');
             Route::get('/kaskeluar', 'KasKeluarController@index');
             Route::get('/saldo', 'SaldoController@index');

@@ -17,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\DataTables\PrestasiDataTable;
 use RealRashid\SweetAlert\Facades\Alert;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class PrestasiController extends Controller
 {
@@ -44,7 +45,11 @@ class PrestasiController extends Controller
      */
     public function index(Request $request)
     {
-        $prestasi = Prestasi::all();
+        $prestasi = Prestasi::where(
+            'status',
+
+            'konfirmasi'
+        )->get();
         $spp = Spp::all();
         $atlet = Atlet::all();
 
@@ -69,6 +74,7 @@ class PrestasiController extends Controller
     public function store(Request $request)
     {
         $validator = Validator::make($request->all(), [
+            'image' => 'required|image|mimes:jpeg,png,jpg,',
             'name' => 'required',
             'nama_kejuaraan' => 'required',
             'tingkat' => 'required',
@@ -80,7 +86,19 @@ class PrestasiController extends Controller
         ]);
 
         if ($validator->passes()) {
+            if ($request->hasfile('image')) {
+                $image = $request->file('image');
+                $imageprestasi =
+                    uniqid(11) . '.' . $image->getClientOriginalExtension();
+                $image_resize = Image::make($image->getRealPath());
+                $image_resize->resize(300, 350);
+                $image_resize->save(
+                    public_path('prestasi\images/' . $imageprestasi)
+                );
+            }
+
             Prestasi::create([
+                'image' => $imageprestasi,
                 'name' => $request->name,
                 'nama_kejuaraan' => $request->nama_kejuaraan,
                 'tingkat' => $request->tingkat,
@@ -89,13 +107,15 @@ class PrestasiController extends Controller
                 'perolehan' => $request->perolehan,
                 'tgl_acara' => $request->tgl_acara,
                 'lokasi' => $request->lokasi,
+                'status' => 'konfirmasi',
             ]);
 
             Alert::success('Sukses', 'Data Berhasil Ditambahkan');
             return redirect()->route('prestasi.index');
         }
 
-        return response()->json(['error' => $validator->errors()->all()]);
+        Alert::error('Gagal', $validator->errors()->all());
+        return redirect()->back();
     }
 
     /**
@@ -132,21 +152,31 @@ class PrestasiController extends Controller
         ]);
 
         if ($validator->passes()) {
-            Prestasi::findOrFail($id)->update([
-                'tingkat' => $request->tingkat,
-                'kelas' => $request->kelas,
-                'kategori' => $request->kategori,
-                'perolehan' => $request->perolehan,
-                'tgl_acara' => $request->tgl_acara,
-                'lokasi' => $request->lokasi,
-                'atlet_id' => $request->atlet_id,
-            ]);
+            $input = $request->all();
+            if ($request->hasfile('image')) {
+                $imageprestasi =
+                    uniqid(11) .
+                    '.' .
+                    $request->file('image')->getClientOriginalExtension();
+                $image_resize = Image::make(
+                    $request->file('image')->getRealPath()
+                );
+                $image_resize->resize(700, 250);
+                $image_resize->save(
+                    public_path('prestasi\images/' . $imageprestasi)
+                );
+                $input['image'] = "$imageprestasi";
+            } else {
+                unset($input['image']);
+            }
+            Prestasi::findOrFail($id)->update($input);
 
             Alert::success('Sukses', 'Data Berhasil Diupdate');
             return redirect()->route('prestasi.index');
         }
 
-        return response()->json(['error' => $validator->errors()->all()]);
+        Alert::error('Gagal', $validator->errors()->all());
+        return redirect()->back();
     }
 
     /**
@@ -155,10 +185,49 @@ class PrestasiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
+
+    public function Verify()
+    {
+        $prestasi = Prestasi::where(
+            'status',
+
+            'pending'
+        )->get();
+        $spp = Spp::all();
+        $atlet = Atlet::all();
+
+        return view(
+            'admin.prestasi.verify',
+            compact('prestasi', 'spp', 'atlet')
+        );
+    }
+    public function detail($id)
+    {
+        $status = DB::table('prestasi')
+            ->where('id', '=', $id)
+            ->get();
+        //mengubah data status menjadi kondisi php sederhana (penyederhanaan data)
+        $status = $status->toArray();
+        if ($status[0]->status == 'pending') {
+            DB::table('prestasi')
+                ->where('id', '=', $id)
+                ->update(['status' => 'konfirmasi']);
+            Alert::success('Sukses', 'Data Prestasi Berhasil Dikonfirmasi');
+            return redirect()->back();
+        } else {
+            DB::table('prestasi')
+                ->where('id', '=', $id)
+                ->update(['status' => 'pending']);
+            Alert::success('Sukses', 'Data Prestasi Berhasil Dipending');
+            return redirect()->back();
+        }
+    }
+
     public function destroy($id)
     {
         $prestasi = Prestasi::findOrFail($id);
         $prestasi->delete();
-        return response()->json(['message' => 'Data berhasil dihapus!']);
+        Alert::success('Sukses', 'Data Berhasil Dihapus');
+        return redirect()->route('prestasi.index');
     }
 }
